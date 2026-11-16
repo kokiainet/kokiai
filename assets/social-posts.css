@@ -1,0 +1,77 @@
+.social-post-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(20px, 2vw, 28px);
+  align-items: start;
+}
+.anti-social { margin-top: clamp(24px, 3vw, 36px); scroll-margin-top: 112px; }
+#anti .anti-impact { margin-top: clamp(28px, 4vw, 48px); }
+#lab, #community-events, #insights { padding-block: clamp(40px, 5vw, 68px); scroll-margin-top: 104px; }
+#social { padding-bottom: clamp(40px, 5vw, 68px); }
+#contact { padding-top: clamp(40px, 5vw, 68px); }
+#lab .section-head, #community-events .section-head, #insights .section-head {
+  margin-bottom: clamp(24px, 3vw, 32px);
+}
+#community-events .trio-card { min-height: 0; }
+#community-events .trio-shot { margin: 0; }
+.insight figure { position: relative; }
+#community-events .trio-shot img, .insight figure img {
+  position: absolute;
+  inset: 0;
+}
+.insight .insight-cover-wide { background: #eedad0; }
+.insight .insight-cover-wide img { object-fit: contain; }
+.x-post { width: 100%; max-width: 550px; min-width: 0; justify-self: center; }
+.x-post .twitter-tweet { margin: 0 !important; }
+.x-post blockquote.twitter-tweet {
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: var(--surface);
+  font-size: 16px;
+  line-height: 1.7;
+}
+.x-post blockquote p { margin: 0 0 16px; }
+.x-post blockquote a { text-decoration: underline; text-underline-offset: 4px; }
+.social-post-source { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+.social-post-source a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.linkedin-posts { align-items: start; }
+.linkedin-post {
+  width: 100%;
+  max-width: 550px;
+  min-width: 0;
+  justify-self: center;
+}
+.linkedin-post-frame {
+  display: block;
+  width: 100%;
+  height: 628px;
+  border: 0;
+  border-radius: 8px;
+  background: #fff;
+  transition: box-shadow .25s ease;
+}
+/* This post has one taller cover; keep its footer accessible without cropping. */
+.linkedin-post-frame[src*="7464469603818098688"] { height: 650px; }
+.x-post, .linkedin-post { transition: transform .25s ease; }
+.x-post:focus-within, .linkedin-post:focus-within { transform: translateY(-3px); }
+.linkedin-post:focus-within .linkedin-post-frame { box-shadow: 0 12px 30px rgba(24, 32, 25, .08); }
+@media (hover: hover) and (pointer: fine) {
+  .x-post:hover, .linkedin-post:hover { transform: translateY(-3px); }
+  .linkedin-post:hover .linkedin-post-frame { box-shadow: 0 12px 30px rgba(24, 32, 25, .08); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .x-post, .linkedin-post, #community-events .trio-card, #insights .insight { transform: none !important; }
+  #community-events .trio-shot img, #insights .insight img { transform: none !important; }
+}
+.social-post-source a:focus-visible {
+  outline: 3px solid var(--sage);
+  outline-offset: 5px;
+}
+@media (max-width: 700px) { .social-post-grid { grid-template-columns: 1fr; } }

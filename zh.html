@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>邓小闲 Koki｜反蒸馏 Skill 与社会派编程</title>
+  <meta name="description" content="邓小闲 Koki 的个人网站：反蒸馏 Skill 作者、社会派编程发起人、硅谷法律科技前沿社区 APAC Lead。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:ital,wght@0,500;0,700;1,500&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: oklch(96.5% 0.013 86.8);
+      --surface: oklch(98.5% 0.007 88.6);
+      --fg: oklch(23.3% 0.018 148.4);
+      --muted: oklch(43.4% 0.018 151.4);
+      --border: oklch(88.0% 0.021 88.7);
+      --accent: oklch(33.2% 0.029 146.8);
+      --sage: oklch(67.1% 0.033 140.7);
+      --olive: oklch(59.3% 0.042 119.1);
+      --cream: #f7f3ea;
+      --warm: #fcfaf5;
+      --deep: #182019;
+      --shadow: 0 24px 80px rgba(24, 32, 25, .12);
+      --font-display: "Playfair Display", "Iowan Old Style", Georgia, serif;
+      --font-body: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+      --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 15% 8%, rgba(139, 155, 136, .28), transparent 27rem),
+        radial-gradient(circle at 92% 12%, rgba(123, 130, 102, .16), transparent 24rem),
+        var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    img, video { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+
+    .container {
+      width: min(100% - clamp(32px, 6vw, 96px), 1280px);
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: fixed;
+      z-index: 30;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(calc(100% - 32px), 1420px);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 22px;
+      padding: 12px 14px 12px 18px;
+      border: 1px solid color-mix(in oklch, var(--border), transparent 10%);
+      border-radius: 999px;
+      background: rgba(252, 250, 245, .9);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 12px 34px rgba(24, 32, 25, .08);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--warm);
+      background: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: clamp(10px, 2vw, 28px);
+      color: var(--muted);
+      font-size: clamp(17px, 1.15vw, 20px);
+      font-weight: 500;
+    }
+
+    .nav-links a { transition: color .25s ease; }
+    .nav-links a:hover { color: var(--fg); }
+
+    .nav-actions {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .sf-mobile-link { display: none; }
+
+    .language-toggle {
+      display: inline-grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 2px;
+      padding: 4px;
+      border: 1px solid color-mix(in oklch, var(--border), transparent 8%);
+      border-radius: 999px;
+      background: color-mix(in oklch, var(--surface), transparent 12%);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .42);
+    }
+
+    .language-toggle a {
+      min-width: 38px;
+      min-height: 36px;
+      padding: 0 10px;
+      border: 0;
+      border-radius: 999px;
+      color: var(--muted);
+      background: transparent;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: color .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+
+    .language-toggle a[aria-current="page"] {
+      color: var(--warm);
+      background: var(--accent);
+      box-shadow: 0 8px 18px rgba(24, 32, 25, .14);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 46px;
+      padding: 13px 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: .02em;
+      transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px) scale(1.01); }
+    .btn-primary {
+      color: var(--warm);
+      background: var(--accent);
+      box-shadow: 0 16px 34px rgba(24, 32, 25, .18);
+    }
+    .btn-secondary {
+      color: var(--fg);
+      background: color-mix(in oklch, var(--surface), transparent 8%);
+      border-color: var(--border);
+    }
+    .btn-ghost {
+      color: var(--fg);
+      background: transparent;
+      border-color: color-mix(in oklch, var(--fg), transparent 75%);
+    }
+
+    .hero {
+      min-height: max(100svh, 60vw);
+      padding: 144px 0 64px;
+      display: grid;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      color: var(--warm);
+      background:
+        linear-gradient(90deg, rgba(24, 32, 25, .94) 0%, rgba(24, 32, 25, .8) 29%, transparent 44%),
+        url("assets/hero-openclaw-clean.webp") center bottom / cover no-repeat;
+    }
+
+    .hero::before { display: none; }
+    .hero .eyebrow { color: #d9dfcc; font-size: 12px; line-height: 1.5; }
+    .hero .proof-row { gap: 8px; margin-top: 26px; }
+    .hero .proof { padding: 10px 12px; font-size: 14px; }
+    .hero .hero-title {
+      font-size: clamp(48px, 4.6vw, 76px);
+      line-height: 1.1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: clamp(18px, 3vw, 40px);
+      align-items: center;
+    }
+
+    .hero-copy {
+      grid-column: 1 / 5;
+      position: relative;
+      z-index: 1;
+      padding-top: 0;
+      text-shadow: 0 2px 24px rgba(0, 0, 0, .42);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 24px;
+      color: var(--olive);
+      font: 600 14px/1 var(--font-mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 38px;
+      height: 1px;
+      background: currentColor;
+      opacity: .65;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 500;
+      letter-spacing: -.025em;
+      line-height: 1.04;
+    }
+
+    h1 {
+      max-width: 980px;
+      font-size: clamp(62px, 8.4vw, 124px);
+    }
+
+    .hero-title {
+      display: grid;
+      gap: .04em;
+      max-width: 7em;
+      font-variant-east-asian: full-width;
+    }
+
+    .hero-title span {
+      display: block;
+      white-space: nowrap;
+    }
+
+    .hero-title .title-accent {
+      color: color-mix(in oklch, var(--gold), var(--warm) 22%);
+      font-style: normal;
+      font-weight: 600;
+      text-shadow:
+        0 2px 18px rgba(0, 0, 0, .34),
+        0 0 34px rgba(239, 228, 191, .16);
+    }
+
+    .hero-lead {
+      max-width: 460px;
+      margin: 24px 0 0;
+      color: rgba(252, 250, 245, .9);
+      font-size: clamp(17px, 1.25vw, 20px);
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .proof-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .proof {
+      padding: 14px 19px;
+      border: 1px solid rgba(252, 250, 245, .26);
+      border-radius: 999px;
+      background: rgba(24, 32, 25, .38);
+      color: rgba(252, 250, 245, .78);
+      backdrop-filter: blur(14px);
+      font-size: 16px;
+    }
+
+    .proof strong { color: var(--warm); font-weight: 600; }
+
+    section { padding: clamp(78px, 11vw, 132px) 0; }
+
+    .section-banner {
+      margin-bottom: clamp(28px, 5vw, 54px);
+      padding: clamp(28px, 5vw, 58px);
+      border-radius: 44px;
+      background:
+        linear-gradient(135deg, rgba(252,250,245,.94), rgba(247,243,234,.68)),
+        radial-gradient(circle at 82% 10%, color-mix(in oklch, var(--sage), transparent 52%), transparent 34%);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .section-banner h2 {
+      max-width: 920px;
+      font-size: clamp(42px, 6vw, 78px);
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      margin-bottom: 14px;
+      color: var(--olive);
+      font: 600 12px/1 var(--font-mono);
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, .8fr) minmax(260px, .55fr);
+      gap: 42px;
+      align-items: end;
+      margin-bottom: 42px;
+    }
+
+    .section-head h2 { font-size: clamp(42px, 6vw, 78px); }
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 58ch;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .feature {
+      padding: 26px;
+      border-radius: 30px;
+      background: color-mix(in oklch, var(--surface), transparent 5%);
+      border: 1px solid var(--border);
+      min-height: 220px;
+    }
+
+    .icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      margin-bottom: 24px;
+      color: var(--accent);
+      background: color-mix(in oklch, var(--sage), white 56%);
+    }
+
+    .feature h3, .work-card h3, .insight h3 {
+      font-family: var(--font-body);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0;
+      line-height: 1.25;
+    }
+
+    .feature p, .work-card p, .insight p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 14.5px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(280px, .92fr) minmax(0, 1.08fr);
+      gap: clamp(36px, 6vw, 84px);
+      align-items: center;
+    }
+
+    .panel {
+      border-radius: 46px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 70px rgba(24, 32, 25, .08);
+      overflow: hidden;
+    }
+
+    .anti-panel {
+      padding: clamp(28px, 5vw, 54px);
+    }
+
+    .demo-panel {
+      margin-top: clamp(22px, 4vw, 42px);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);
+      gap: clamp(24px, 5vw, 54px);
+      align-items: stretch;
+      padding: clamp(28px, 5vw, 56px);
+      border-radius: 46px;
+      background: var(--deep);
+      color: var(--warm);
+      overflow: hidden;
+    }
+
+    .demo-panel .anti-panel {
+      background: color-mix(in oklch, var(--warm), transparent 92%);
+      border: 1px solid rgba(252, 250, 245, .16);
+      color: var(--warm);
+      box-shadow: none;
+    }
+
+    .demo-panel .anti-panel .hero-lead {
+      color: color-mix(in oklch, var(--warm), transparent 18%);
+    }
+
+    .demo-origin {
+      margin-top: 22px;
+      max-width: 58ch;
+      color: color-mix(in oklch, var(--warm), transparent 14%);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .demo-points {
+      display: grid;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .demo-point {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 16px;
+      border-radius: 22px;
+      background: rgba(252, 250, 245, .08);
+      border: 1px solid rgba(252, 250, 245, .12);
+    }
+
+    .demo-point b {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--warm);
+      color: var(--deep);
+      font-size: 13px;
+      font-family: var(--font-ui);
+      letter-spacing: .06em;
+    }
+
+    .demo-point strong {
+      display: block;
+      margin-bottom: 4px;
+      font-family: var(--font-ui);
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--warm);
+    }
+
+    .demo-point span {
+      display: block;
+      color: color-mix(in oklch, var(--warm), transparent 18%);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .demo-proof {
+      margin-top: 24px;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: var(--warm);
+      color: var(--deep);
+      font-family: var(--font-ui);
+      font-size: 13px;
+      letter-spacing: .05em;
+    }
+
+    .demo-proof strong {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      letter-spacing: -.02em;
+    }
+
+    .repo-note {
+      margin-top: 14px;
+      max-width: 54ch;
+      color: color-mix(in oklch, var(--warm), transparent 22%);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .repo-note a {
+      color: var(--warm);
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1px;
+    }
+
+    .video-slot {
+      position: relative;
+      width: min(100%, 420px);
+      justify-self: center;
+      aspect-ratio: 9 / 16;
+      min-height: 0;
+      border-radius: 36px;
+      border: 1px solid rgba(252, 250, 245, .18);
+      background:
+        linear-gradient(135deg, rgba(252,250,245,.12), rgba(252,250,245,.03)),
+        repeating-linear-gradient(135deg, rgba(252,250,245,.08) 0 1px, transparent 1px 18px);
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .22);
+    }
+
+    .video-slot iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 18px;
+      color: var(--warm);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: .02em;
+      text-decoration: underline;
+      text-underline-offset: 5px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: color-mix(in oklch, var(--warm), transparent 55%);
+    }
+
+    .text-link:hover,
+    .text-link:focus-visible {
+      color: var(--sage);
+      outline: none;
+    }
+
+    .compare {
+      display: grid;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .compare-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      overflow: hidden;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--border);
+    }
+
+    .compare-row div {
+      padding: 16px;
+      background: var(--warm);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .compare-row strong {
+      display: block;
+      color: var(--fg);
+      margin-bottom: 6px;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .dark-band {
+      position: relative;
+      overflow: hidden;
+      background: var(--deep);
+      color: var(--warm);
+    }
+
+    .dark-band::after {
+      content: "";
+      position: absolute;
+      inset: auto -12% -45% 42%;
+      height: 520px;
+      background: radial-gradient(circle, rgba(139,155,136,.38), transparent 66%);
+      pointer-events: none;
+    }
+
+    .dark-band .section-head p,
+    .dark-band .muted { color: color-mix(in oklch, var(--warm), transparent 28%); }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .work-card {
+      min-height: 300px;
+      padding: 28px;
+      border-radius: 34px;
+      background: rgba(252, 250, 245, .08);
+      border: 1px solid rgba(252, 250, 245, .14);
+      color: inherit;
+      text-decoration: none;
+      display: block;
+      transition: transform .32s ease, border-color .32s ease, background .32s ease;
+    }
+
+    .work-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(252, 250, 245, .28);
+      background: rgba(252, 250, 245, .11);
+    }
+
+    .work-card figure,
+    .insight figure,
+    .media-thumb {
+      min-height: 172px;
+      margin: 0 0 22px;
+      border-radius: 26px;
+      border: 1px solid rgba(252, 250, 245, .13);
+      background:
+        linear-gradient(135deg, rgba(139,155,136,.42), rgba(252,250,245,.08)),
+        repeating-linear-gradient(90deg, transparent 0 22px, rgba(252,250,245,.09) 22px 23px);
+      display: grid;
+      place-items: center;
+      color: color-mix(in oklch, var(--warm), transparent 38%);
+      font: 600 11px/1 var(--font-mono);
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      overflow: hidden;
+    }
+
+    .work-card figure {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      min-height: 0;
+    }
+
+    .work-card figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(.92) contrast(1.02);
+      transition: transform .7s ease;
+    }
+
+    .work-card:hover figure img {
+      transform: scale(1.045);
+    }
+
+    .social-manifesto {
+      position: relative;
+      z-index: 1;
+      display: block;
+      margin: 0 0 30px;
+      padding: clamp(24px, 4vw, 42px);
+      border: 1px solid rgba(252, 250, 245, .14);
+      border-radius: 34px;
+      background:
+        linear-gradient(135deg, rgba(252, 250, 245, .12), rgba(252, 250, 245, .05)),
+        rgba(252, 250, 245, .06);
+    }
+
+    .social-manifesto h3 {
+      margin: 0 0 14px;
+      font-size: clamp(24px, 3.4vw, 38px);
+      letter-spacing: -.02em;
+    }
+
+    .social-manifesto p {
+      margin: 0;
+      color: color-mix(in oklch, var(--warm), transparent 20%);
+      font-size: clamp(16px, 1.4vw, 18px);
+      line-height: 1.72;
+    }
+
+    .social-manifesto .origin {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .tag {
+      display: inline-flex;
+      margin-bottom: 22px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(252, 250, 245, .1);
+      color: color-mix(in oklch, var(--warm), transparent 8%);
+      font: 600 11px/1 var(--font-mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .impact {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 32px;
+      align-items: stretch;
+    }
+
+    .anti-impact {
+      margin-top: clamp(54px, 8vw, 96px);
+    }
+
+    .stat-card {
+      padding: clamp(32px, 5vw, 58px);
+      border-radius: 42px;
+      background: var(--accent);
+      color: var(--warm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 540px;
+    }
+
+    .cover-card {
+      position: relative;
+      min-height: 640px;
+      padding: clamp(30px, 5vw, 54px);
+      border-radius: 42px;
+      overflow: hidden;
+      background: var(--fg);
+      color: var(--warm);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      text-decoration: none;
+      isolation: isolate;
+    }
+
+    .cover-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(180deg, rgba(24,32,25,.08) 0%, rgba(24,32,25,.28) 42%, rgba(24,32,25,.88) 100%),
+        url("mqnqze1c-财新封面.jpg");
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.02);
+      z-index: -2;
+      transition: transform .7s ease;
+    }
+
+    .cover-card::after {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(252,250,245,.28);
+      border-radius: 30px;
+      z-index: -1;
+    }
+
+    .cover-card:hover::before { transform: scale(1.06); }
+
+    .cover-card h3 {
+      max-width: 11ch;
+      margin-top: 16px;
+      color: var(--warm);
+      font-family: var(--font-display);
+      font-size: clamp(42px, 5vw, 74px);
+      line-height: .96;
+      letter-spacing: -.03em;
+    }
+
+    .cover-card p {
+      max-width: 46ch;
+      margin-top: 18px;
+      color: rgba(252,250,245,.82);
+    }
+
+    .stat-number {
+      display: block;
+      margin: 26px 0 6px;
+      font-family: var(--font-display);
+      font-size: clamp(76px, 10vw, 132px);
+      line-height: .9;
+      letter-spacing: -.03em;
+    }
+
+    .media-wall {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .media-item {
+      min-height: 130px;
+      padding: 20px;
+      border-radius: 28px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: var(--fg);
+      text-decoration: none;
+      transition: transform .24s ease, border-color .24s ease, box-shadow .24s ease;
+    }
+
+    .media-item:hover {
+      transform: translateY(-3px);
+      border-color: color-mix(in oklch, var(--accent), var(--border) 56%);
+      box-shadow: 0 18px 46px rgba(24, 32, 25, .1);
+    }
+
+    .media-item span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .media-item .media-thumb {
+      aspect-ratio: 16 / 10;
+      min-height: 0;
+      margin-bottom: 18px;
+      color: var(--muted);
+      background:
+        linear-gradient(135deg, rgba(139,155,136,.24), rgba(252,250,245,.86)),
+        repeating-linear-gradient(90deg, transparent 0 22px, rgba(24,32,25,.05) 22px 23px);
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .media-thumb img {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      object-fit: contain;
+      display: block;
+    }
+
+    .lab-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      overflow: hidden;
+      border-radius: 34px;
+      background: color-mix(in oklch, var(--border), transparent 15%);
+      border: 1px solid var(--border);
+    }
+
+    .lab-event {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      margin: 0;
+      background: var(--deep);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .lab-event img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(.96) contrast(1.02);
+      transform: scale(1.01);
+      transition: transform .7s ease, filter .7s ease;
+    }
+
+    .lab-event figcaption {
+      position: absolute;
+      inset: auto 0 0;
+      z-index: 2;
+      padding: 88px 24px 24px;
+      color: var(--warm);
+      background: linear-gradient(to top, rgba(24,32,25,.92), rgba(24,32,25,.58) 58%, transparent);
+      transform: translateY(calc(100% - 94px));
+      transition: transform .48s cubic-bezier(.2,.8,.2,1), background .48s ease;
+    }
+
+    .lab-event strong {
+      display: block;
+      color: var(--warm);
+      font: 600 20px/1.15 var(--font-serif);
+      letter-spacing: -.01em;
+    }
+
+    .lab-event span {
+      display: block;
+      margin-top: 10px;
+      color: color-mix(in oklch, var(--warm), transparent 16%);
+      font: 600 11px/1 var(--font-mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .lab-event p {
+      margin-top: 18px;
+      max-width: 30ch;
+      color: color-mix(in oklch, var(--warm), transparent 10%);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .lab-event::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(to top, rgba(24,32,25,.35), transparent 46%);
+      opacity: .82;
+      transition: opacity .5s ease;
+      pointer-events: none;
+    }
+
+    .lab-event:hover img,
+    .lab-event:focus-within img {
+      transform: scale(1.06);
+      filter: saturate(1.06) contrast(1.06) brightness(.82);
+    }
+
+    .lab-event:hover figcaption,
+    .lab-event:focus-within figcaption {
+      transform: translateY(0);
+      background: linear-gradient(to top, rgba(24,32,25,.96), rgba(24,32,25,.72) 68%, transparent);
+    }
+
+    .lab-event:hover::after,
+    .lab-event:focus-within::after {
+      opacity: 0;
+    }
+
+    .open-trio {
+      background: linear-gradient(180deg, rgba(246, 242, 232, .82), rgba(252, 250, 245, .96));
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .trio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .trio-card {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      min-height: 520px;
+      padding: 18px;
+      color: var(--ink);
+      text-decoration: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      overflow: hidden;
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    }
+
+    .trio-card:hover,
+    .trio-card:focus-visible {
+      transform: translateY(-5px);
+      border-color: rgba(96, 111, 93, .32);
+      box-shadow: 0 20px 52px rgba(24, 32, 25, .1);
+    }
+
+    .trio-shot {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      border-radius: 20px;
+      background: #182019;
+      border: 1px solid rgba(24, 32, 25, .08);
+    }
+
+    .trio-shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(.96) contrast(1.02);
+      transition: transform .7s ease;
+    }
+
+    .trio-card:hover .trio-shot img,
+    .trio-card:focus-visible .trio-shot img {
+      transform: scale(1.035);
+    }
+
+    .trio-logo {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: rgba(252, 250, 245, .92);
+      border: 1px solid rgba(24, 32, 25, .08);
+      box-shadow: 0 14px 34px rgba(24, 32, 25, .16);
+      overflow: hidden;
+    }
+
+    .trio-logo img {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+      transform: none !important;
+      filter: none;
+    }
+
+    .trio-body {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: 20px 8px 4px;
+    }
+
+    .trio-body h3 {
+      margin: 0;
+      font-size: clamp(25px, 2.2vw, 34px);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+
+    .trio-body p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .trio-body .event-meta {
+      color: var(--sage-deep, #52604f);
+      font: 600 14px/1.5 var(--font-mono);
+    }
+
+    .trio-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 8px;
+    }
+
+    .trio-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--ink);
+      background: rgba(252, 250, 245, .72);
+      text-decoration: none;
+      font: 700 12px/1 var(--font-mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: background .2s ease, border-color .2s ease;
+    }
+
+    .trio-links a:hover,
+    .trio-links a:focus-visible {
+      background: var(--warm);
+      border-color: rgba(96, 111, 93, .34);
+    }
+    .insights {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .insight {
+      padding: 18px;
+      border-radius: 32px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      min-height: 360px;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .insight figure {
+      aspect-ratio: 16 / 10;
+      min-height: 156px;
+      color: var(--muted);
+      background:
+        linear-gradient(135deg, rgba(139,155,136,.24), rgba(252,250,245,.96)),
+        repeating-linear-gradient(90deg, transparent 0 22px, rgba(24,32,25,.05) 22px 23px);
+    }
+
+    .insight figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(.95) contrast(1.03);
+      transition: transform .7s ease;
+    }
+
+    .insight:hover figure img {
+      transform: scale(1.035);
+    }
+
+    .insight h3,
+    .insight p,
+    .insight .tag { margin-left: 8px; margin-right: 8px; }
+
+    .insight:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 52px rgba(24, 32, 25, .1);
+    }
+
+    .newsletter-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 54px;
+      padding: clamp(34px, 6vw, 70px);
+      background:
+        linear-gradient(90deg, rgba(24,32,25,.95) 0%, rgba(24,32,25,.82) 42%, rgba(24,32,25,.38) 100%),
+        url("mqnudp8i-1774197793550.jpg") 22% 43% / 132% auto no-repeat;
+      color: var(--warm);
+    }
+
+    .newsletter-card h2 {
+      max-width: 780px;
+      font-size: clamp(40px, 6vw, 82px);
+    }
+
+    .newsletter-card p {
+      max-width: 62ch;
+      color: color-mix(in oklch, var(--warm), transparent 24%);
+      font-size: 17px;
+    }
+
+    .substack-embed-wrap {
+      width: min(100%, 480px);
+      margin-top: 30px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(252, 250, 245, .28);
+      background: var(--warm);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, .22);
+    }
+
+    .substack-embed-wrap iframe {
+      display: block;
+      width: 100%;
+      max-width: 480px;
+      height: 320px;
+      border: 0;
+      background: #fff;
+    }
+
+    .inline-form {
+      display: flex;
+      gap: 12px;
+      max-width: 620px;
+      margin-top: 30px;
+      padding: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(252, 250, 245, .18);
+      background: rgba(252, 250, 245, .1);
+    }
+
+    .inline-form input {
+      flex: 1;
+      min-width: 0;
+      color: var(--warm);
+      border: 0;
+      outline: 0;
+      background: transparent;
+      padding: 0 18px;
+    }
+
+    .inline-form input::placeholder { color: rgba(252, 250, 245, .58); }
+
+    .footer {
+      padding: 58px 0 38px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.35fr repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .footer h3 {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .footer p, .footer a {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 9px;
+    }
+
+    .footer-links a {
+      width: fit-content;
+      text-decoration: none;
+      border-bottom: 1px solid color-mix(in oklch, var(--muted), transparent 62%);
+      transition: color .25s ease, border-color .25s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--fg);
+      border-color: var(--accent);
+    }
+
+    .reveal.reveal-pending {
+      opacity: 0;
+      translate: 0 20px;
+    }
+    .reveal.is-visible {
+      animation: reveal-in .65s cubic-bezier(.22, 1, .36, 1) var(--reveal-delay, 0s) both;
+    }
+    .reveal:focus-within {
+      opacity: 1;
+      translate: none;
+      animation: none;
+    }
+    @keyframes reveal-in {
+      from { opacity: 0; translate: 0 20px; }
+      to { opacity: 1; translate: 0 0; }
+    }
+
+    .delay-1 { transition-delay: .08s; }
+    .delay-2 { transition-delay: .12s; }
+    .delay-3 { transition-delay: .16s; }
+    .eyebrow-sage { color: var(--sage); }
+    .tag-soft {
+      background: color-mix(in oklch, var(--sage), white 56%);
+      color: var(--accent);
+    }
+
+    .floating-subscribe {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 25;
+      box-shadow: 0 18px 48px rgba(24, 32, 25, .18);
+    }
+
+    @media (max-width: 1100px) {
+      .hero {
+        min-height: auto;
+        padding: 94px 0 56px;
+        background: var(--deep);
+        gap: 36px;
+      }
+      .hero::before {
+        content: "";
+        display: block;
+        width: 100%;
+        aspect-ratio: 1600 / 1066;
+        background: url("assets/hero-openclaw-clean.webp") center / cover no-repeat;
+      }
+      .hero .hero-copy { grid-column: 1 / -1; max-width: 720px; margin: 0; padding: 0; }
+      .hero .hero-title { font-size: clamp(48px, 7vw, 76px); }
+      .hero .hero-lead { max-width: 680px; font-size: 18px; }
+    }
+
+    @media (max-width: 1020px) {
+      .nav { grid-template-columns: auto auto; }
+      .nav-links { display: none; }
+      .sf-mobile-link {
+        display: inline-flex;
+        align-items: center;
+        min-height: 40px;
+        color: var(--accent);
+        font-size: 14px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .nav-actions .btn { display: none; }
+      .hero-grid, .split, .impact, .section-head { grid-template-columns: 1fr; }
+      .hero-copy { grid-column: 1 / -1; max-width: 680px; margin-left: auto; }
+      .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .work-grid, .insights, .trio-grid { grid-template-columns: 1fr 1fr; }
+      .social-manifesto { grid-template-columns: 1fr; }
+      .demo-panel { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 700px) {
+      .container { width: min(100% - 28px, 1280px); }
+      .nav {
+        top: 10px;
+        width: calc(100% - 20px);
+        padding: 10px;
+      }
+      .brand span { display: none; }
+      .brand .brand-mark { display: grid; }
+      .nav .btn { min-height: 42px; padding: 10px 14px; font-size: 15px; }
+      .language-toggle a { min-width: 34px; min-height: 34px; padding: 0 8px; }
+      .hero { padding-top: 78px; gap: 28px; }
+      .hero .hero-title { font-size: clamp(44px, 10vw, 64px); }
+      .hero .proof-row { flex-direction: row; align-items: flex-start; }
+      .hero-actions, .proof-row, .inline-form { flex-direction: column; align-items: stretch; }
+      .feature-grid, .work-grid, .media-wall, .insights, .trio-grid, .lab-gallery, .footer-grid { grid-template-columns: 1fr; }
+      .social-manifesto { padding: 24px; border-radius: 26px; }
+      .lab-gallery { gap: 1px; }
+      .lab-event figcaption {
+        transform: translateY(0);
+        padding: 74px 20px 20px;
+      }
+      .compare-row { grid-template-columns: 1fr; }
+      .newsletter-card { border-radius: 34px; }
+      .substack-embed-wrap iframe { height: 320px; }
+      .floating-subscribe { left: 14px; right: 14px; bottom: 14px; }
+    }
+
+
+    .calendar-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: clamp(24px, 4vw, 48px);
+      align-items: center;
+    }
+    .calendar-shot { margin: 0; }
+    .calendar-shot img {
+      width: 100%; height: auto; display: block;
+      border-radius: 28px; border: 1px solid var(--border);
+      box-shadow: 0 24px 54px rgba(24, 32, 25, .12);
+    }
+    .calendar-copy h3 { font-size: clamp(24px, 2.6vw, 34px); margin: 0 0 12px; line-height: 1.25; }
+    .calendar-copy p { color: var(--muted); margin: 0 0 22px; }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    @media (max-width: 860px) {
+      .calendar-panel { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+      .reveal, .reveal.reveal-pending { opacity: 1; translate: none; }
+    }
+  </style>
+  <link rel="stylesheet" href="assets/social-posts.css">
+</head>
+<body>
+  <nav class="nav" aria-label="主导航">
+    <a class="brand" href="?section=top" aria-label="返回首页">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 19c8-1 13-6 14-14-8 1-13 6-14 14Zm0 0c3-1 6-3 9-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span>邓小闲 Koki</span>
+    </a>
+    <div class="nav-links">
+      <a href="zh.html" aria-current="page">首页</a>
+      <a href="works/zh.html">个人作品集</a>
+      <a href="bay-area/zh.html">Bay Area</a>
+      <a href="?section=insights">Insights</a>
+      <a href="resources/zh.html">AI 资料库</a>
+      <a href="services/zh.html">Services</a>
+      <a href="?section=top">About</a>
+    </div>
+    <div class="nav-actions">
+      <a class="sf-mobile-link" href="bay-area/zh.html">Bay Area ↗</a>
+      <div class="language-toggle" role="group" aria-label="语言">
+        <a href="index.html">EN</a>
+        <a href="zh.html" aria-current="page">中文</a>
+      </div>
+      <a class="btn btn-primary" href="?section=contact">订阅 Substack</a>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Anti-Distill Skill / Social Coding</p>
+          <h1 class="hero-title"><span>科技不人本</span><span class="title-accent">进步无意义</span></h1>
+          <p class="hero-lead">邓小闲 Koki，反蒸馏 Skill 作者，社会派编程发起人。中国政法大学法学本硕，日本同志社大学法学修士。长期活跃在 AI 人文、劳动者权益、女性科技、法律科技等领域，主张用人工智能解决真实的社会问题。</p>
+          <div class="proof-row">
+            <span class="proof"><strong>10 万+</strong> 全网关注</span>
+            <span class="proof"><strong class="gh-stars">2,400+</strong> GitHub stars</span>
+            <span class="proof"><strong>20+</strong> 媒体报道</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="anti">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Anti-Distill Skill</p>
+            <h2>反蒸馏 Skill</h2>
+          </div>
+          <p>一个把“劳动者被 AI 蒸馏”说清楚、并做成可用工具的项目：公司让你交出 Skill 时，它帮你保留真正的判断力、踩坑经验和职业资产。</p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="demo-panel reveal">
+          <div class="anti-panel panel">
+            <p class="eyebrow eyebrow-sage">Skill Demo</p>
+            <h2>公司让你写 Skill？核心知识留给自己。</h2>
+            <p class="demo-origin">它受到“同事 Skill”现象启发：越来越多公司要求员工把个人经验写成可复用的 AI Skill。表面是知识沉淀，实质是把人的判断力、踩坑经验和隐性网络蒸馏成公司可复制的资产。</p>
+            <ul class="demo-points">
+              <li class="demo-point">
+                <b>01</b>
+                <div>
+                  <strong>读取</strong>
+                  <span>导入你写好的 Skill 或知识文档，先保留原始结构。</span>
+                </div>
+              </li>
+              <li class="demo-point">
+                <b>02</b>
+                <div>
+                  <strong>识别</strong>
+                  <span>判断哪些内容是真正的经验、直觉、关系和踩坑记录。</span>
+                </div>
+              </li>
+              <li class="demo-point">
+                <b>03</b>
+                <div>
+                  <strong>分离</strong>
+                  <span>交差版看起来完整专业，核心知识则进入你的私人备份。</span>
+                </div>
+              </li>
+            </ul>
+            <div class="demo-proof"><strong class="gh-stars">2,400+</strong><span>GitHub stars</span></div>
+            <p class="repo-note"><a href="https://github.com/kokiainet/anti-distill" target="_blank" rel="noopener noreferrer">GitHub 链接</a></p>
+          </div>
+          <div class="video-slot">
+            <iframe
+              src="https://player.bilibili.com/player.html?isOutside=true&amp;bvid=BV1T79TBYErH&amp;page=1&amp;autoplay=0"
+              title="反蒸馏 Skill Demo"
+              allow="fullscreen; autoplay; encrypted-media; picture-in-picture"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="container social-post-grid anti-social" id="anti-social" aria-label="反蒸馏相关 X 帖子">
+        <article class="x-post reveal">
+          <blockquote class="twitter-tweet" data-dnt="true" data-theme="light" data-conversation="none" data-align="center">
+            <p lang="en" dir="ltr">In response someone has recently invented an “anti-distillation.skill” that has gone viral on GitHub.</p>
+            &mdash; Steve Hou (@stevehou) <a href="https://x.com/stevehou/status/2040228565476585909" target="_blank" rel="noopener noreferrer">2026 年 4 月 4 日</a>
+          </blockquote>
+          <p class="social-post-source"><a href="https://x.com/stevehou/status/2040228565476585909" target="_blank" rel="noopener noreferrer" aria-label="在 X 查看 Steve Hou 的原帖">在 X 查看原帖 ↗</a></p>
+        </article>
+        <article class="x-post reveal">
+          <blockquote class="twitter-tweet" data-dnt="true" data-theme="light" data-conversation="none" data-align="center">
+            <p lang="zh" dir="ltr">我的反蒸馏skill登上《财新周刊》封面！</p>
+            &mdash; koki (@kokiainet) <a href="https://x.com/kokiainet/status/2067892043234635956" target="_blank" rel="noopener noreferrer">2026 年 6 月 19 日</a>
+          </blockquote>
+          <p class="social-post-source"><a href="https://x.com/kokiainet/status/2067892043234635956" target="_blank" rel="noopener noreferrer" aria-label="在 X 查看 Koki 的原帖">在 X 查看原帖 ↗</a></p>
+        </article>
+      </div>
+      <div class="container anti-impact" id="impact">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Impact &amp; Media</p>
+            <h2>影响力与媒体报道</h2>
+          </div>
+          <p>从财新封面到全球科技媒体，再到中文公共讨论，反蒸馏 Skill 把“员工经验被 AI 蒸馏”这件事推到了更大的现场。</p>
+        </div>
+        <div class="impact">
+          <a class="cover-card reveal" href="https://weekly.caixin.com/2026-06-12/102453475.html?sourceEntityId=102454078" target="_blank" rel="noopener">
+            <div>
+              <p class="eyebrow eyebrow-sage">Caixin Weekly</p>
+              <h3>封面报道｜“反蒸馏”之战</h3>
+            </div>
+            <p>《财新周刊》把“反蒸馏”作为 AI 替代加速下劳动者处境的一条关键线索，封面视觉也成为这场讨论的公共符号。</p>
+          </a>
+          <div class="media-wall">
+            <a class="media-item reveal" href="https://www.technologyreview.com/2026/04/20/1136149/chinese-tech-workers-ai-colleagues/" target="_blank" rel="noopener">
+              <div class="media-thumb"><img src="https://wp.technologyreview.com/wp-content/uploads/2026/04/rice-bowl-claw.jpg?resize=1200,600" alt="MIT Technology Review 报道预览图" loading="lazy"></div>
+              <strong>MIT Technology Review</strong>
+              <span>把“AI 分身”放进全球科技语境里，呈现中国技术劳动者一边训练系统、一边寻找反制方法的矛盾处境。</span>
+            </a>
+            <a class="media-item reveal" href="https://mp.weixin.qq.com/s/BUJcy_2_93GO3_BpWY3yGw" target="_blank" rel="noopener">
+              <div class="media-thumb"><img src="mqnrdxnm-央视网.jpg" alt="央视网锋面报道预览图" loading="lazy"></div>
+              <strong>央视网 / 锋面</strong>
+              <span>从公共传播角度追问“同事.skill”刷屏背后的真问题：AI 提效之外，谁在被抽取、谁有权决定边界。</span>
+            </a>
+            <a class="media-item reveal" href="https://mp.weixin.qq.com/s/1YH4ggURo9HpvuTi1DmShg" target="_blank" rel="noopener">
+              <div class="media-thumb"><img src="mqnrf8th-中国新闻周刊.png" alt="中国新闻周刊报道预览图" loading="lazy"></div>
+              <strong>中国新闻周刊</strong>
+              <span>把“打工人被蒸馏”放进更广泛的职场叙事，关注普通劳动者面对技能被封装时的焦虑与自保。</span>
+            </a>
+            <a class="media-item reveal" href="https://v.douyin.com/4IUWJk02HEE/" target="_blank" rel="noopener">
+              <div class="media-thumb"><img src="mqnrdxmp-极昼.png" alt="极昼视频访谈预览图" loading="lazy"></div>
+              <strong>极昼视频访谈</strong>
+              <span>用视频访谈把反蒸馏讲给更大众的受众：它不是反 AI，而是要求技术进步不要绕过具体的人。</span>
+            </a>
+            <a class="media-item reveal" href="https://m.bjnews.com.cn/detail/1776214564168480.html" target="_blank" rel="noopener">
+              <div class="media-thumb"><img src="bjnews.jpg" alt="新京报报道预览图" loading="lazy"></div>
+              <strong>新京报</strong>
+              <span>从“赛博同事”的想象切入，写出 Skill 如何让经验、流程与手艺变成可复制资产后的职场危机感。</span>
+            </a>
+            <a class="media-item reveal" href="https://jg-mvvm.eeo.com.cn/-article/info?viewLevel=3&amp;id=a01502bba586468b85b44c2138d2b20f&amp;sessionid=-367547908" target="_blank" rel="noopener">
+              <div class="media-thumb"><img src="mqnrdxn9-经济观察报.jpg" alt="经济观察报报道预览图" loading="lazy"></div>
+              <strong>经济观察报</strong>
+              <span>把“同事.skill”与“反蒸馏.skill”并置成一场劳资对抗：管理者想复用经验，劳动者要求保留核心价值。</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="lab">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Silicon Valley Legal Tech Frontier</p>
+            <h2>硅谷法律科技<br>前沿社区</h2>
+          </div>
+          <p>作为 APAC Lead，深度参与搭建覆盖硅谷、东京、北京、上海、香港的法律科技社区运营体系，连接法律人、AI 工程师、创业者与资本，倡导并实践 AI Native Law Firm。</p>
+        </div>
+        <div class="social-post-grid linkedin-posts">
+          <article class="linkedin-post reveal">
+            <iframe class="linkedin-post-frame" src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7474451983513440256?collapsed=1" title="Koki Xu 的领英帖子：东京 Global AI Builders Summit" width="504" height="710" loading="lazy" allowfullscreen></iframe>
+            <p class="social-post-source"><a href="https://www.linkedin.com/posts/activity-7474451984733884416-9-eb" target="_blank" rel="noopener noreferrer">在 LinkedIn 查看原帖 ↗</a></p>
+          </article>
+          <article class="linkedin-post reveal">
+            <iframe class="linkedin-post-frame" src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7496449293042536448?collapsed=1" title="Koki Xu 的领英帖子：香港大学 AI for Young Lawyers" width="504" height="710" loading="lazy" allowfullscreen></iframe>
+            <p class="social-post-source"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7496449296385490945/" target="_blank" rel="noopener noreferrer">在 LinkedIn 查看原帖 ↗</a></p>
+          </article>
+          <article class="linkedin-post reveal">
+            <iframe class="linkedin-post-frame" src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7464469603818098688?collapsed=1" title="Helen Fan 的领英帖子：北大法律 AI 交流，买工具还是自己做" width="504" height="710" loading="lazy" allowfullscreen></iframe>
+            <p class="social-post-source"><a href="https://www.linkedin.com/posts/helenfanlegalai_buy-build-activity-7464469603818098688-ki9o" target="_blank" rel="noopener noreferrer">在 LinkedIn 查看原帖 ↗</a></p>
+          </article>
+          <article class="linkedin-post reveal">
+            <iframe class="linkedin-post-frame" src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7438815872879833088?collapsed=1" title="Helen Fan 的领英帖子：东京 OpenClaw 开发者聚会" width="504" height="710" loading="lazy" allowfullscreen></iframe>
+            <p class="social-post-source"><a href="https://www.linkedin.com/posts/helenfanlegalai_legaltech-ai-futureoflaw-activity-7438815872879833088-KQQU" target="_blank" rel="noopener noreferrer">在 LinkedIn 查看原帖 ↗</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="community-events" class="open-trio">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Hosted by Koki</p>
+            <h2>OpenDesign 线下活动</h2>
+          </div>
+          <p>Koki 主持的三场 OpenDesign 线下活动：从香港、上海到大阪，和不同领域的参与者一起动手做演示文稿、网站和原型，交流各自的实践。</p>
+        </div>
+        <div class="trio-grid">
+          <article class="trio-card reveal">
+            <figure class="trio-shot">
+              <img src="assets/open-design-hong-kong-workshop.webp" alt="OpenDesign 香港工作坊参与者合影" width="2400" height="1800" loading="lazy">
+            </figure>
+            <div class="trio-body">
+              <p class="event-meta">8 月 16 日 · 香港</p>
+              <h3>香港工作坊</h3>
+              <p>把设计系统和实时数据带进创作，现场制作交互演示、网站和香港天气仪表盘。大家边做边排查问题，通过作品展示交流体验，也为产品提出具体反馈。</p>
+              <div class="trio-links">
+                <a href="https://open-design.ai/community/open-design-hong-kong-workshop/" target="_blank" rel="noopener noreferrer" aria-label="阅读香港工作坊活动回顾">活动回顾 ↗</a>
+              </div>
+            </div>
+          </article>
+          <article class="trio-card reveal delay-1">
+            <figure class="trio-shot">
+              <img src="assets/open-design-shanghai-workshop.webp" alt="OpenDesign 上海工作坊参与者合影" width="2400" height="1350" loading="lazy">
+            </figure>
+            <div class="trio-body">
+              <p class="event-meta">7 月 25 日 · 上海</p>
+              <h3>上海工作坊</h3>
+              <p>在复旦大学附近度过三小时的创作之夜。从一步步完成 AI PPT 开始，再围绕各自的主题制作个人网站、演示文稿和产品原型，在美食与红酒之间交流作品、互相支招。</p>
+              <div class="trio-links">
+                <a href="https://open-design.ai/community/open-design-shanghai-workshop/" target="_blank" rel="noopener noreferrer" aria-label="阅读上海工作坊活动回顾">活动回顾 ↗</a>
+              </div>
+            </div>
+          </article>
+          <article class="trio-card reveal delay-3">
+            <figure class="trio-shot">
+              <img src="assets/open-design-osaka-group.jpg" alt="OpenDesign 大阪 Meetup 现场合影" width="2880" height="2160" loading="lazy">
+            </figure>
+            <div class="trio-body">
+              <p class="event-meta">7 月 6 日 · 大阪</p>
+              <h3>大阪 Meetup</h3>
+              <p>在日本桥站附近，和设计师、开发者、教育工作者及创业者一起探索 AI 创作。除了 AI PPT 教程，参与者还分享了房地产宣传册，以及融合大阪城市元素的网站实验。</p>
+              <div class="trio-links">
+                <a href="https://open-design.ai/community/open-design-osaka-meetup/" target="_blank" rel="noopener noreferrer" aria-label="阅读大阪 Meetup 活动回顾">活动回顾 ↗</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section id="insights">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Insights</p>
+            <h2>洞察</h2>
+          </div>
+          <p>邓小闲 Koki 关于 AI 用户权利、平台生态中的商业机会，以及法律职业变化的文章与演讲。</p>
+        </div>
+        <div class="insights">
+          <a class="insight reveal" href="resources/muse-7-cases/zh.html" aria-label="阅读 Muse 怎么用：7 个真实案例">
+            <figure>
+              <img src="resources/muse-7-cases/images/01-intro.jpg" alt="Koki 视频中列出的 7 个 Muse 案例" loading="lazy" width="1280" height="720">
+            </figure>
+            <span class="tag tag-soft">个人 Agent</span>
+            <h3>Muse 怎么用：7 个工作与生活的真实案例</h3>
+            <p>投简历、免费拿活动票、买平底锅、安排志愿者日、租房保险、日历管理、个人网站自动更新：私人 AI 助理的 7 个真实用法。</p>
+          </a>
+          <a class="insight reveal" href="https://x.com/kokiainet/status/2093675491165356039" target="_blank" rel="noopener noreferrer" aria-label="阅读 AI 权利宣言：反抗 Claude 暴政，AI 属于人民">
+            <figure class="insight-cover-wide">
+              <img src="assets/insight-ai-rights-declaration.jpg" alt="Koki 在 AI Now 演讲，身后屏幕写着 AI 属于人民" loading="lazy" width="1080" height="432">
+            </figure>
+            <span class="tag tag-soft">AI Rights</span>
+            <h3>AI 权利宣言：反抗 Claude 暴政，AI 属于人民！</h3>
+            <p>在 WAIC 期间 AI Now 活动上的演讲实录：选择、拒绝、被记住和修改——AI 用户应当拥有的四项权利。</p>
+          </a>
+          <a class="insight reveal" href="https://x.com/kokiainet/status/2066809354339434831?s=20" target="_blank" rel="noopener noreferrer" aria-label="打开如何在 Anti-Anthropic 中找到商机文章">
+            <figure>
+              <img src="mqnu898o-Anti-Anthropic..jpg" alt="如何在 Anti-Anthropic 中找到商机文章封面" loading="lazy" width="1600" height="900">
+            </figure>
+            <span class="tag tag-soft">AI Business</span>
+            <h3>如何在 Anti-Anthropic 中找到商机？</h3>
+            <p>从反向需求、平台摩擦与新工作流切入，判断 AI 生态里真正会长出商业机会的地方。</p>
+          </a>
+          <a class="insight reveal" href="https://mp.weixin.qq.com/s/tmlgDtzJGzeoW1Fm__Tqqg" target="_blank" rel="noopener noreferrer" aria-label="打开一个时代的落幕文章">
+            <figure>
+              <img src="mqnu899d-北大光华-AI-创业讲座.jpg" alt="北大光华 AI 创业讲座现场" loading="lazy" width="1600" height="900">
+            </figure>
+            <span class="tag tag-soft">Law &amp; AI</span>
+            <h3>一个时代的落幕：当 LLM 不再被优先翻译为法学硕士，而是大语言模型</h3>
+            <p>从法学背景进入 AI 现场，记录一个缩写的语义迁移，也记录法律人必须重新理解技术的时刻。</p>
+          </a>
+          <a class="insight reveal" href="resources/zh.html" aria-label="打开 AI 资料库">
+            <span class="tag tag-soft">AI 资料库</span>
+            <h3>AI 资料库：给 Builder 的实时工具与指南</h3>
+            <p>我平时会推荐给 AI Builder 的资料集合：实时对比模型能力、API 价格和推理服务商的工具，外加职业、社区、政策等主题的实操指南。</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="calendar">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Bay Area · 公开日历</p>
+            <h2>我的湾区日历</h2>
+          </div>
+          <p>我把自己在湾区的公开行程做成了一面日历墙：只有已确认的公开活动才会上墙，每天自动同步，你看到的就是我真实会出现的场合。</p>
+        </div>
+        <div class="calendar-panel reveal">
+          <figure class="calendar-shot">
+            <img src="assets/calendar-screenshot.png" alt="Koki 的湾区公开日历截图" loading="lazy">
+          </figure>
+          <div class="calendar-copy">
+            <h3>看看我会出现在哪里，来打个招呼</h3>
+            <p>旧金山和硅谷的分享、Meetup、黑客松和社区活动，每天从我自己的日历同步更新。私人会面和待确认的邀请不会出现在这里。</p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="sf-2026/">打开日历 ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="coffee">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Coffee Chat</p>
+            <h2>约我喝杯咖啡</h2>
+          </div>
+          <p>在湾区，想聊 AI、社区或者做产品？直接在我的日历上挑一个时间。</p>
+        </div>
+        <div class="cta-row reveal">
+          <a class="btn btn-primary" href="https://calendar.app.google/SXHbMSGjjiRL2q6CA" target="_blank" rel="noopener noreferrer">Book my time ↗</a>
+          <a class="btn btn-secondary" href="sf-2026/">看我的日历</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="newsletter-card reveal">
+          <p class="eyebrow eyebrow-sage">Subscribe</p>
+          <h2>Subscribe to Koki's AI Insights</h2>
+          <p>Get new essays and AI skill notes in your inbox.</p>
+          <div class="substack-embed-wrap">
+            <iframe src="https://kokimemo.substack.com/embed" width="480" height="320" title="Subscribe to Koki's AI Insights"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>邓小闲 Koki</h3>
+        <p>反蒸馏 Skill 作者，社会派编程发起人。活跃于上海、北京、东京、香港、旧金山。</p>
+      </div>
+      <div>
+        <h3>社交</h3>
+        <div class="footer-links">
+          <a href="https://www.tiktok.com/@kokiishuman" target="_blank" rel="noopener noreferrer">TikTok</a>
+          <a href="https://www.youtube.com/@kokiainet" target="_blank" rel="noopener noreferrer">YouTube</a>
+          <a href="https://www.instagram.com/kokiainet/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://space.bilibili.com/438427470" target="_blank" rel="noopener noreferrer">Bilibili</a>
+          <a href="https://x.com/kokiainet" target="_blank" rel="noopener noreferrer">X / Twitter</a>
+          <a href="https://www.linkedin.com/in/koki-x-309815217/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </div>
+      <div>
+        <h3>内容平台</h3>
+        <div class="footer-links">
+          <a href="https://www.douyin.com/user/MS4wLjABAAAAjxdS9GqgpuMLfZGvkM-Kctt6XSkvcr03ouQQv9oNlXHNIC64F4TjKr0cp-dkZcMK" target="_blank" rel="noopener noreferrer">抖音</a>
+          <a href="https://www.xiaohongshu.com/user/profile/5bfe825044363b01b593585e" target="_blank" rel="noopener noreferrer">小红书</a>
+          <a href="https://kokimemo.substack.com/" target="_blank" rel="noopener noreferrer">Substack</a>
+        </div>
+      </div>
+      <div>
+        <h3>项目 / 社区</h3>
+        <div class="footer-links">
+          <a href="https://github.com/kokiainet/anti-distill" target="_blank" rel="noopener noreferrer">GitHub 链接</a>
+          <a href="https://svlegaltechfrontier.com/" target="_blank" rel="noopener noreferrer">Silicon Valley Legal Tech Frontier Community</a>
+          <a href="sf-2026/">湾区公开行程与 Coffee Chat</a>
+          <a href="bay-area-map/">黄仁勋的硅谷地图</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a class="btn btn-primary floating-subscribe" href="?section=contact">订阅 Substack</a>
+
+  <script defer src="assets/social-posts.js"></script>
+  <script>
+    const section = new URLSearchParams(window.location.search).get("section");
+    if (section && "scrollRestoration" in history) history.scrollRestoration = "manual";
+    if (section === "top") {
+      window.scrollTo(0, 0);
+    } else if (section) {
+      requestAnimationFrame(() => {
+        document.getElementById(section)?.scrollIntoView({ block: "start", behavior: "instant" });
+      });
+    }
+
+    document.querySelectorAll("[data-autoplay]").forEach((video) => {
+      video.play().catch(() => {
+        video.controls = false;
+      });
+    });
+
+    const reveals = document.querySelectorAll(".reveal");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (!("IntersectionObserver" in window) || reducedMotion.matches) {
+      reveals.forEach(el => el.classList.add("is-visible"));
+    } else {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.remove("reveal-pending");
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.08, rootMargin: "0px 0px -24px 0px" });
+      reveals.forEach(el => {
+        const siblings = Array.from(el.parentElement.children).filter(child => child.matches(".reveal"));
+        el.style.setProperty("--reveal-delay", `${Math.min(siblings.indexOf(el) * 0.08, 0.16)}s`);
+        el.classList.add("reveal-pending");
+        observer.observe(el);
+      });
+    }
+
+  </script>
+  <script>
+    // Anti-Distill GitHub stars: live sync from the GitHub API on page load.
+    // The static numbers in the page are the fallback if the fetch fails.
+    (() => {
+      const els = document.querySelectorAll(".gh-stars");
+      if (!els.length) return;
+      const render = (n) => {
+        if (!Number.isFinite(n) || n < 100) return;
+        const text = (Math.floor(n / 100) * 100).toLocaleString("en-US") + "+";
+        els.forEach((el) => { el.textContent = text; });
+      };
+      const CACHE_KEY = "anti-distill-stars";
+      try {
+        const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
+        if (cached && Date.now() - cached.t < 60 * 60 * 1000) { render(cached.n); return; }
+      } catch (e) { /* ignore */ }
+      fetch("https://api.github.com/repos/kokiainet/anti-distill")
+        .then((r) => (r.ok ? r.json() : Promise.reject(new Error(r.status))))
+        .then((d) => {
+          render(d.stargazers_count);
+          try { localStorage.setItem(CACHE_KEY, JSON.stringify({ n: d.stargazers_count, t: Date.now() })); } catch (e) { /* ignore */ }
+        })
+        .catch(() => { /* keep the static fallback */ });
+    })();
+  </script>
+</body>
+</html>

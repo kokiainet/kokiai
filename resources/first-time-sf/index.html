@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>First Time in Silicon Valley & SF: Transport, Phone, Events & Community Links｜Koki</title>
+  <meta name="description" content="Koki's first-trip kit for San Francisco and Silicon Valley: SFO, BART, Caltrain, Clipper, first US phone plans, Wise, hacker houses, Luma, Partiful and community links, each checked live.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: oklch(96.5% 0.013 86.8);
+      --surface: oklch(98.5% 0.007 88.6);
+      --fg: oklch(23.3% 0.018 148.4);
+      --muted: oklch(43.4% 0.018 151.4);
+      --border: oklch(88.0% 0.021 88.7);
+      --accent: oklch(33.2% 0.029 146.8);
+      --sage: oklch(67.1% 0.033 140.7);
+      --warm: #fcfaf5;
+      --font-display: "Playfair Display", "Iowan Old Style", Georgia, serif;
+      --font-body: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 15% 8%, rgba(139, 155, 136, .28), transparent 27rem),
+        radial-gradient(circle at 92% 12%, rgba(123, 130, 102, .16), transparent 24rem),
+        var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(100% - clamp(32px, 6vw, 96px), 1280px); margin: 0 auto; }
+
+    .nav {
+      position: fixed; z-index: 30; top: 18px; left: 50%; transform: translateX(-50%);
+      width: min(calc(100% - 32px), 1420px);
+      display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 22px;
+      padding: 12px 14px 12px 18px;
+      border: 1px solid color-mix(in oklch, var(--border), transparent 10%);
+      border-radius: 999px; background: rgba(252, 250, 245, .9);
+      backdrop-filter: blur(18px); box-shadow: 0 12px 34px rgba(24, 32, 25, .08);
+    }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; white-space: nowrap; }
+    .brand-mark { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; color: var(--warm); background: var(--accent); }
+    .nav-links { display: flex; justify-content: center; gap: clamp(10px, 2vw, 28px); color: var(--muted); font-size: clamp(17px, 1.15vw, 20px); font-weight: 500; }
+    .nav-links a { transition: color .25s ease; }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-links a[aria-current="page"] { color: var(--fg); }
+    .nav-actions { display: inline-flex; align-items: center; justify-content: flex-end; gap: 10px; }
+    .language-toggle { display: inline-grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 2px; padding: 4px; border: 1px solid color-mix(in oklch, var(--border), transparent 8%); border-radius: 999px; background: color-mix(in oklch, var(--surface), transparent 12%); }
+    .language-toggle a { min-width: 38px; min-height: 36px; padding: 0 10px; border-radius: 999px; color: var(--muted); font-size: 13px; font-weight: 700; letter-spacing: .06em; display: inline-flex; align-items: center; justify-content: center; }
+    .language-toggle a[aria-current="page"] { background: var(--accent); color: var(--warm); }
+    .btn-primary { background: var(--accent); color: var(--warm); border-radius: 999px; padding: 10px 18px; font-weight: 600; font-size: 15px; }
+    @media (max-width: 860px) { .nav-links { display: none; } .btn-primary { display: none; } }
+
+    main { padding: 150px 0 90px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: 12px; font-weight: 600; color: var(--accent); margin: 0 0 14px; }
+    h1 { font-family: var(--font-display); font-size: clamp(40px, 5vw, 64px); line-height: 1.1; margin: 0 0 18px; font-weight: 700; }
+    .lead { font-size: clamp(17px, 1.4vw, 20px); color: var(--muted); max-width: 46em; margin: 0; }
+    .updated { margin-top: 14px; font-size: 14px; color: var(--muted); }
+
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 38px; }
+    .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 18px 20px; }
+    .stat strong { display: block; font-family: var(--font-display); font-size: 30px; line-height: 1.1; margin-bottom: 4px; }
+    .stat span { color: var(--muted); font-size: 14px; }
+
+    section { margin-top: 64px; }
+    .section-head h2 { font-family: var(--font-display); font-size: clamp(28px, 3vw, 38px); margin: 0 0 8px; }
+    .section-head p { color: var(--muted); margin: 0 0 26px; max-width: 44em; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+    .card {
+      display: flex; flex-direction: column; gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px; padding: 24px;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    a.card:hover { transform: translateY(-3px); box-shadow: 0 18px 44px rgba(24, 32, 25, .10); border-color: var(--sage); }
+    .card .tag { align-self: flex-start; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); background: color-mix(in oklch, var(--sage), transparent 72%); padding: 4px 10px; border-radius: 999px; }
+    .card h3 { font-size: 20px; margin: 2px 0 0; line-height: 1.3; }
+    .card p { color: var(--muted); font-size: 15px; margin: 0; flex: 1; }
+    .card .meta { display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+    .card .domain { color: var(--muted); }
+    .card .go { color: var(--accent); font-weight: 600; }
+
+    footer { margin-top: 84px; padding-top: 28px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="brand" href="../../index.html" aria-label="Back to home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 19c8-1 13-6 14-14-8 1-13 6-14 14Zm0 0c3-1 6-3 9-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span>Koki</span>
+    </a>
+    <div class="nav-links">
+      <a href="../../index.html?section=anti">Anti-Distill Skill</a>
+      <a href="../../sf-2026/">SF 2026</a>
+      <a href="../">AI Library</a>
+      <a href="../../index.html?section=impact">Media</a>
+      <a href="../../index.html?section=insights">Insights</a>
+    </div>
+    <div class="nav-actions">
+      <div class="language-toggle" role="group" aria-label="Language">
+        <a href="index.html" aria-current="page">EN</a>
+        <a href="zh.html">中文</a>
+      </div>
+      <a class="btn-primary" href="../../index.html?section=contact">Subscribe</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <p class="eyebrow">Silicon Valley · First trip</p>
+      <h1>Your first Silicon Valley trip, sorted</h1>
+      <p class="lead">Landing in San Francisco or the Valley for the first time: the transport, phone, money, events and community links that actually get used in the first two weeks. Every link checked.</p>
+      <p class="updated">By Koki · November 2026</p>
+
+      <div class="stats">
+        <div class="stat"><strong>16</strong><span>Resources, all checked live</span></div>
+        <div class="stat"><strong>4</strong><span>Topics: transport, phone &amp; money, staying, people</span></div>
+        <div class="stat"><strong>2</strong><span>Airports covered: SFO first, Oakland as backup</span></div>
+        <div class="stat"><strong>1</strong><span>Card for almost all transit: Clipper</span></div>
+      </div>
+
+      <section id="transport">
+        <div class="section-head">
+          <h2>Get in, get around</h2>
+          <p>No car is normal on a first trip. Trains plus rideshare cover the airport, San Francisco and the Valley towns where most people actually stay.</p>
+        </div>
+        <div class="grid">
+          <a class="card" href="https://www.flysfo.com" target="_blank" rel="noopener">
+            <span class="tag">Airport · San Francisco</span>
+            <h3>SFO (San Francisco International)</h3>
+            <p>The main arrival airport. BART trains and rideshare run straight into the city; the official site has terminal maps, ground transport and flight status.</p>
+            <span class="meta"><span class="domain">flysfo.com</span><span class="go">Visit ↗</span></span>
+          </a>
+          <a class="card" href="https://www.bart.gov" target="_blank" rel="noopener">
+            <span class="tag">Transit · Bay Area</span>
+            <h3>BART</h3>
+            <p>Trains from SFO and Oakland airports into downtown San Francisco and the East Bay. Check schedules and fares here before you land.</p>
+            <span class="meta"><span class="domain">bart.gov</span><span class="go">Visit ↗</span></span>
+          </a>
+          <a class="card" href="https://www.caltrain.com" target="_blank" rel="noopener">
+            <span class="tag">Transit · SF ↔ Valley</span>
+            <h3>Caltrain</h3>
+            <p>The spine between San Francisco and Silicon Valley: 4th &amp; King to Palo Alto, Mountain View, Sunnyvale and San Jose. Most first stays sit along this line.</p>
+            <span class="meta"><span class="domain">caltrain.com</span><span class="go">Visit ↗</span></span>
+          </a>
+          <a class="card" href="https://www.clippercard.org" target="_blank" rel="noopener">
+            <span class="tag">Transit · One card</span>
+            <h3>Clipper Card</h3>
+            <p>One card and app for BART, Caltrain, Muni and buses. Add it to your phone wallet at the airport and stop buying separate tickets.</p>
+            <span class="meta"><span class="domain">clippercard.org</span><span class="go">Visit ↗</span></span>
+          </a>
+          <a class="card" href="https://511.org" target="_blank" rel="noopener">
+            <span class="tag">Planning · Bay Area</span>
+            <h3>511 SF Bay</h3>
+            <p>The region's trip planner and live alerts for transit, traffic and ferries. Useful the first time a line changes under you.</p>
+            <span class="meta"><span class="domain">511.org</span><span class="go">Visit ↗</span></span>
+          </a>
+        </div>
+      </section>
+
+      <section id="phone-money">
+        <div class="section-head">
+          <h2>Phone &amp; money</h2>
+          <p>A US number makes signups, 2FA codes and rideshare accounts much easier. Set the phone up in the first days; move money with an account that shows the real exchange rate.</p>
+        </div>
+        <div class="grid">
+          <a class="card" href="https://www.mintmobile.com" target="_blank" rel="noopener">
+            <span class="tag">Phone · Prepaid</span>
+            <h3>Mint Mobile</h3>
+            <p>Prepaid plans you order online and activate on arrival. A common first US number for a stay of a few months.</p>
+            <span class="meta"><span class="domain">mintmobile.com</span><span class="go">Visit ↗</span></span>
+          </a>
+          <a class="card" href="https://tello.com" target="_blank" rel="noopener">
+            <span class="tag">Phone · No contract</span>
+            <h3>Tello</h3>
+            <p>Cheap build-your-own plans with no contract. Good for a light first line, or for keeping a US number after you leave.</p>
+            <span class="meta"><span class="domain">tello.com</span><span class="go">Visit ↗</span></span>
+          </a>
+          <a class="card" href="https://wise.com" target="_blank" rel="noopener">
+            <span class="tag">Money · Multi-currency</span>
+            <h3>Wise</h3>
+            <p>Multi-currency account and international transfers at the mid-market rate. The usual way visitors move money in and out while between countries.</p>
+            <span class="meta"><span class="domain">wise.com</span><span class="go">Visit ↗</span></span>
+          </a>
+        </div>
+      </section>
+
+      <section id="stay">
+        <div class="section-head">
+          <h2>Where to stay</h2>
+          <p>Two of my own library pages: where builders actually live, and the salary, rent and deposit math if the trip turns into a longer stay.</p>
+        </div>
+        <div class="grid">
+          <a class="card" href="../hacker-houses/">
+            <span class="tag">Stay · From this library</span>
+            <h3>SF Hacker Houses</h3>
+            <p>My map of 12 San Francisco hacker houses and founder coliving spaces: apply, book, or get invited. A landing pad and a network in one.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="../silicon-valley-checklist/">
+            <span class="tag">Stay · From this library</span>
+            <h3>Silicon Valley Survival Checklist</h3>
+            <p>Salary, rent and mortgage numbers for the Valley, so a short trip and a relocation budget stop getting mixed up.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+        </div>
+      </section>
+
+      <section id="people">
+        <div class="section-head">
+          <h2>Events &amp; people</h2>
+          <p>The Valley runs on events. Most tech gatherings are listed on Luma; my own public calendar shows the ones I attend, updated daily.</p>
+        </div>
+        <div class="grid">
+          <a class="card" href="https://luma.com/sf" target="_blank" rel="noopener">
+            <span class="tag">Events · Tech</span>
+            <h3>Luma — San Francisco</h3>
+            <p>Where most Bay Area tech events live. Follow the calendars you care about and RSVP early; good rooms fill up days ahead.</p>
+            <span class="meta"><span class="domain">luma.com/sf</span><span class="go">Visit ↗</span></span>
+          </a>
+          <a class="card" href="../../sf-2026/">
+            <span class="tag">Events · From this site</span>
+            <h3>Koki's SF 2026 Calendar</h3>
+            <p>The public events on my own calendar, synced daily: talks, demo nights, community gatherings across SF and the Valley.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="https://partiful.com" target="_blank" rel="noopener">
+            <span class="tag">Events · Social</span>
+            <h3>Partiful</h3>
+            <p>The invite link behind half the social events and parties. If someone sends you a Partiful link, that is the RSVP page.</p>
+            <span class="meta"><span class="domain">partiful.com</span><span class="go">Visit ↗</span></span>
+          </a>
+          <a class="card" href="https://sf.funcheap.com" target="_blank" rel="noopener">
+            <span class="tag">City life · Free &amp; cheap</span>
+            <h3>FunCheap SF</h3>
+            <p>Free and cheap things to do in San Francisco: festivals, comedy, markets, museum days. The non-tech side of a first trip.</p>
+            <span class="meta"><span class="domain">sf.funcheap.com</span><span class="go">Visit ↗</span></span>
+          </a>
+          <a class="card" href="https://www.sfstation.com" target="_blank" rel="noopener">
+            <span class="tag">City life · Guide</span>
+            <h3>SF Station</h3>
+            <p>A long-running city guide to events, food and nightlife in San Francisco. Good for planning a free evening.</p>
+            <span class="meta"><span class="domain">sfstation.com</span><span class="go">Visit ↗</span></span>
+          </a>
+          <a class="card" href="../ai-networking/">
+            <span class="tag">People · From this library</span>
+            <h3>Let AI Grow Your Network</h3>
+            <p>The platforms and rooms I use to meet people here, and how I hand the research and follow-up to an agent.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+        </div>
+      </section>
+
+      <footer>
+        <span>© Koki · kokiai.net</span>
+        <span>Checked November 2026. Schedules, prices and line-ups change; confirm on the official page before you go.</span>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>

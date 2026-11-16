@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>See you in the Bay Area · Koki Xu · Sep 24–Oct 7, 2026</title>
+  <meta name="description" content="Koki Xu’s public Bay Area schedule, events, and Coffee Chat booking for September 24–October 7, 2026.">
+  <meta property="og:title" content="See you in the Bay Area · Koki Xu">
+  <meta property="og:description" content="Public itinerary and Coffee Chat booking · Sep 24–Oct 7, 2026">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://kokiai.net/sf-2026/">
+  <meta property="og:url" content="https://kokiai.net/sf-2026/">
+  <link rel="preload" as="image" href="../assets/hero-openclaw-clean.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:ital,wght@0,500;0,700;1,500&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: oklch(96.5% 0.013 86.8);
+      --surface: oklch(98.5% 0.007 88.6);
+      --fg: oklch(23.3% 0.018 148.4);
+      --muted: oklch(43.4% 0.018 151.4);
+      --border: oklch(88.0% 0.021 88.7);
+      --accent: oklch(33.2% 0.029 146.8);
+      --sage: oklch(67.1% 0.033 140.7);
+      --olive: oklch(59.3% 0.042 119.1);
+      --cream: #f7f3ea;
+      --warm: #fcfaf5;
+      --deep: #182019;
+      --ink: var(--fg);
+      --paper: var(--bg);
+      --white: var(--warm);
+      --line: var(--border);
+      --green: var(--accent);
+      --green-soft: color-mix(in oklch, var(--sage), white 66%);
+      --blue: #325f72;
+      --blue-soft: #dfeaf0;
+      --coral: #954b3d;
+      --coral-soft: #f1e1dd;
+      --gold: #755f25;
+      --gold-soft: #eee6cc;
+      --shadow: 0 24px 80px rgba(24, 32, 25, .12);
+      --radius: 22px;
+      --font-display: "Playfair Display", "Iowan Old Style", Georgia, serif;
+      --font-body: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+      --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 8%, rgba(139, 155, 136, .28), transparent 27rem),
+        radial-gradient(circle at 92% 12%, rgba(123, 130, 102, .16), transparent 24rem),
+        var(--paper);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .container {
+      width: min(1240px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      z-index: 30;
+      width: min(calc(100% - 32px), 1420px);
+      transform: translateX(-50%);
+    }
+    .nav {
+      width: 100%;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 12px 14px 12px 18px;
+      border: 1px solid color-mix(in oklch, var(--border), transparent 10%);
+      border-radius: 999px;
+      background: color-mix(in oklch, var(--bg), white 18% / 78%);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 12px 34px rgba(24, 32, 25, .08);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--warm);
+      background: var(--accent);
+      font-family: var(--font-display);
+      font-size: 16px;
+      text-transform: none;
+    }
+    .brand small {
+      color: var(--muted);
+      font: 500 11px/1.2 var(--font-mono);
+      letter-spacing: .03em;
+    }
+    .nav-links { display: flex; align-items: center; gap: 22px; }
+    .nav-links a {
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 13px 22px;
+      border: 1px solid var(--green);
+      border-radius: 999px;
+      color: var(--white);
+      background: var(--green);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: .02em;
+      text-decoration: none;
+      transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+    }
+    .button:hover { transform: translateY(-2px) scale(1.01); box-shadow: 0 16px 34px rgba(24, 32, 25, .18); }
+    .button-secondary { color: var(--green); background: transparent; }
+    main { padding: 146px 0 100px; }
+    .intro {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(32px, 4vw, 56px);
+      align-items: center;
+      min-height: 560px;
+      padding: clamp(28px, 4vw, 52px);
+      margin-bottom: 42px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 36px;
+      background:
+        linear-gradient(90deg, rgba(247, 243, 234, .98) 0%, rgba(247, 243, 234, .95) 22%, rgba(247, 243, 234, .83) 36%, rgba(247, 243, 234, .18) 53%, rgba(247, 243, 234, 0) 66%),
+        url("../assets/hero-openclaw-clean.webp") center 44% / cover no-repeat;
+    }
+    .intro-copy { max-width: 460px; }
+    .intro h1 { font-size: clamp(44px, 5.5vw, 76px); }
+    .intro .eyebrow { line-height: 1.5; letter-spacing: .04em; }
+    .intro .eyebrow::before { flex-shrink: 0; }
+    .intro .lede { max-width: 430px; font-size: clamp(16px, 1.4vw, 19px); }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 24px;
+      color: var(--olive);
+      font: 600 14px/1 var(--font-mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 38px;
+      height: 1px;
+      background: currentColor;
+      opacity: .65;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      letter-spacing: -.025em;
+      line-height: 1.04;
+    }
+    h1 {
+      max-width: 830px;
+      margin-bottom: 18px;
+      font-size: clamp(48px, 7vw, 88px);
+    }
+    .lede {
+      max-width: 720px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 21px);
+    }
+    .trip-note {
+      max-width: 285px;
+      justify-self: end;
+      align-self: end;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(252, 250, 245, .94);
+    }
+    .trip-note strong { display: block; margin-bottom: 7px; font-size: 15px; }
+    .trip-note p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .section { margin-top: 68px; }
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 20px;
+    }
+    .section-heading h2 {
+      margin-bottom: 0;
+      font-size: clamp(31px, 4vw, 46px);
+      line-height: 1.05;
+      letter-spacing: -.045em;
+    }
+    .section-heading p {
+      max-width: 540px;
+      margin-bottom: 3px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .calendar-frame {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+    .calendar-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    .calendar-toolbar strong { font-size: 17px; }
+    .calendar-toolbar span {
+      color: var(--muted);
+      font: 600 11px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace;
+      text-transform: uppercase;
+    }
+    .calendar-scroll { overflow-x: auto; }
+    .trip-calendar {
+      min-width: 980px;
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+    }
+    .weekday {
+      padding: 12px 14px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      background: #f4f5f2;
+      font: 700 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: .06em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .weekday:nth-child(7) { border-right: 0; }
+    .day {
+      min-height: 178px;
+      padding: 13px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+    .day:nth-child(7n) { border-right: 0; }
+    .day:nth-last-child(-n+7) { border-bottom: 0; }
+    .day.today-trip { background: #fbfaf6; }
+    .day-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .day-head b { font-size: 15px; }
+    .day-head small {
+      color: var(--muted);
+      font: 600 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+      text-transform: uppercase;
+    }
+    .event-chip {
+      display: block;
+      margin-top: 8px;
+      padding: 9px 10px;
+      border-left: 3px solid var(--green);
+      border-radius: 8px;
+      color: var(--green);
+      background: var(--green-soft);
+      font-size: 11px;
+      font-weight: 750;
+      line-height: 1.3;
+      text-decoration: none;
+    }
+    .event-chip time {
+      display: block;
+      margin-bottom: 3px;
+      font: 650 9px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+      text-transform: uppercase;
+    }
+    .event-chip.blue { color: var(--blue); border-color: var(--blue); background: var(--blue-soft); }
+    .event-chip.coral { color: var(--coral); border-color: var(--coral); background: var(--coral-soft); }
+    .event-chip.gold { color: var(--gold); border-color: var(--gold); background: var(--gold-soft); }
+    .day-empty {
+      margin: 48px 0 0;
+      color: #a3aba5;
+      font-size: 12px;
+      text-align: center;
+    }
+    .calendar-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 16px 20px;
+      border-top: 1px solid var(--line);
+      background: #fbfcfa;
+    }
+    .calendar-footer p { margin: 0; color: var(--muted); font-size: 12px; }
+    .calendar-embed {
+      width: 100%;
+      min-height: 720px;
+      border: 0;
+      background: white;
+    }
+    .generated-calendar { padding: 22px; }
+    .public-events { display: grid; gap: 12px; }
+    .public-event {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+    }
+    .pe-date {
+      flex: 0 0 66px;
+      text-align: center;
+      padding: 10px 6px;
+      border-radius: 12px;
+      background: var(--green-soft);
+      color: var(--green);
+    }
+    .pe-date b { display: block; font-size: 24px; line-height: 1.1; }
+    .pe-date small {
+      font: 600 10px/1.5 var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .pe-main h3 { margin: 0 0 6px; font-size: 19px; line-height: 1.3; }
+    .pe-main h3 a { text-decoration: none; }
+    .pe-main h3 a:hover { text-decoration: underline; }
+    .pe-main p { margin: 0; color: var(--muted); font-size: 13px; }
+    .pe-empty {
+      margin: 0;
+      padding: 28px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      border: 1px dashed var(--line);
+      border-radius: 18px;
+      background: #fff;
+    }
+    .sync-note {
+      margin: 14px 4px 0;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .hosted-events { display: grid; gap: 24px; }
+    .hosted-event {
+      display: grid;
+      grid-template-columns: minmax(300px, .92fr) minmax(0, 1.08fr);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 36px;
+      background: color-mix(in oklch, var(--surface), transparent 4%);
+      box-shadow: 0 18px 52px rgba(24, 32, 25, .08);
+    }
+    .hosted-event:nth-child(even) { grid-template-columns: minmax(0, 1.08fr) minmax(300px, .92fr); }
+    .hosted-event:nth-child(even) .hosted-media { order: 2; }
+    .hosted-media {
+      min-height: 390px;
+      background: var(--deep);
+    }
+    .hosted-media img {
+      width: 100%;
+      height: 100%;
+      min-height: 390px;
+      display: block;
+      object-fit: cover;
+    }
+    .hosted-event:first-child .hosted-media img { object-position: center; }
+    .hosted-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(30px, 5vw, 58px);
+    }
+    .hosted-content h3 {
+      margin-bottom: 18px;
+      font-size: clamp(34px, 4vw, 52px);
+    }
+    .hosted-content > p { color: var(--muted); font-size: 15px; }
+    .event-facts {
+      display: grid;
+      gap: 10px;
+      margin: 20px 0 28px;
+      padding: 0;
+      list-style: none;
+    }
+    .event-facts li {
+      display: grid;
+      grid-template-columns: 78px minmax(0, 1fr);
+      gap: 14px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .event-facts b {
+      color: var(--ink);
+      font: 600 11px/1.5 var(--font-mono);
+      text-transform: uppercase;
+    }
+    .hosted-content .button { width: fit-content; }
+
+    .hosted-event--anti {
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+    }
+    .hosted-event--anti .hosted-media {
+      display: grid;
+      align-items: center;
+      min-height: 0;
+    }
+    .hosted-event--anti .hosted-media img {
+      height: auto;
+      min-height: 0;
+      object-fit: contain;
+    }
+    .hosted-event--anti .hosted-content { padding: clamp(24px, 3vw, 38px); }
+    .hosted-event--anti .hosted-content h3 { font-size: clamp(32px, 3.1vw, 42px); }
+
+    footer { padding: 32px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+    .footer-row { display: flex; justify-content: flex-end; gap: 20px; }
+
+    @media (max-width: 820px) {
+      .intro {
+        grid-template-columns: 1fr;
+        gap: 0;
+        min-height: 0;
+        padding: 0;
+        background: var(--warm);
+      }
+      .intro::before {
+        content: "";
+        display: block;
+        aspect-ratio: 1600 / 1066;
+        background: url("../assets/hero-openclaw-clean.webp") center / cover no-repeat;
+      }
+      .intro-copy { max-width: none; padding: 28px; }
+      .intro .lede { max-width: none; }
+      .intro .trip-note { max-width: none; margin: 0 28px 28px; justify-self: stretch; }
+      .section-heading { display: block; }
+      .section-heading p { margin-top: 12px; text-align: left; }
+      .nav-links a:not(.button) { display: none; }
+      .hosted-event,
+      .hosted-event:nth-child(even) { grid-template-columns: 1fr; }
+      .hosted-event:nth-child(even) .hosted-media { order: 0; }
+    }
+    @media (max-width: 560px) {
+      .container { width: min(100% - 24px, 1240px); }
+      main { padding-top: 124px; }
+      .brand small { display: none; }
+      .calendar-toolbar, .calendar-footer { align-items: flex-start; flex-direction: column; }
+      .hosted-media,
+      .hosted-media img { min-height: 300px; }
+      .footer-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="../index.html" aria-label="Koki home">
+        <span class="brand-mark" aria-hidden="true">K</span>
+        <span>Koki</span>
+        <small>SF 2026</small>
+      </a>
+      <nav class="nav-links" aria-label="Page navigation">
+        <a href="#schedule">Schedule</a>
+        <a href="#details">My events</a>
+        <a class="button button-secondary" href="../index.html">About Koki ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="intro" aria-labelledby="page-title">
+        <div class="intro-copy">
+          <h1 id="page-title">See you in<br>the Bay Area.</h1>
+          <p class="lede">Join my public events or book a Coffee Chat in Palo Alto, the South Bay, or San Francisco. Check the calendar below, then use “Book my time” to find an opening.</p>
+        </div>
+        <aside class="trip-note">
+          <strong>Palo Alto is home base.</strong>
+          <p>I’m happy to meet in Palo Alto, elsewhere in the South Bay, or San Francisco. Please allow travel time when booking.</p>
+        </aside>
+      </section>
+
+      <section class="section" id="schedule" aria-labelledby="schedule-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Public schedule</p>
+            <h2 id="schedule-title">Public calendar</h2>
+          </div>
+          <p>Only events marked 公开 in my calendar are listed here — synced automatically every day.</p>
+        </div>
+
+        <div class="calendar-frame" id="public-calendar-mount">
+          <!-- PUBLIC-CALENDAR-START -->
+<div class="calendar-toolbar"><strong>November 2026</strong><span>Pacific Time · PT</span></div>
+<div class="calendar-scroll month-scroll"><div class="trip-calendar month-grid"><div class="weekday">Sun</div><div class="weekday">Mon</div><div class="weekday">Tue</div><div class="weekday">Wed</div><div class="weekday">Thu</div><div class="weekday">Fri</div><div class="weekday">Sat</div><div class="day"><div class="day-head"><b>1</b></div></div><div class="day"><div class="day-head"><b>2</b></div><a class="event-chip" href="https://luma.com/6li0y9kr" target="_blank" rel="noreferrer"><time>9:00 AM</time>Mitsubishi Electric Innovation Day</a><a class="event-chip blue" href="https://luma.com/eis7567t" target="_blank" rel="noreferrer"><time>9:30 AM</time>OSA Con 2026 - The Anti-Hype Conference for Open Source Analytics and AI</a><a class="event-chip coral" href="https://luma.com/unconference-agentcamp-2026" target="_blank" rel="noreferrer"><time>2:30 PM</time>AgentCamp: An AI Agent Unconference</a><a class="event-chip gold" href="https://www.eventbrite.com/e/how-to-use-ai-to-build-your-personal-brand-tickets-1999858261896" target="_blank" rel="noreferrer"><time>3:00 PM</time>How to Use AI to Build Your Personal Brand in 2026</a><a class="event-chip" href="https://luma.com/elastic-mcp" target="_blank" rel="noreferrer"><time>5:00 PM</time>MCP in Production: What’s Missing?</a></div><div class="day"><div class="day-head"><b>3</b></div><a class="event-chip blue" href="https://luma.com/apajsgca" target="_blank" rel="noreferrer"><time>5:00 PM</time>Open Lakehouse + AI Meetup: Diwali Edition</a><a class="event-chip coral" href="https://luma.com/mistral-elastic" target="_blank" rel="noreferrer"><time>5:00 PM</time>Make SF Better: A Hack Night with Mistral AI</a><a class="event-chip gold" href="https://luma.com/k0amr17h" target="_blank" rel="noreferrer"><time>5:30 PM</time>Design Field Notes: Stefanie Hutka — Human-Centered Automation</a><a class="event-chip" href="https://luma.com/e304hj28" target="_blank" rel="noreferrer"><time>5:30 PM</time>How to get press without a PR agency</a><a class="event-chip blue" href="https://luma.com/iq4hna2x" target="_blank" rel="noreferrer"><time>5:30 PM</time>Building Voice AI That Holds Up in Production: Coval x Cloudflare</a><a class="event-chip coral" href="https://luma.com/the-yzip" target="_blank" rel="noreferrer"><time>5:30 PM</time>angels &amp; alumni demo day</a><a class="event-chip gold" href="https://luma.com/4t5daobo" target="_blank" rel="noreferrer"><time>6:00 PM</time>Pear VC Founder Fireside (Stanford)</a></div><div class="day"><div class="day-head"><b>4</b></div><a class="event-chip" href="https://luma.com/5j0ogrhf" target="_blank" rel="noreferrer"><time>10:30 AM</time>CITRIS Tech Policy Conversation: A Year in Review with Asm. Rebecca Bauer-Kahan</a><a class="event-chip blue" href="https://luma.com/aivalley-1gdk" target="_blank" rel="noreferrer"><time>11:00 AM</time>Before You Rally: Visa Pathways for Immigrant Founders</a><a class="event-chip coral" href="https://luma.com/nov-hackathon-2026" target="_blank" rel="noreferrer"><time>1:00 PM</time>Company Brain Hackathon: Build an AI Agent That Knows Your Organization</a><a class="event-chip gold" href="https://stvp.stanford.edu/get-involved/events" target="_blank" rel="noreferrer"><time>4:30 PM</time>ETL: Celine Halioua (Loyal) @ Entrepreneurial Thought Leaders</a><a class="event-chip" href="https://luma.com/pragmatic-engineer-unplugged" target="_blank" rel="noreferrer"><time>5:00 PM</time>The Pragmatic Engineer Unplugged, presented by WorkOS</a><a class="event-chip blue" href="https://luma.com/robot-learning-world-models-nov4-2026" target="_blank" rel="noreferrer"><time>5:00 PM</time>Robot Learning #02 — World Models &amp; Dexterous Manipulation</a><a class="event-chip coral" href="https://luma.com/legal-ai" target="_blank" rel="noreferrer"><time>6:00 PM</time>Legal AI Vibe Lab #6: Agents, Workflows, and the Future of Legal Work</a></div><div class="day"><div class="day-head"><b>5</b></div><a class="event-chip gold" href="https://luma.com/ai-summit-2026" target="_blank" rel="noreferrer"><time>8:30 AM</time>TechEquity Ai Summit 2026 – Day 3: AI for Workforce &amp; Enterprise</a><a class="event-chip" href="https://luma.com/hkl88ogt" target="_blank" rel="noreferrer"><time>3:00 PM</time>Mixpanel x Replit - Ship It: The Product Builders&#x27; Hackathon</a><a class="event-chip blue" href="https://luma.com/pr209v8d" target="_blank" rel="noreferrer"><time>4:00 PM</time>AI For Future – 2nd Edition</a><a class="event-chip coral" href="https://luma.com/axdemonight" target="_blank" rel="noreferrer"><time>5:00 PM</time>Agent-Led Growth / Agent Experience Demo Night @ Auth0/Okta (#7th Edition)</a><a class="event-chip gold" href="https://luma.com/avmfp2tu" target="_blank" rel="noreferrer"><time>6:00 PM</time>Stripe Developer Meetup San Francisco November 2026</a><a class="event-chip" href="https://www.meetup.com/gdg-silicon-valley/events/316971876/" target="_blank" rel="noreferrer"><time>6:00 PM</time>GDG Sunnyvale Networking Social</a><a class="event-chip blue" href="https://luma.com/6q1pt61j" target="_blank" rel="noreferrer"><time>6:00 PM</time>How to build Agents that act on Sensitive Data with Jev, Arcade, and Mastra</a><a class="event-chip coral" href="https://luma.com/iuc3ostf" target="_blank" rel="noreferrer"><time>6:00 PM</time>LangChain SF Meetup with TypeSafe AI: Judgment Call</a><a class="event-chip gold" href="https://luma.com/freestyle-yh5k" target="_blank" rel="noreferrer"><time>7:00 PM</time>Better Call Claude</a></div><div class="day"><div class="day-head"><b>6</b></div><span class="event-chip"><time>9:00 AM</time>PLATFORMday San Francisco 2026 Q4</span><a class="event-chip blue" href="https://lu.ma/binndri6" target="_blank" rel="noreferrer"><time>4:00 PM</time>Geospatial Developers Meetup</a><a class="event-chip coral" href="https://sam.events/high-signal" target="_blank" rel="noreferrer"><time>4:00 PM</time>Second Brain AI Salon #14: When AI Agents Become Someone</a><a class="event-chip gold" href="https://luma.com/dimens-uphr" target="_blank" rel="noreferrer"><time>6:00 PM</time>Dimensional Office Warming</a></div><div class="day"><div class="day-head"><b>7</b></div><a class="event-chip" href="https://luma.com/dimens-uphr" target="_blank" rel="noreferrer">Dimensional Office Warming</a><span class="event-chip blue"><time>10:00 AM</time>SoulSearch Palo Alto Enlightenment Expo</span><span class="event-chip coral"><time>10:30 AM</time>Zero To Demo By: NemulAI X Hack District</span><span class="event-chip gold"><time>2:00 PM</time>Robotics &amp; World Models Reading Club 37: From Data to Action, Building the Foundation of Physical AI</span><a class="event-chip" href="https://luma.com/1upb4xld" target="_blank" rel="noreferrer"><time>2:00 PM</time>Level Up Your Personal Website</a><span class="event-chip blue"><time>5:30 PM</time>Robotics &amp; Aerospace Dinner and Drinks | SYNERGY CLUB</span></div><div class="day"><div class="day-head"><b>8</b></div><span class="event-chip coral">SoulSearch Palo Alto Enlightenment Expo</span></div><div class="day"><div class="day-head"><b>9</b></div><a class="event-chip gold" href="https://datasciencedojo.com/agentic-ai-conference" target="_blank" rel="noreferrer"><time>9:00 AM</time>Data Science Dojo Agentic AI Conference</a><span class="event-chip"><time>4:30 PM</time>HAI &amp; AI Governance Lab: Jacob Coxon &amp; Rob Reich 对谈</span><a class="event-chip blue" href="https://luma.com/clickh-z8rr" target="_blank" rel="noreferrer"><time>5:00 PM</time>AI Builders Night</a><a class="event-chip coral" href="https://luma.com/tgcmi0vw" target="_blank" rel="noreferrer"><time>5:30 PM</time>[SF] AI Dev Night at Workato</a><span class="event-chip gold"><time>5:30 PM</time>Physical AI Founder × Funder: San Francisco</span></div><div class="day"><div class="day-head"><b>10</b></div><a class="event-chip" href="https://datasciencedojo.com/agentic-ai-conference" target="_blank" rel="noreferrer">Data Science Dojo Agentic AI Conference</a><a class="event-chip blue" href="https://luma.com/iuq2p3fy" target="_blank" rel="noreferrer"><time>12:00 PM</time>Akamai AI Summit</a><span class="event-chip coral"><time>5:00 PM</time>Biryani Maxxing: A Diwali Feast &amp; Multiplayer AI Mixer</span><span class="event-chip gold"><time>5:15 PM</time>Scaling Robotics - Hosted by MoFo and Founders Inc.</span><a class="event-chip" href="https://luma.com/vn0ymwdu" target="_blank" rel="noreferrer"><time>5:30 PM</time>Design Field Notes: Andrew Hogan — The New Rules of Design</a><a class="event-chip blue" href="https://luma.com/t9hsthtk" target="_blank" rel="noreferrer"><time>6:00 PM</time>Agents Need Solid Ground: An Archil Hackathon</a></div><div class="day"><div class="day-head"><b>11</b></div><a class="event-chip coral" href="https://www.vapicon.ai/" target="_blank" rel="noreferrer"><time>8:00 AM</time>VapiCon 2026 (Day 1)</a><a class="event-chip gold" href="https://voxel51.com/events/ai-ml-and-computer-vision-meetup-november-11-2026" target="_blank" rel="noreferrer"><time>9:00 AM</time>AI, ML and Computer Vision Meetup</a><a class="event-chip" href="https://luma.com/8h2gwtyy" target="_blank" rel="noreferrer"><time>9:30 AM</time>Open Source AI Breakfast with 1Password x Founders Bay x You.com @ Tesla</a><a class="event-chip blue" href="https://luma.com/6tcwbjsh" target="_blank" rel="noreferrer"><time>3:00 PM</time>Medal x General Intuition @ Stanford</a><span class="event-chip coral"><time>4:00 PM</time>Early Days #02 with Google DeepMind: Open Models, Security &amp; AI Defensibility</span><a class="event-chip gold" href="https://stvp.stanford.edu/get-involved/events" target="_blank" rel="noreferrer"><time>4:30 PM</time>ETL: Lauren Kolodny (Acrew Capital) @ Entrepreneurial Thought Leaders</a><a class="event-chip" href="https://luma.com/hn7n83qv" target="_blank" rel="noreferrer"><time>5:00 PM</time>STATION F x GitHub | AI Founder Demo Night</a><a class="event-chip blue" href="https://luma.com/jb2wtbvn" target="_blank" rel="noreferrer"><time>5:30 PM</time>Bay Area Frontier Research Club #31 | Beyond Imitation: Neural Fields &amp; Transfer (dinner + research discussion @ Mission Robotics)</a><span class="event-chip coral"><time>6:00 PM</time>Wavelabs Demos &amp; Dinner: Presented by TensorWave</span></div><div class="day"><div class="day-head"><b>12</b></div><a class="event-chip gold" href="https://www.vapicon.ai/" target="_blank" rel="noreferrer"><time>8:00 AM</time>VapiCon 2026 (Day 2)</a><a class="event-chip" href="https://ethicsinsociety.stanford.edu/events/unsettling-new-ai-status-quo" target="_blank" rel="noreferrer"><time>11:30 AM</time>Unsettling the New AI Status Quo</a><span class="event-chip blue"><time>12:45 PM</time>Stanford Law AI Initiative: The AI-Native Law Firm panel</span><a class="event-chip coral" href="https://luma.com/fdotinc-cloudflare" target="_blank" rel="noreferrer"><time>2:00 PM</time>Fireside with Michelle Zatlyn of Cloudflare</a><a class="event-chip gold" href="https://www.meetup.com/svandroid/events/315690619/" target="_blank" rel="noreferrer"><time>3:30 PM</time>Silicon Valley Physical AI Meetup</a><a class="event-chip" href="http://events.builder.aws.com/d/84zmq7" target="_blank" rel="noreferrer"><time>4:30 PM</time>AWS Partner Showcase Extended - SF</a><a class="event-chip blue" href="https://luma.com/yoytbej3" target="_blank" rel="noreferrer"><time>5:00 PM</time>Humanmade Hardware Accelerator Demo Day</a><a class="event-chip coral" href="https://luma.com/posthog-birdwatching-sf" target="_blank" rel="noreferrer"><time>5:00 PM</time>Self-Driving Demo Night w/ PostHog</a><span class="event-chip gold"><time>5:00 PM</time>Apollo AI Stanford Accelerator | Founders &amp; Builders Meetup - Members +3</span><a class="event-chip" href="https://luma.com/c3vm4bz7" target="_blank" rel="noreferrer"><time>5:30 PM</time>Let&#x27;s Shape the Future of AI (WOMEN x AI × Women in Big Data)</a><a class="event-chip blue" href="https://www.eventbrite.com/e/from-orbit-to-the-moon-the-transatlantic-space-economy-tickets-2003037741806" target="_blank" rel="noreferrer"><time>5:30 PM</time>From Orbit to the Moon: The Transatlantic Space Economy</a><a class="event-chip coral" href="https://luma.com/swmsjyp2" target="_blank" rel="noreferrer"><time>5:30 PM</time>THE SF SOFTWARE FACTORY MEETUP: NOVEMBER 2026</a><a class="event-chip gold" href="https://simons.berkeley.edu" target="_blank" rel="noreferrer"><time>6:00 PM</time>Simons: Jeff Hawkins — How the Brain Understands the World</a><span class="event-chip"><time>6:00 PM</time>Building for Defense with Peter Dixon of Arkenstone</span></div><div class="day"><div class="day-head"><b>13</b></div><span class="event-chip blue"><time>1:00 PM</time>HAI AIMS Seminar: Khaoula Chehbouni — Best Practices for the Use of LLMs as Judges</span><span class="event-chip coral"><time>5:30 PM</time>IVY LAB @ Stanford</span><span class="event-chip gold"><time>6:30 PM</time>Rooftop Mixer for AI Researchers, Engineers and Founders @SGLang Summit</span></div><div class="day"><div class="day-head"><b>14</b></div><a class="event-chip" href="https://luma.com/greptile-tgrv" target="_blank" rel="noreferrer"><time>9:00 AM</time>Greptile Outpost at SŌHN</a><span class="event-chip blue"><time>9:00 AM</time>Hardware for Good · UXDuck Hackathon (YC F26)</span><a class="event-chip coral" href="https://luma.com/join/g-wNfCSJrKazxLSz7" target="_blank" rel="noreferrer"><time>9:00 AM</time>Day 1: NASA Space Apps Mountain View Hackathon</a><a class="event-chip gold" href="https://luma.com/lw202zjx" target="_blank" rel="noreferrer"><time>10:00 AM</time>She Builds: A Women in AI × Lovable Hackathon</a><a class="event-chip" href="https://luma.com/ds3yqj8p" target="_blank" rel="noreferrer"><time>1:00 PM</time>Drone Meetup</a><a class="event-chip blue" href="https://luma.com/?lc=YMqrCrpu7Q" target="_blank" rel="noreferrer"><time>2:00 PM</time>《后会友期》硅谷观察室</a></div><div class="day today-trip"><div class="day-head"><b>15</b></div><a class="event-chip coral" href="https://luma.com/gxvq9biy" target="_blank" rel="noreferrer"><time>1:00 PM</time>San Francisco Community Builders Walk</a><a class="event-chip gold" href="https://luma.com/p9vzovjx" target="_blank" rel="noreferrer"><time>2:00 PM</time>SF AI Code &amp; Coffee</a></div><div class="day"><div class="day-head"><b>16</b></div><a class="event-chip" href="https://infercon.ai/" target="_blank" rel="noreferrer"><time>8:00 AM</time>INFER/CON</a><a class="event-chip blue" href="https://luma.com/demo-night-nov2026" target="_blank" rel="noreferrer"><time>5:30 PM</time>Demo Night @ WorkOS (November)</a><a class="event-chip coral" href="https://luma.com/x56q8yaz" target="_blank" rel="noreferrer"><time>6:00 PM</time>Pear VC | Founders at the Table</a></div><div class="day"><div class="day-head"><b>17</b></div><a class="event-chip gold" href="https://luma.com/?lc=GJfSEaqgWU" target="_blank" rel="noreferrer"><time>5:00 PM</time>World building with Notion, Cognition, and World Labs hosted by Worklife</a><span class="event-chip"><time>5:30 PM</time>AI Builders Night with Convex and Daytona</span><a class="event-chip blue" href="https://luma.com/7swc5ktq" target="_blank" rel="noreferrer"><time>5:30 PM</time>Design Field Notes: Dawn Danby &amp; David McConville — Planetary Repair</a><a class="event-chip coral" href="https://luma.com/dygof93y" target="_blank" rel="noreferrer"><time>5:30 PM</time>Vibe Your SaaS #005 Startup Pitch Competition + VC/Founder Mixer</a><span class="event-chip gold"><time>6:00 PM</time>Line of Contact: A Defense Tech Event</span><a class="event-chip" href="https://luma.com/deepgram-2jm5" target="_blank" rel="noreferrer"><time>6:00 PM</time>Build Your First Phone Voice Agent — Deepgram × Vapi Workshop</a></div><div class="day"><div class="day-head"><b>18</b></div><a class="event-chip blue" href="https://stvp.stanford.edu/get-involved/events" target="_blank" rel="noreferrer"><time>4:30 PM</time>ETL: Demi Guo (Pika) @ Entrepreneurial Thought Leaders</a><span class="event-chip coral"><time>5:00 PM</time>[Legal Frontiers] AI Is Doing Legal Work. Who Signs Off?</span><a class="event-chip gold" href="https://luma.com/?lc=Y63xCV6oVP" target="_blank" rel="noreferrer"><time>5:30 PM</time>Marketer Build Night · Apify × Pollo AI</a><span class="event-chip"><time>5:30 PM</time>Agent Builder Demo Night</span><span class="event-chip blue"><time>5:30 PM</time>Closing the Sim-to-Real Gap</span><a class="event-chip coral" href="https://www.startupgrind.com/events/details/startup-grind-silicon-valley-san-francisco-bay-area-presents-ai-demo-series-november-edition/" target="_blank" rel="noreferrer"><time>5:30 PM</time>Startup Grind SV: AI Demo Series November Edition</a><a class="event-chip gold" href="https://luma.com/s33hbvnl" target="_blank" rel="noreferrer"><time>6:00 PM</time>Dev Tools After Dark: Rooftop Social</a><a class="event-chip" href="https://luma.com/cch7p7pw" target="_blank" rel="noreferrer"><time>6:00 PM</time>Ultra-Fast Inference &amp; Open-Weight Models</a><a class="event-chip blue" href="https://luma.com/laravel-1x0r" target="_blank" rel="noreferrer"><time>6:30 PM</time>Build &amp; Ship with Amp</a><span class="event-chip coral"><time>7:00 PM</time>Deep Tech Builders Bonfire x Manifest</span></div><div class="day"><div class="day-head"><b>19</b></div><a class="event-chip gold" href="https://lextalk.world/san-francisco-conference-2026/" target="_blank" rel="noreferrer"><time>8:00 AM</time>LexTalk World Conference &amp; Exhibition San Francisco 2026</a><span class="event-chip"><time>12:20 PM</time>NAVY Launch Private Capital Forum - Palo Alto, CA</span><span class="event-chip blue"><time>12:45 PM</time>Stanford Law AI Initiative: How to Make AI Agents Obey the Law</span><a class="event-chip coral" href="https://luma.com/3m7eakwf" target="_blank" rel="noreferrer"><time>4:00 PM</time>Lean-Transfer Fall 2026 Demo Day (Berkeley StEP)</a><span class="event-chip gold"><time>4:00 PM</time>Agentic + AI Night: AI Agents Across the App Stack</span><a class="event-chip" href="https://luma.com/1ux794v1" target="_blank" rel="noreferrer"><time>6:00 PM</time>MCP&#x27;s Official 2nd Birthday Party: Lightning Talks from Industry Leaders</a><a class="event-chip blue" href="https://luma.com/anyscale-gbln" target="_blank" rel="noreferrer"><time>6:00 PM</time>AI Infra for Physical AI: Mind Robotics x Anyscale</a><a class="event-chip coral" href="https://luma.com/legora-6f8n" target="_blank" rel="noreferrer"><time>6:00 PM</time>The Legal Engineering Exchange: SF</a><a class="event-chip gold" href="https://luma.com/vc1ingfl" target="_blank" rel="noreferrer"><time>6:00 PM</time>Multiplayer Build Night &amp; Mixer by Party (Peninsula)</a><a class="event-chip" href="https://luma.com/n8n-25m5" target="_blank" rel="noreferrer"><time>6:00 PM</time>n8n Meetup San Francisco · Microsoft Ignite Afterhours</a><a class="event-chip blue" href="https://www.meetup.com/write-the-docs-bay-area/events/317137483/" target="_blank" rel="noreferrer"><time>6:30 PM</time>Write the Docs Bay Area × Mintlify: Rethinking Documentation in the AI Era</a><a class="event-chip coral" href="https://luma.com/bbm6xopb" target="_blank" rel="noreferrer"><time>7:00 PM</time>Agent Builders Demo Night</a></div><div class="day"><div class="day-head"><b>20</b></div><a class="event-chip gold" href="https://lextalk.world/san-francisco-conference-2026/" target="_blank" rel="noreferrer">LexTalk World Conference &amp; Exhibition San Francisco 2026</a><a class="event-chip" href="https://www.law.berkeley.edu/research/bclt/bcltevents/the-second-berkeley-global-conference-on-ai-and-ip-human-intelligence-human-creativity-and-human-dignity-in-the-ai-era/" target="_blank" rel="noreferrer"><time>8:50 AM</time>Berkeley Global Conference on AI and IP</a><span class="event-chip blue"><time>9:00 AM</time>Speech to Ship Hackathon: Speak It, Build It, Ship It.</span><span class="event-chip coral"><time>6:00 PM</time>Bay Area AI Artists November Show, Critique &amp; Promote Night</span></div><div class="day"><div class="day-head"><b>21</b></div><span class="event-chip gold"><time>3:00 PM</time>Founder Pitch Day #5 — Robotics &amp; Physical AI</span></div><div class="day"><div class="day-head"><b>22</b></div></div><div class="day"><div class="day-head"><b>23</b></div></div><div class="day"><div class="day-head"><b>24</b></div><span class="event-chip"><time>5:00 PM</time>Codex Community Meetup SF #12</span></div><div class="day"><div class="day-head"><b>25</b></div></div><div class="day"><div class="day-head"><b>26</b></div></div><div class="day"><div class="day-head"><b>27</b></div></div><div class="day"><div class="day-head"><b>28</b></div></div><div class="day"><div class="day-head"><b>29</b></div></div><div class="day"><div class="day-head"><b>30</b></div></div><div class="day othermonth"><div class="day-head"><b>1</b></div><a class="event-chip blue" href="https://skool.com/girltechhq" target="_blank" rel="noreferrer"><time>12:00 AM</time>Q4 Women in Tech Summit</a></div><div class="day othermonth"><div class="day-head"><b>2</b></div><a class="event-chip coral" href="https://skool.com/girltechhq" target="_blank" rel="noreferrer">Q4 Women in Tech Summit</a><span class="event-chip gold"><time>7:00 PM</time>Duckbill/Last Week in AWS + Heavybit + RedMonk at re:Invent 2026</span><a class="event-chip" href="https://luma.com/pre1zzw3" target="_blank" rel="noreferrer"><time>7:00 PM</time>Duckbill / Last Week in AWS + Heavybit + RedMonk Party</a></div><div class="day othermonth"><div class="day-head"><b>3</b></div><a class="event-chip blue" href="https://skool.com/girltechhq" target="_blank" rel="noreferrer">Q4 Women in Tech Summit</a><span class="event-chip coral">Duckbill/Last Week in AWS + Heavybit + RedMonk at re:Invent 2026</span><a class="event-chip gold" href="https://luma.com/pre1zzw3" target="_blank" rel="noreferrer">Duckbill / Last Week in AWS + Heavybit + RedMonk Party</a><span class="event-chip"><time>10:30 AM</time>ABW 特邀 Fireside: Twenty Years of Building and What Comes Next（Vogels × Swami）</span></div><div class="day othermonth"><div class="day-head"><b>4</b></div><a class="event-chip blue" href="https://skool.com/girltechhq" target="_blank" rel="noreferrer">Q4 Women in Tech Summit</a></div><div class="day othermonth"><div class="day-head"><b>5</b></div><a class="event-chip coral" href="https://skool.com/girltechhq" target="_blank" rel="noreferrer">Q4 Women in Tech Summit</a></div></div></div>
+<p class="sync-note">Only events marked 公开 in my calendar appear here · auto-synced Nov 15, 2026 9:52 AM PT</p>
+<!-- PUBLIC-CALENDAR-END -->
+<div class="calendar-footer">
+              <p>Synced daily from my calendar — only events marked 公开.</p>
+              <a class="button button-secondary" href="https://calendar.app.google/SXHbMSGjjiRL2q6CA" target="_blank" rel="noopener noreferrer">Book my time ↗</a>
+            </div>>
+        </div>
+
+      </section>
+
+      <section class="section" id="details" aria-labelledby="details-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Hosted by Koki</p>
+            <h2 id="details-title">Events I’ve hosted in the Bay Area</h2>
+          </div>
+          <p>Gatherings I’ve organized. Everything else I’m attending is already linked directly from the calendar above.</p>
+        </div>
+
+        <div class="hosted-events">
+          <article class="hosted-event hosted-event--anti">
+            <div class="hosted-media"><img src="anti-distill-meetup.png" alt="Anti-Distill Meetup poster showing a futuristic robot overlooking a room of people working at computers" width="1254" height="1254" loading="lazy"></div>
+            <div class="hosted-content">
+              <p class="eyebrow">Anti-Distill Skill · 反蒸馏 Skill</p>
+              <h3>Anti-Distillation &amp; Other Tiny Rebellions</h3>
+              <p>A show-and-tell for prototypes with an attitude. Bring something playful, angry, tender, or strange that challenges authority—a tool that pushes back on a default, a prototype with a point of view, or a personal declaration disguised as software.</p>
+              <p>We’ll start with a quick Anti-Distill demo, followed by case shares and an open conversation. Keep the stack talk light: vibe coding has widened the door, and titles or engineering credentials can stay at home.</p>
+              <ul class="event-facts">
+                <li><b>When</b><span>Tuesday, October 6 · 2:00–4:00 PM PT</span></li>
+                <li><b>Where</b><span>Palo Alto · exact venue TBD</span></li>
+                <li><b>Format</b><span>Quick demo · participant show-and-tell · open conversation</span></li>
+              </ul>
+              <a class="button" href="https://partiful.com/e/K9dishCW4Lp3vjTYHesS" target="_blank" rel="noopener noreferrer">RSVP on Partiful ↗</a>
+            </div>
+          </article>
+
+          
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-row"><span>Palo Alto · South Bay · San Francisco</span></div>
+  </footer>
+
+  <script>
+    const PUBLIC_CALENDAR_EMBED_URL = "";
+
+    if (PUBLIC_CALENDAR_EMBED_URL) {
+      const calendarMount = document.getElementById("public-calendar-mount");
+      const calendar = document.createElement("iframe");
+      calendar.className = "calendar-embed";
+      calendar.src = PUBLIC_CALENDAR_EMBED_URL;
+      calendar.title = "Koki Xu public Bay Area calendar";
+      calendar.loading = "lazy";
+      calendarMount.replaceChildren(calendar);
+    }
+
+  </script>
+</body>
+</html>

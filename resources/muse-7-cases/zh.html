@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Muse 怎么用：7 个工作与生活的真实案例｜Koki</title>
+  <meta name="description" content="律师转型 AI Builder 的 Koki 用 Muse 当私人 AI 助理近一个月：投简历、免费拿活动票、买平底锅、安排志愿者日、租房保险、日历管理、个人网站自动更新。">
+  <link rel="canonical" href="https://kokiai.net/resources/muse-7-cases/zh.html">
+  <link rel="alternate" hreflang="en" href="https://kokiai.net/resources/muse-7-cases/">
+  <link rel="alternate" hreflang="zh" href="https://kokiai.net/resources/muse-7-cases/zh.html">
+  <meta property="og:title" content="Muse 怎么用：7 个工作与生活的真实案例｜Koki">
+  <meta property="og:image" content="https://kokiai.net/resources/muse-7-cases/images/01-intro.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: oklch(96.5% 0.013 86.8);
+      --surface: oklch(98.5% 0.007 88.6);
+      --fg: oklch(23.3% 0.018 148.4);
+      --muted: oklch(43.4% 0.018 151.4);
+      --border: oklch(88.0% 0.021 88.7);
+      --accent: oklch(33.2% 0.029 146.8);
+      --sage: oklch(67.1% 0.033 140.7);
+      --warm: #fcfaf5;
+      --font-display: "Playfair Display", "Iowan Old Style", Georgia, serif;
+      --font-body: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 15% 8%, rgba(139, 155, 136, .28), transparent 27rem),
+        radial-gradient(circle at 92% 12%, rgba(123, 130, 102, .16), transparent 24rem),
+        var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(100% - clamp(32px, 6vw, 96px), 1280px); margin: 0 auto; }
+
+    .nav {
+      position: fixed; z-index: 30; top: 18px; left: 50%; transform: translateX(-50%);
+      width: min(calc(100% - 32px), 1420px);
+      display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 22px;
+      padding: 12px 14px 12px 18px;
+      border: 1px solid color-mix(in oklch, var(--border), transparent 10%);
+      border-radius: 999px; background: rgba(252, 250, 245, .9);
+      backdrop-filter: blur(18px); box-shadow: 0 12px 34px rgba(24, 32, 25, .08);
+    }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; white-space: nowrap; }
+    .brand-mark { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; color: var(--warm); background: var(--accent); }
+    .nav-links { display: flex; justify-content: center; gap: clamp(10px, 2vw, 28px); color: var(--muted); font-size: clamp(17px, 1.15vw, 20px); font-weight: 500; }
+    .nav-links a { transition: color .25s ease; }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-links a[aria-current="page"] { color: var(--fg); }
+    .nav-actions { display: inline-flex; align-items: center; justify-content: flex-end; gap: 10px; }
+    .language-toggle { display: inline-grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 2px; padding: 4px; border: 1px solid color-mix(in oklch, var(--border), transparent 8%); border-radius: 999px; background: color-mix(in oklch, var(--surface), transparent 12%); }
+    .language-toggle a { min-width: 38px; min-height: 36px; padding: 0 10px; border-radius: 999px; color: var(--muted); font-size: 13px; font-weight: 700; letter-spacing: .06em; display: inline-flex; align-items: center; justify-content: center; }
+    .language-toggle a[aria-current="page"] { background: var(--accent); color: var(--warm); }
+    .btn-primary { background: var(--accent); color: var(--warm); border-radius: 999px; padding: 10px 18px; font-weight: 600; font-size: 15px; }
+    @media (max-width: 860px) { .nav-links { display: none; } .btn-primary { display: none; } }
+
+    footer { margin-top: 84px; padding-top: 28px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    a.inl, .post p a, footer a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+    main { padding: 140px 0 90px; }
+    .post { width: min(100% - 40px, 760px); margin: 0 auto; line-height: 1.8; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: 12px; font-weight: 600; color: var(--muted); }
+    .post h1 { font-family: var(--font-display); font-size: clamp(34px, 5vw, 54px); line-height: 1.15; margin: 10px 0 18px; }
+    .post h2 { font-family: var(--font-display); font-size: clamp(24px, 3vw, 30px); margin: 56px 0 10px; line-height: 1.3; }
+    .post h2 .n { color: var(--sage); margin-right: 10px; }
+    .lead { font-size: 19px; color: var(--muted); }
+    .meta { font-size: 14px; color: var(--muted); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 10px 0; margin: 26px 0; }
+    figure { margin: 26px 0; }
+    figure img { width: 100%; height: auto; display: block; border-radius: 18px; border: 1px solid var(--border); box-shadow: 0 14px 40px rgba(24,32,25,.10); }
+    figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; text-align: center; }
+    .box { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 18px 22px; margin: 24px 0; }
+    .box ol { margin: 6px 0; padding-left: 22px; }
+    blockquote { margin: 24px 0; padding: 6px 20px; border-left: 3px solid var(--sage); font-family: var(--font-display); font-style: italic; font-size: 20px; }
+    .video { position: relative; aspect-ratio: 16/9; border-radius: 18px; overflow: hidden; border: 1px solid var(--border); margin: 28px 0 10px; background: #111; }
+    .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .watch { display: flex; gap: 14px; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 10px; margin-bottom: 24px; }
+    .watch img { width: 160px; border-radius: 10px; display: block; }
+    .watch span { font-weight: 600; }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="brand" href="../../zh.html" aria-label="Home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 19c8-1 13-6 14-14-8 1-13 6-14 14Zm0 0c3-1 6-3 9-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span>Koki</span>
+    </a>
+    <div class="nav-links">
+      <a href="../../zh.html?section=anti">Anti-Distill Skill</a>
+      <a href="../../sf-2026/">SF 2026</a>
+      <a href="../zh.html">AI资料库</a>
+      <a href="../../zh.html?section=impact">媒体报道</a>
+      <a href="../../zh.html?section=insights">观点</a>
+    </div>
+    <div class="nav-actions">
+      <div class="language-toggle" role="group" aria-label="Language">
+        <a href="index.html">EN</a>
+        <a aria-current="page" href="zh.html">中文</a>
+      </div>
+      <a class="btn-primary" href="../../zh.html?section=contact">订阅</a>
+    </div>
+  </nav>
+  <main>
+    <article class="post">
+    <p class="eyebrow">Personal Agent · 教程</p>
+    <h1>Muse 怎么用：<br>7 个工作与生活的真实案例</h1>
+    <p class="lead">我是 Koki，律师转型 AI Builder。用 Muse 快一个月，它已经彻底变成我的主力 AI 私人助理。这篇把视频里的 7 个真实案例整理成图文：从海投简历到让它自动维护我的个人网站。</p>
+    <div class="meta">Koki · 2026 年 10 月 · 阅读约 6 分钟 · 原视频：<a href="https://youtu.be/EgL830SMaiE">How To Use Muse: 7 Practical Examples For Work &amp; Life</a></div>
+
+    <figure><img loading="lazy" src="images/01-intro.jpg" alt="视频开场列出的 7 个案例" loading="lazy"><figcaption>开场：7 个案例一次看全——求职、门票、平底锅、志愿者日、保险、日历、个人网站</figcaption></figure>
+
+    <div class="box"><strong>本文 7 个案例</strong>
+      <ol><li>求职：写简历、筛岗位、代填申请、追踪回复</li><li>免费拿到旧金山活动门票</li><li>帮我买一口平底锅</li><li>一整天的志愿者安排</li><li>租房保险：比价、投保、退保</li><li>日历管理：自动找活动、报名、排日程</li><li>个人网站 Coffee Chat 日历自动更新</li></ol>
+    </div>
+
+    <h2><span class="n">01</span>求职：从写简历到自动投递</h2>
+    <p>我把 LinkedIn、作品和个人网站发给 Muse，让它帮我找工作。我的职业路径一直在变：法律 → AI 治理 → 动手做产品 → 社区与开发者关系（DevRel）。海投有多痛苦，我太清楚了。</p>
+    <p>Muse 先研究了我的公开资料，直接写出一份排版漂亮、可以直接用的简历。如果你对方向迷茫，也可以问它“什么岗位适合我”——AI 行业里像开发者关系、社区、Go-to-Market 这类岗位，其实在其他行业早就存在，对背景跨度大的人特别友好。</p>
+    <p>接着它去各大招聘平台筛选匹配岗位，打开每家公司的<strong>官方申请页</strong>代填表单。<strong>每次点“提交”前，它都会停下来把完整申请给我看</strong>。我逐一检查后说“全部发送”，它才提交。</p>
+    <figure><img loading="lazy" src="images/02-job-apply.jpg" alt="Muse 在公司官方申请页代填表单"><figcaption>在官方申请页填好表单，等我确认后再提交</figcaption></figure>
+    <p>之后它还设置了跟进：追踪回复，每天扫描新的匹配岗位并自动申请。以前自己海投，写邮件写到手指僵硬；现在一天可以投出上百份，收到回音的概率大大提高。</p>
+    <figure><img loading="lazy" src="images/03-job-replies.jpg" alt="收件箱中的申请回复"><figcaption>申请回执和回复，都在收件箱里一目了然</figcaption></figure>
+
+    <h2><span class="n">02</span>免费拿到旧金山活动门票</h2>
+    <p>我让 Muse 帮我找些有意思的活动。它找到一个“不能错过”的旧金山活动——但要付费。然后它<strong>自动找到了免费门票的优惠码</strong>，从找活动、拿码到报名全包了，帮我省下几百美元。</p>
+    <p>活动在旧金山艺术宫（Palace of Fine Arts），金门大桥旁最美的古典地标之一。我大概是现场唯一一个靠 AI 助理拿到免费票的人。</p>
+    <figure><img loading="lazy" src="images/04-palace.jpg" alt="旧金山艺术宫活动现场"><figcaption>旧金山艺术宫：门票由 Muse 搞定</figcaption></figure>
+
+    <h2><span class="n">03</span>帮我买一口平底锅</h2>
+    <p>有点不好意思：我烧坏了朋友的平底锅，而我对锅一窍不通。我把原锅的信息给 Muse，要求只要送货上门。它在网上比价，给出一个短名单：<strong>哪款和原锅最匹配、各多少钱、多快能到</strong>——正是我需要做决定的三件事。它还主动找到了可用的折扣码。</p>
+    <figure><img loading="lazy" src="images/05-frying-pan.jpg" alt="Muse 对比平底锅替代款"><figcaption>替代款、价格和配送时间放在同一张对比里</figcaption></figure>
+    <p>我不需要懂产品，选了它推荐的那款付款，新锅直接送到了朋友家。</p>
+
+    <h2><span class="n">04</span>让 AI 安排我的一整天</h2>
+    <p>我做了个小实验：让 Muse 帮我找一个融入湾区 AI 生态的方式。它给我报名了 AWS 社区活动的志愿者，和组织者来回沟通邮件、把一切同步到日历、处理好各种细节。</p>
+    <figure><img loading="lazy" src="images/06-volunteer-email.jpg" alt="Muse 起草给组织者的邮件"><figcaption>和组织者的往来邮件由 Muse 起草处理</figcaption></figure>
+    <p>它还调研了当天的演讲嘉宾和其他志愿者，给我做了背景简报，并建议值得一对一聊的人。活动前一晚还有讲者和志愿者的官方晚宴——我还没反应过来，它就帮我报上了（免费，而且真的很好吃）。第二天我只需按它的计划出发、到场、带好我负责的环节，认识了很多有趣的人。</p>
+
+    <h2><span class="n">05</span>租房保险：比价、投保、退保</h2>
+    <p>我实在不想啃冗长的表单、自己比较所有方案。Muse 把各个方案和套餐并排列出来，我直接选了最便宜的那个，每月只要 5 美元。</p>
+    <figure><img loading="lazy" src="images/07-insurance.jpg" alt="Muse 对比租房保险方案"><figcaption>保障额度、责任险和月费并排比较</figcaption></figure>
+    <p>后来我不需要了，就直接告诉 Muse 要退保，它同样轻松地自己办完了。签证申请、租约表格、银行问题、报销申请这类文书工作，它也能帮忙。</p>
+
+    <h2><span class="n">06</span>日历管理：我每天都在用</h2>
+    <p>Muse 先了解我的背景、工作和适合我的活动类型，然后主动在 Luma、Meetup、Eventbrite 等平台搜索活动，找到合适的直接帮我报名。</p>
+    <p>我给它设了一个常驻任务：<strong>每天早上扫描收件箱里的活动邀请和确认邮件，放进日历</strong>。它会检查冲突，避免新活动和已有安排重叠；还会把地理位置相近的活动排在一起，让一天的行程更顺。</p>
+    <figure><img loading="lazy" src="images/08-calendar-discover.jpg" alt="发现湾区活动" loading="lazy"><figcaption>根据我的背景发现适合的湾区活动</figcaption></figure>
+    <p>主办方回复或活动有变时，它会跟进；我不想去了，只要说一声，它就写邮件或在系统里取消报名。以前我要在五个不同的应用之间规划日程，现在一觉醒来，一天已经排好了。</p>
+    <blockquote>以前在五个应用之间来回规划，现在一醒来，一天已经安排好了。</blockquote>
+
+    <h2><span class="n">07</span>个人网站的日历，交给 Muse 自动更新</h2>
+    <p>这是我最喜欢的一个。作为博主，很多人问我怎么转行进入 AI，常约我 Coffee Chat。我需要一个地方展示我什么时候有空——但真实日历里有私人安排，不能整个公开。所以我的公开活动放在个人网站 <a href="../../sf-2026/">湾区日程页</a>。</p>
+    <figure><img loading="lazy" src="images/09-website-calendar.jpg" alt="kokiai.net/sf-2026 公开日历"><figcaption>kokiai.net 的公开日程页：活动 + Coffee Chat</figcaption></figure>
+    <p>以前每次更新都要手改代码，活动一变网站就得跟着改，我可不想每次都打开电脑跑编程工具。于是我让 Muse <strong>连接我的代码仓库和日历</strong>，每天自动同步一次公开活动。</p>
+    <figure><img loading="lazy" src="images/10-website-sync.jpg" alt="Muse 每日同步网站的通知"><figcaption>每日自动同步：日历一变，网站跟着更新</figcaption></figure>
+    <p>现在有人约 Coffee Chat，我只需发这个链接：他们能看到我会去哪些活动、在哪能线下见到我、什么时候有空。</p>
+
+    <h2>写在最后</h2>
+    <p>这 7 个案例只是冰山一角——我基本可以把日常琐事都交给 Muse，而且我确实这么做了。我会持续分享和个人 Agent 一起生活、工作的教程。</p>
+
+    <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/EgL830SMaiE" title="How To Use Muse: 7 Practical Examples For Work &amp; Life" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+    <a class="watch" href="https://www.youtube.com/watch?v=EgL830SMaiE" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/EgL830SMaiE/hqdefault.jpg" alt="Video thumbnail"><span>在 YouTube 观看 ↗</span></a>
+    <footer><span>© Koki · kokiai.net</span><span>截图均取自视频 <a href="https://www.youtube.com/watch?v=EgL830SMaiE">How To Use Muse</a>。</span></footer>
+    </article>
+  </main>
+</body>
+</html>

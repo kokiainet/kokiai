@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>旧金山 Hacker Houses：创始人和工程师住在哪｜Koki</title>
+  <meta name="description" content="Koki 整理的旧金山 hacker house 与创始人共居地图：申请制 residency（HF0、The Residency、Mission Control）、可直接订的创始人酒店（Foundry、Superhero Hotel）和邀请制房子，每条都对着官网核实。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: oklch(96.5% 0.013 86.8);
+      --surface: oklch(98.5% 0.007 88.6);
+      --fg: oklch(23.3% 0.018 148.4);
+      --muted: oklch(43.4% 0.018 151.4);
+      --border: oklch(88.0% 0.021 88.7);
+      --accent: oklch(33.2% 0.029 146.8);
+      --sage: oklch(67.1% 0.033 140.7);
+      --warm: #fcfaf5;
+      --font-display: "Playfair Display", "Iowan Old Style", Georgia, serif;
+      --font-body: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 15% 8%, rgba(139, 155, 136, .28), transparent 27rem),
+        radial-gradient(circle at 92% 12%, rgba(123, 130, 102, .16), transparent 24rem),
+        var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(100% - clamp(32px, 6vw, 96px), 1280px); margin: 0 auto; }
+
+    .nav {
+      position: fixed; z-index: 30; top: 18px; left: 50%; transform: translateX(-50%);
+      width: min(calc(100% - 32px), 1420px);
+      display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 22px;
+      padding: 12px 14px 12px 18px;
+      border: 1px solid color-mix(in oklch, var(--border), transparent 10%);
+      border-radius: 999px; background: rgba(252, 250, 245, .9);
+      backdrop-filter: blur(18px); box-shadow: 0 12px 34px rgba(24, 32, 25, .08);
+    }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; white-space: nowrap; }
+    .brand-mark { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; color: var(--warm); background: var(--accent); }
+    .nav-links { display: flex; justify-content: center; gap: clamp(10px, 2vw, 28px); color: var(--muted); font-size: clamp(17px, 1.15vw, 20px); font-weight: 500; }
+    .nav-links a { transition: color .25s ease; }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-links a[aria-current="page"] { color: var(--fg); }
+    .nav-actions { display: inline-flex; align-items: center; justify-content: flex-end; gap: 10px; }
+    .language-toggle { display: inline-grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 2px; padding: 4px; border: 1px solid color-mix(in oklch, var(--border), transparent 8%); border-radius: 999px; background: color-mix(in oklch, var(--surface), transparent 12%); }
+    .language-toggle a { min-width: 38px; min-height: 36px; padding: 0 10px; border-radius: 999px; color: var(--muted); font-size: 13px; font-weight: 700; letter-spacing: .06em; display: inline-flex; align-items: center; justify-content: center; }
+    .language-toggle a[aria-current="page"] { background: var(--accent); color: var(--warm); }
+    .btn-primary { background: var(--accent); color: var(--warm); border-radius: 999px; padding: 10px 18px; font-weight: 600; font-size: 15px; }
+    @media (max-width: 860px) { .nav-links { display: none; } .btn-primary { display: none; } }
+
+    main { padding: 150px 0 90px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: 12px; font-weight: 600; color: var(--accent); margin: 0 0 14px; }
+    h1 { font-family: var(--font-display); font-size: clamp(40px, 5vw, 64px); line-height: 1.1; margin: 0 0 18px; font-weight: 700; }
+    .lead { font-size: clamp(17px, 1.4vw, 20px); color: var(--muted); max-width: 46em; margin: 0; }
+    .updated { margin-top: 14px; font-size: 14px; color: var(--muted); }
+
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 38px; }
+    .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 18px 20px; }
+    .stat strong { display: block; font-family: var(--font-display); font-size: 30px; line-height: 1.1; margin-bottom: 4px; }
+    .stat span { color: var(--muted); font-size: 14px; }
+
+    section { margin-top: 64px; }
+    .section-head h2 { font-family: var(--font-display); font-size: clamp(28px, 3vw, 38px); margin: 0 0 8px; }
+    .section-head p { color: var(--muted); margin: 0 0 26px; max-width: 44em; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+    .card {
+      display: flex; flex-direction: column; gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px; padding: 24px;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    a.card:hover { transform: translateY(-3px); box-shadow: 0 18px 44px rgba(24, 32, 25, .10); border-color: var(--sage); }
+    .card .tag { align-self: flex-start; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); background: color-mix(in oklch, var(--sage), transparent 72%); padding: 4px 10px; border-radius: 999px; }
+    .card h3 { font-size: 20px; margin: 2px 0 0; line-height: 1.3; }
+    .card p { color: var(--muted); font-size: 15px; margin: 0; flex: 1; }
+    .card .meta { display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+    .card .domain { color: var(--muted); }
+    .card .go { color: var(--accent); font-weight: 600; }
+
+    footer { margin-top: 84px; padding-top: 28px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="主导航">
+    <a class="brand" href="../../zh.html" aria-label="回到主页">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 19c8-1 13-6 14-14-8 1-13 6-14 14Zm0 0c3-1 6-3 9-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span>Koki</span>
+    </a>
+    <div class="nav-links">
+      <a href="../../zh.html?section=anti">Anti-Distill Skill</a>
+      <a href="../../sf-2026/">SF 2026</a>
+      <a href="../zh.html">AI资料库</a>
+      <a href="../../zh.html?section=impact">媒体报道</a>
+      <a href="../../zh.html?section=insights">观点</a>
+    </div>
+    <div class="nav-actions">
+      <div class="language-toggle" role="group" aria-label="Language">
+        <a href="index.html">EN</a>
+        <a href="zh.html" aria-current="page">中文</a>
+      </div>
+      <a class="btn-primary" href="../../zh.html?section=contact">订阅</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <p class="eyebrow">旧金山 · 居住地图</p>
+      <h1>旧金山 Hacker Houses 地图</h1>
+      <p class="lead">这座城市的创始人和工程师到底住在哪：共居大屋、创始人酒店、邀请制豪宅。每一条都对着官网核实过。</p>
+      <p class="updated">By Koki · November 2026</p>
+
+      <div class="stats">
+        <div class="stat"><strong>12</strong><span>对着官网逐个核实过的房子</span></div>
+        <div class="stat"><strong>10</strong><span>位于旧金山市内</span></div>
+        <div class="stat"><strong>3</strong><span>进入方式：申请、直接订、受邀</span></div>
+        <div class="stat"><strong>2012</strong><span>名单里开得最久的一家（20mish）</span></div>
+      </div>
+
+      <section id="apply">
+        <div class="section-head">
+          <h2>申请入住</h2>
+          <p>经典的 hacker house 模式：提交申请，由住户或项目方挑人。住进去，房子就是你的圈子。</p>
+        </div>
+        <div class="grid">
+          <a class="card" href="https://www.missioncontrol.house/" target="_blank" rel="noopener">
+            <span class="tag">申请制 · Mission 区</span>
+            <h3>Mission Control</h3>
+            <p>旧金山最老的 hacker house：住户投票决定谁能住进来的共居社区。创始人、工程师和 builder 混住，以长住为主。</p>
+            <span class="meta"><span class="domain">missioncontrol.house</span><span class="go">看官网 ↗</span></span>
+          </a>
+          <a class="card" href="https://hf0.com/" target="_blank" rel="noopener">
+            <span class="tag">申请制 · Alamo Square</span>
+            <h3>HF0 (Hacker Fellowship Zero)</h3>
+            <p>给连续创业者和强技术创始人的 12 周住宿制 residency，基地在 Archbishop's Mansion。项目期间住宿、餐食和日常运营全包。</p>
+            <span class="meta"><span class="domain">hf0.com</span><span class="go">申请 ↗</span></span>
+          </a>
+          <a class="card" href="https://www.livetheresidency.com/" target="_blank" rel="noopener">
+            <span class="tag">申请制 · Pacific Heights / Mission</span>
+            <h3>The Residency</h3>
+            <p>三个月一期的共居项目，面向深科技创始人和研究者，在 SF 有多栋房子：住宿、私厨、教练和 demo day。创始人线有 12 万美元 SAFE 的选项。</p>
+            <span class="meta"><span class="domain">livetheresidency.com</span><span class="go">申请 ↗</span></span>
+          </a>
+          <a class="card" href="https://908coliving.com/" target="_blank" rel="noopener">
+            <span class="tag">申请制 · Russian Hill</span>
+            <h3>908 Coliving</h3>
+            <p>908 Broadway 的一栋 16 人共居屋，住户是创业者、发明家和艺术家。带家具，可按月住，含早餐，入住先申请筛选。</p>
+            <span class="meta"><span class="domain">908coliving.com</span><span class="go">申请 ↗</span></span>
+          </a>
+          <a class="card" href="https://formosafounders.com/" target="_blank" rel="noopener">
+            <span class="tag">申请制 · Lower Haight</span>
+            <h3>Formosa Founders House</h3>
+            <p>台湾创始人在 SF 的共居 house，住户连着 YC、500 Global 背景的创始人网络。火锅晚餐是这屋的文化。</p>
+            <span class="meta"><span class="domain">formosafounders.com</span><span class="go">申请 ↗</span></span>
+          </a>
+          <a class="card" href="https://20mish.com/" target="_blank" rel="noopener">
+            <span class="tag">申请制 · Mission 区</span>
+            <h3>20mish (20mission)</h3>
+            <p>2012 年开到现在的 40 间房共居屋，最早是 SF 第一家加密圈 hacker house。单间约 1,625 美元一个月，含水电和保洁。</p>
+            <span class="meta"><span class="domain">20mish.com</span><span class="go">申请 ↗</span></span>
+          </a>
+          <a class="card" href="https://joinaccelr8.com/" target="_blank" rel="noopener">
+            <span class="tag">申请制 · Mid-Market / Alamo Square</span>
+            <h3>Accelr8</h3>
+            <p>创始人运营的 hacker hotel 组合：Market 街的 1412、Polk 街的 Epik，外加 Alamo Square 的一栋别墅。面向 pre-seed 和 seed 阶段创始人，住满 30 天起。</p>
+            <span class="meta"><span class="domain">joinaccelr8.com</span><span class="go">申请 ↗</span></span>
+          </a>
+          <a class="card" href="https://www.hivecolivingsf.com/" target="_blank" rel="noopener">
+            <span class="tag">申请制 · SoMa</span>
+            <h3>Hive Coliving</h3>
+            <p>1040 Folsom 的科技向共居 founder house：约 50 间带家具的房间，带 coworking 区，可按月或四个月租。Replit 团队是它的校友。</p>
+            <span class="meta"><span class="domain">hivecolivingsf.com</span><span class="go">申请 ↗</span></span>
+          </a>
+        </div>
+      </section>
+
+      <section id="book">
+        <div class="section-head">
+          <h2>直接订</h2>
+          <p>不用选拔：像订酒店一样订的创始人酒店和共居空间，按晚或按月都行。</p>
+        </div>
+        <div class="grid">
+          <a class="card" href="https://foundry.today/" target="_blank" rel="noopener">
+            <span class="tag">可直接订 · Mission / Alamo Square</span>
+            <h3>Foundry</h3>
+            <p>SF 四栋房子，直接订就能住：带家具单间 2,290 美元一个月起，全包，最短住一个月。每周有社区晚餐和投资人晚餐，每季度有 demo day。</p>
+            <span class="meta"><span class="domain">foundry.today</span><span class="go">订房 ↗</span></span>
+          </a>
+          <a class="card" href="https://www.superherohotel.com/" target="_blank" rel="noopener">
+            <span class="tag">可直接订 · Nob Hill</span>
+            <h3>Superhero Hotel</h3>
+            <p>Frontier Tower 团队做的创始人酒店，825 Sutter，110 间房。可按晚或按月订，月住项目有健身、pitch night、游戏夜和黑客松。</p>
+            <span class="meta"><span class="domain">superherohotel.com</span><span class="go">订房 ↗</span></span>
+          </a>
+        </div>
+      </section>
+
+      <section id="beyond">
+        <div class="section-head">
+          <h2>旧金山周边</h2>
+          <p>找房时绕不开的两个名字，都在市区以南不远。</p>
+        </div>
+        <div class="grid">
+          <a class="card" href="https://www.hackerho.me/" target="_blank" rel="noopener">
+            <span class="tag">可直接订 · 硅谷</span>
+            <h3>HackerHome</h3>
+            <p>Sunnyvale、Mountain View 等硅谷多地的平价共居屋，官网或 Airbnb 都能订。有家庭晚餐和 pitch 活动，是很多新人和实习生的第一站。</p>
+            <span class="meta"><span class="domain">hackerho.me</span><span class="go">订房 ↗</span></span>
+          </a>
+          <a class="card" href="https://agihouse.org/" target="_blank" rel="noopener">
+            <span class="tag">邀请制 · Hillsborough</span>
+            <h3>AGI House</h3>
+            <p>面向 AI 创始人和研究者的豪宅社区，兼做 fellowship 和创投基金。凭本事进，以沙龙讲座和与大厂 AI 实验室合办的黑客松出名。</p>
+            <span class="meta"><span class="domain">agihouse.org</span><span class="go">看官网 ↗</span></span>
+          </a>
+        </div>
+      </section>
+
+      <footer>
+        <span>© Koki · kokiai.net</span>
+        <span>2026 年 11 月核实。房子开开关关、搬来搬去，申请前以官网为准。</span>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>

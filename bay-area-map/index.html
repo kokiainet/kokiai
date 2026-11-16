@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore Jensen Huang’s Silicon Valley and discover the stories behind the Bay Area’s tech landmarks.">
+  <title>Jensen Huang’s Silicon Valley Map · Koki</title>
+</head>
+<body>
+  <main>
+    <h1>Jensen Huang’s Silicon Valley Map</h1>
+    <p><a href="en/bay-area-map.html#person=huang">Open the map</a></p>
+    <p><a href="bay-area-map.html#person=huang" lang="zh-CN">打开中文版地图</a></p>
+    <p><a href="ja/bay-area-map.html#person=huang" lang="ja">日本語版の地図を開く</a></p>
+  </main>
+  <script>
+    const map = new URL("en/bay-area-map.html", window.location.href);
+    map.search = window.location.search;
+    map.hash = window.location.hash || "person=huang";
+    window.location.replace(map);
+  </script>
+</body>
+</html>

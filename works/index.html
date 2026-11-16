@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Works · Koki</title>
+  <meta name="description" content="Koki's portfolio: the Anti-Distill Skill, media coverage, the Social Coding movement, and open-source Skills on GitHub.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: oklch(96.5% 0.013 86.8);
+      --surface: oklch(98.5% 0.007 88.6);
+      --fg: oklch(23.3% 0.018 148.4);
+      --muted: oklch(43.4% 0.018 151.4);
+      --border: oklch(88.0% 0.021 88.7);
+      --accent: oklch(33.2% 0.029 146.8);
+      --sage: oklch(67.1% 0.033 140.7);
+      --warm: #fcfaf5;
+      --font-display: "Playfair Display", "Iowan Old Style", Georgia, serif;
+      --font-body: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 15% 8%, rgba(139, 155, 136, .28), transparent 27rem),
+        radial-gradient(circle at 92% 12%, rgba(123, 130, 102, .16), transparent 24rem),
+        var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(100% - clamp(32px, 6vw, 96px), 1280px); margin: 0 auto; }
+
+    .nav {
+      position: fixed; z-index: 30; top: 18px; left: 50%; transform: translateX(-50%);
+      width: min(calc(100% - 32px), 1420px);
+      display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 22px;
+      padding: 12px 14px 12px 18px;
+      border: 1px solid color-mix(in oklch, var(--border), transparent 10%);
+      border-radius: 999px; background: rgba(252, 250, 245, .9);
+      backdrop-filter: blur(18px); box-shadow: 0 12px 34px rgba(24, 32, 25, .08);
+    }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; white-space: nowrap; }
+    .brand-mark { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; color: var(--warm); background: var(--accent); }
+    .nav-links { display: flex; justify-content: center; gap: clamp(10px, 2vw, 28px); color: var(--muted); font-size: clamp(17px, 1.15vw, 20px); font-weight: 500; }
+    .nav-links a { transition: color .25s ease; }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-links a[aria-current="page"] { color: var(--fg); }
+    .nav-actions { display: inline-flex; align-items: center; justify-content: flex-end; gap: 10px; }
+    .language-toggle { display: inline-grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 2px; padding: 4px; border: 1px solid color-mix(in oklch, var(--border), transparent 8%); border-radius: 999px; background: color-mix(in oklch, var(--surface), transparent 12%); }
+    .language-toggle a { min-width: 38px; min-height: 36px; padding: 0 10px; border-radius: 999px; color: var(--muted); font-size: 13px; font-weight: 700; letter-spacing: .06em; display: inline-flex; align-items: center; justify-content: center; }
+    .language-toggle a[aria-current="page"] { background: var(--accent); color: var(--warm); }
+    .btn-primary { background: var(--accent); color: var(--warm); border-radius: 999px; padding: 10px 18px; font-weight: 600; font-size: 15px; }
+    @media (max-width: 860px) { .nav-links { display: none; } .btn-primary { display: none; } }
+
+    main { padding: 150px 0 90px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: 12px; font-weight: 600; color: var(--accent); margin: 0 0 14px; }
+    h1 { font-family: var(--font-display); font-size: clamp(40px, 5vw, 64px); line-height: 1.1; margin: 0 0 18px; font-weight: 700; }
+    .lead { font-size: clamp(17px, 1.4vw, 20px); color: var(--muted); max-width: 46em; margin: 0; }
+    .updated { margin-top: 14px; font-size: 14px; color: var(--muted); }
+
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 38px; }
+    .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 18px 20px; }
+    .stat strong { display: block; font-family: var(--font-display); font-size: 30px; line-height: 1.1; margin-bottom: 4px; }
+    .stat span { color: var(--muted); font-size: 14px; }
+
+    section { margin-top: 64px; }
+    .section-head h2 { font-family: var(--font-display); font-size: clamp(28px, 3vw, 38px); margin: 0 0 8px; }
+    .section-head p { color: var(--muted); margin: 0 0 26px; max-width: 44em; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+    .card {
+      display: flex; flex-direction: column; gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px; padding: 24px;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    a.card:hover { transform: translateY(-3px); box-shadow: 0 18px 44px rgba(24, 32, 25, .10); border-color: var(--sage); }
+    .card .tag { align-self: flex-start; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); background: color-mix(in oklch, var(--sage), transparent 72%); padding: 4px 10px; border-radius: 999px; }
+    .card h3 { font-size: 20px; margin: 2px 0 0; line-height: 1.3; }
+    .card p { color: var(--muted); font-size: 15px; margin: 0; flex: 1; }
+    .card .meta { display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+    .card .domain { color: var(--muted); }
+    .card .go { color: var(--accent); font-weight: 600; }
+
+    footer { margin-top: 84px; padding-top: 28px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  
+    .card figure { margin: 0; border-radius: 14px; overflow: hidden; }
+    .card figure img { width: 100%; height: auto; display: block; }
+    .card video { width: 100%; height: auto; display: block; border-radius: 14px; background: #000; }
+    .card .links { display: flex; gap: 18px; flex-wrap: wrap; }
+    .card .links a { color: var(--accent); font-weight: 600; font-size: 15px; }
+    .card.wide { grid-column: 1 / -1; }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="brand" href="../index.html" aria-label="Back to home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 19c8-1 13-6 14-14-8 1-13 6-14 14Zm0 0c3-1 6-3 9-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span>Koki</span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="index.html" aria-current="page">Works</a>
+      <a href="../bay-area/">Bay Area</a>
+      <a href="../index.html?section=insights">Insights</a>
+      <a href="../resources/">AI Library</a>
+      <a href="../services/">Services</a>
+      <a href="../index.html">About</a>
+    </div>
+    <div class="nav-actions">
+      <div class="language-toggle" role="group" aria-label="Language">
+        <a href="index.html" aria-current="page">EN</a>
+        <a href="zh.html">中文</a>
+      </div>
+      <a class="btn-primary" href="../index.html?section=contact">Subscribe</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <p class="eyebrow">Works · Portfolio</p>
+      <h1>Things I have built and started</h1>
+      <p class="lead">The Anti-Distill Skill, the Social Coding movement, the coverage they sparked, and the open-source tools I publish on GitHub.</p>
+      <p class="updated">By Koki · November 2026</p>
+
+      <section id="anti-distill">
+        <div class="section-head">
+          <h2>Anti-Distill Skill</h2>
+          <p>A practical tool and public argument about how workers are being distilled by AI.</p>
+        </div>
+        <div class="grid">
+          <div class="card wide">
+            <span class="tag">Flagship · Open Source</span>
+            <h3>Anti-Distill Skill</h3>
+            <p>When a company asks you to turn your know-how into a Skill, Anti-Distill helps you keep the judgment, hard-earned mistakes, and professional assets that should remain yours. It reads an existing Skill or knowledge document, detects the real experience hidden inside it, and separates a polished submission version from a private backup of the core knowledge. 2,400+ GitHub stars.</p>
+            <span class="links"><a href="https://github.com/kokiainet/anti-distill" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="../index.html?section=anti">Watch the demo on the homepage</a></span>
+          </div>
+        </div>
+      </section>
+
+      <section id="media">
+        <div class="section-head">
+          <h2>Media coverage</h2>
+          <p>From a Caixin cover story to global technology coverage and Chinese public debate, Anti-Distill pushed the question of employee know-how being distilled by AI into the open.</p>
+        </div>
+        <div class="grid">
+          <a class="card" href="https://weekly.caixin.com/2026-06-12/102453475.html?sourceEntityId=102454078" target="_blank" rel="noopener">
+            <span class="tag">Cover Story</span>
+            <h3>Caixin Weekly · The Anti-Distill Fight</h3>
+            <p>Caixin Weekly framed Anti-Distill as a key lens on workers' position in an era of accelerating AI replacement. Its cover became a public symbol of the debate.</p>
+            <span class="meta"><span class="domain">weekly.caixin.com</span><span class="go">Read ↗</span></span>
+          </a>
+          <a class="card" href="https://www.technologyreview.com/2026/04/20/1136149/chinese-tech-workers-ai-colleagues/" target="_blank" rel="noopener">
+            <figure><img src="https://wp.technologyreview.com/wp-content/uploads/2026/04/rice-bowl-claw.jpg?resize=1200,600" alt="MIT Technology Review article preview" loading="lazy"></figure>
+            <span class="tag">Global Tech Media</span>
+            <h3>MIT Technology Review</h3>
+            <p>Placed "AI doubles" in a global technology context, showing Chinese tech workers training systems while searching for ways to push back.</p>
+            <span class="meta"><span class="domain">technologyreview.com</span><span class="go">Read ↗</span></span>
+          </a>
+          <a class="card" href="https://mp.weixin.qq.com/s/BUJcy_2_93GO3_BpWY3yGw" target="_blank" rel="noopener">
+            <figure><img src="../mqnrdxnm-央视网.jpg" alt="CCTV Fengmian article preview" loading="lazy"></figure>
+            <span class="tag">Public Media</span>
+            <h3>CCTV / Fengmian</h3>
+            <p>Asked the public-facing question behind the "colleague.skill" wave: beyond AI efficiency, who is being extracted, and who gets to set the boundary?</p>
+            <span class="meta"><span class="domain">mp.weixin.qq.com</span><span class="go">Read ↗</span></span>
+          </a>
+          <a class="card" href="https://mp.weixin.qq.com/s/1YH4ggURo9HpvuTi1DmShg" target="_blank" rel="noopener">
+            <figure><img src="../mqnrf8th-中国新闻周刊.png" alt="China Newsweek article preview" loading="lazy"></figure>
+            <span class="tag">News Magazine</span>
+            <h3>China Newsweek</h3>
+            <p>Put "workers being distilled" into a broader workplace narrative, focusing on anxiety and self-protection as skills become packaged assets.</p>
+            <span class="meta"><span class="domain">mp.weixin.qq.com</span><span class="go">Read ↗</span></span>
+          </a>
+          <a class="card" href="https://v.douyin.com/4IUWJk02HEE/" target="_blank" rel="noopener">
+            <figure><img src="../mqnrdxmp-极昼.png" alt="Jizhou video interview preview" loading="lazy"></figure>
+            <span class="tag">Video Interview</span>
+            <h3>Jizhou Video Interview</h3>
+            <p>Explained Anti-Distill to a wider video audience: not anti-AI, but a demand that technological progress not bypass real people.</p>
+            <span class="meta"><span class="domain">v.douyin.com</span><span class="go">Watch ↗</span></span>
+          </a>
+          <a class="card" href="https://m.bjnews.com.cn/detail/1776214564168480.html" target="_blank" rel="noopener">
+            <figure><img src="../bjnews.jpg" alt="Beijing News article preview" loading="lazy"></figure>
+            <span class="tag">Newspaper</span>
+            <h3>Beijing News</h3>
+            <p>Started from the "cyber colleague" imagination and described the workplace anxiety that emerges when experience and craft become reusable assets.</p>
+            <span class="meta"><span class="domain">bjnews.com.cn</span><span class="go">Read ↗</span></span>
+          </a>
+          <a class="card" href="https://jg-mvvm.eeo.com.cn/-article/info?viewLevel=3&amp;id=a01502bba586468b85b44c2138d2b20f&amp;sessionid=-367547908" target="_blank" rel="noopener">
+            <figure><img src="../mqnrdxn9-经济观察报.jpg" alt="Economic Observer article preview" loading="lazy"></figure>
+            <span class="tag">Business Press</span>
+            <h3>Economic Observer</h3>
+            <p>Framed "colleague.skill" and "anti-distill.skill" as a labor-management confrontation: management wants reusable experience; workers want to retain core value.</p>
+            <span class="meta"><span class="domain">eeo.com.cn</span><span class="go">Read ↗</span></span>
+          </a>
+        </div>
+      </section>
+
+      <section id="social-coding">
+        <div class="section-head">
+          <h2>Social Coding</h2>
+          <p>A coding stance proposed by Koki: code should not only solve technical puzzles, but also respond to real conditions, labor relations, and human pain.</p>
+        </div>
+        <div class="grid">
+          <div class="card wide">
+            <span class="tag">Manifesto</span>
+            <h3>Koki launched the Social Coding movement.</h3>
+            <p>Borrowing from the distinction between "<a href="https://ja.wikipedia.org/wiki/%E6%9C%AC%E6%A0%BC%E6%B4%BE%E6%8E%A8%E7%90%86%E5%B0%8F%E8%AA%AC" target="_blank" rel="noopener noreferrer">honkaku</a>" and "<a href="https://ja.wikipedia.org/wiki/%E7%A4%BE%E4%BC%9A%E6%B4%BE%E6%8E%A8%E7%90%86%E5%B0%8F%E8%AA%AC" target="_blank" rel="noopener noreferrer">social school</a>" mystery fiction in Japan, Social Coding does not stop at elegant technical solutions. It asks whose reality the code responds to, and whose time, rights, and dignity it helps reclaim. It is not about writing more beautiful code, but code with sharper teeth. If this position resonates with you, use #SocialCoding when sharing AI projects.</p>
+          </div>
+          <a class="card" href="https://shenicest.ton-ton.fun/stitch-neon-rebuild.html" target="_blank" rel="noopener noreferrer">
+            <figure><img src="../mqnt1bk8-女性黑客松评委.jpg" alt="SheNicest women hackathon event and judges" loading="lazy"></figure>
+            <span class="tag">Women in Tech</span>
+            <h3>SheNicest Women Hackathon</h3>
+            <p>Brings women's lived experience, bodies, and family issues into a technical co-creation space, turning code from problem solving into mutual support.</p>
+            <span class="meta"><span class="domain">shenicest.ton-ton.fun</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="https://mp.weixin.qq.com/s/T551v8DASOznUny-mwZXvQ" target="_blank" rel="noopener noreferrer">
+            <figure><img src="../mqnt1bjv-快乐老家AI合成记忆.jpg" alt="Happy Hometown AI synthetic memory project visual" loading="lazy"></figure>
+            <span class="tag">Memory &amp; Intimacy</span>
+            <h3>Happy Hometown AI Memory</h3>
+            <p>Uses generative AI to repair, recompose, and retell personal memory, asking how technology participates in our relationships with family, hometown, and the past.</p>
+            <span class="meta"><span class="domain">mp.weixin.qq.com</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="https://www.caileme.vip/" target="_blank" rel="noopener noreferrer">
+            <figure><img src="../mqnt1bho-裁了么.png" alt="Caileme AI layoff negotiation simulator screenshot" loading="lazy"></figure>
+            <span class="tag">Labor Rights</span>
+            <h3>Caileme</h3>
+            <p>Turns layoff scripts, compensation rules, and negotiation traps into an AI rehearsal room, letting workers practice before they sign anything.</p>
+            <span class="meta"><span class="domain">caileme.vip</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="https://m.mp.oeeee.com/oe/BAAFRD0000202606151609353.html" target="_blank" rel="noopener noreferrer">
+            <figure><img src="../mqnt1bky-腾讯研究院ai_society创造营现场.jpg" alt="Tencent AI and Society Camp event photo" loading="lazy"></figure>
+            <span class="tag">AI for Good</span>
+            <h3>Tencent AI &amp; Society Camp</h3>
+            <p>Pulls AI back from pure efficiency narratives into everyday problems: accessibility, health, family education, and community governance.</p>
+            <span class="meta"><span class="domain">mp.oeeee.com</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="https://share.tcbi.qq.com/page/share?pageId=10544429&amp;projectId=11030215&amp;token=46e28ad7-b5b9-48b9-bc63-f2942205b004&amp;scope=page&amp;canvasType=GRID" target="_blank" rel="noopener noreferrer">
+            <figure><img src="../mqnt98uq-无毒先锋小丸子新.jpg" alt="Non-Toxic Pioneer Xiaowanzi product safety AI assistant interface" loading="lazy"></figure>
+            <span class="tag">Environmental Public Interest</span>
+            <h3>Non-Toxic Pioneer: Xiaowanzi</h3>
+            <p>Helps consumers check chemical safety risks in daily products, using photo recognition and Q&amp;A to explain plasticizers, heavy metals, and other concerns.</p>
+            <span class="meta"><span class="domain">share.tcbi.qq.com</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="https://www.facebook.com/eru.university/photos" target="_blank" rel="noopener noreferrer">
+            <figure><img src="../mqnt1bgd-埃及俄罗斯大学线上讲座.jpg" alt="Egyptian Russian University OpenClaw Workshop online lecture poster" loading="lazy"></figure>
+            <span class="tag">Open-Source AI Education</span>
+            <h3>Egyptian Russian University OpenClaw Workshop</h3>
+            <p>Introduces open-source AI tools to students in less developed regions, widening access to AI building beyond a few global centers.</p>
+            <span class="meta"><span class="domain">facebook.com</span><span class="go">Open ↗</span></span>
+          </a>
+        </div>
+      </section>
+
+      <section id="open-source">
+        <div class="section-head">
+          <h2>Open source</h2>
+          <p>Skills and tools I publish on GitHub as @kokiainet, free for anyone to use.</p>
+        </div>
+        <div class="grid">
+          <a class="card" href="https://github.com/kokiainet/anti-distill" target="_blank" rel="noopener">
+            <span class="tag">GitHub · Skill</span>
+            <h3>anti-distill</h3>
+            <p>The Anti-Distill Skill: when your company asks you to write a Skill, keep the real knowledge. Reads, detects and separates, so the core stays yours.</p>
+            <span class="meta"><span class="domain">github.com/kokiainet</span><span class="go">Repo ↗</span></span>
+          </a>
+          <a class="card" href="https://github.com/kokiainet/koki-long-video-skill" target="_blank" rel="noopener">
+            <span class="tag">GitHub · Skill</span>
+            <h3>koki-long-video-skill</h3>
+            <p>My long-form video workflow, packaged as a Skill for AI agents: how a long video gets planned, scripted and produced.</p>
+            <span class="meta"><span class="domain">github.com/kokiainet</span><span class="go">Repo ↗</span></span>
+          </a>
+          <a class="card" href="https://github.com/kokiainet/koki-short-video-skill" target="_blank" rel="noopener">
+            <span class="tag">GitHub · Skill</span>
+            <h3>koki-short-video-skill</h3>
+            <p>My short-video workflow, packaged as a Skill for AI agents: the process behind my short-form pieces, end to end.</p>
+            <span class="meta"><span class="domain">github.com/kokiainet</span><span class="go">Repo ↗</span></span>
+          </a>
+          <a class="card" href="https://github.com/kokiainet/koki-writing-skill" target="_blank" rel="noopener">
+            <span class="tag">GitHub · Skill</span>
+            <h3>koki-writing-skill</h3>
+            <p>My writing workflow, packaged as a Skill for AI agents: how I draft and revise, made reusable.</p>
+            <span class="meta"><span class="domain">github.com/kokiainet</span><span class="go">Repo ↗</span></span>
+          </a>
+          <a class="card" href="../bay-area-map/">
+            <span class="tag">Interactive Map</span>
+            <h3>Jensen Huang's Silicon Valley Map</h3>
+            <p>An interactive map of the Bay Area's tech landmarks and the stories behind them, in English, Chinese and Japanese.</p>
+            <span class="meta"><span class="domain">kokiai.net/bay-area-map</span><span class="go">Open ↗</span></span>
+          </a>
+        </div>
+      </section>
+
+      <footer>
+        <span>© Koki · kokiai.net</span>
+        <span>Works are linked to their original pages; coverage links go to the publishers.</span>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>

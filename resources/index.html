@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Library｜Koki</title>
+  <meta name="description" content="Koki's AI resource library: live tools for comparing AI model prices, inference providers and free tiers, plus guides on cutting the cost of building with AI.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: oklch(96.5% 0.013 86.8);
+      --surface: oklch(98.5% 0.007 88.6);
+      --fg: oklch(23.3% 0.018 148.4);
+      --muted: oklch(43.4% 0.018 151.4);
+      --border: oklch(88.0% 0.021 88.7);
+      --accent: oklch(33.2% 0.029 146.8);
+      --sage: oklch(67.1% 0.033 140.7);
+      --warm: #fcfaf5;
+      --font-display: "Playfair Display", "Iowan Old Style", Georgia, serif;
+      --font-body: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 15% 8%, rgba(139, 155, 136, .28), transparent 27rem),
+        radial-gradient(circle at 92% 12%, rgba(123, 130, 102, .16), transparent 24rem),
+        var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(100% - clamp(32px, 6vw, 96px), 1280px); margin: 0 auto; }
+
+    .nav {
+      position: fixed; z-index: 30; top: 18px; left: 50%; transform: translateX(-50%);
+      width: min(calc(100% - 32px), 1420px);
+      display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 22px;
+      padding: 12px 14px 12px 18px;
+      border: 1px solid color-mix(in oklch, var(--border), transparent 10%);
+      border-radius: 999px; background: rgba(252, 250, 245, .9);
+      backdrop-filter: blur(18px); box-shadow: 0 12px 34px rgba(24, 32, 25, .08);
+    }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; white-space: nowrap; }
+    .brand-mark { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; color: var(--warm); background: var(--accent); }
+    .nav-links { display: flex; justify-content: center; gap: clamp(10px, 2vw, 28px); color: var(--muted); font-size: clamp(17px, 1.15vw, 20px); font-weight: 500; }
+    .nav-links a { transition: color .25s ease; }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-links a[aria-current="page"] { color: var(--fg); }
+    .nav-actions { display: inline-flex; align-items: center; justify-content: flex-end; gap: 10px; }
+    .language-toggle { display: inline-grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 2px; padding: 4px; border: 1px solid color-mix(in oklch, var(--border), transparent 8%); border-radius: 999px; background: color-mix(in oklch, var(--surface), transparent 12%); }
+    .language-toggle a { min-width: 38px; min-height: 36px; padding: 0 10px; border-radius: 999px; color: var(--muted); font-size: 13px; font-weight: 700; letter-spacing: .06em; display: inline-flex; align-items: center; justify-content: center; }
+    .language-toggle a[aria-current="page"] { background: var(--accent); color: var(--warm); }
+    .btn-primary { background: var(--accent); color: var(--warm); border-radius: 999px; padding: 10px 18px; font-weight: 600; font-size: 15px; }
+    @media (max-width: 860px) { .nav-links { display: none; } .btn-primary { display: none; } }
+
+    main { padding: 150px 0 90px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: 12px; font-weight: 600; color: var(--accent); margin: 0 0 14px; }
+    h1 { font-family: var(--font-display); font-size: clamp(42px, 5vw, 68px); line-height: 1.08; margin: 0 0 18px; font-weight: 700; }
+    .lead { font-size: clamp(17px, 1.4vw, 20px); color: var(--muted); max-width: 46em; margin: 0; }
+    .updated { margin-top: 14px; font-size: 14px; color: var(--muted); }
+
+    section { margin-top: 64px; }
+    .section-head h2 { font-family: var(--font-display); font-size: clamp(28px, 3vw, 38px); margin: 0 0 8px; }
+    .section-head p { color: var(--muted); margin: 0 0 26px; max-width: 44em; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+    .card {
+      display: flex; flex-direction: column; gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px; padding: 24px;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 18px 44px rgba(24, 32, 25, .10); border-color: var(--sage); }
+    .card .tag { align-self: flex-start; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); background: color-mix(in oklch, var(--sage), transparent 72%); padding: 4px 10px; border-radius: 999px; }
+    .card h3 { font-size: 20px; margin: 2px 0 0; line-height: 1.3; }
+    .card p { color: var(--muted); font-size: 15px; margin: 0; flex: 1; }
+    .card .meta { display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+    .card .domain { color: var(--muted); }
+    .card .go { color: var(--accent); font-weight: 600; }
+
+    footer { margin-top: 84px; padding-top: 28px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="brand" href="../index.html" aria-label="Back to home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 19c8-1 13-6 14-14-8 1-13 6-14 14Zm0 0c3-1 6-3 9-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span>Koki</span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html?section=anti">Anti-Distill Skill</a>
+      <a href="../sf-2026/">SF 2026</a>
+      <a href="index.html" aria-current="page">AI Library</a>
+      <a href="../index.html?section=impact">Media</a>
+      <a href="../index.html?section=social">Social Coding</a>
+      <a href="../index.html?section=insights">Insights</a>
+    </div>
+    <div class="nav-actions">
+      <div class="language-toggle" role="group" aria-label="Language">
+        <a href="index.html" aria-current="page">EN</a>
+        <a href="zh.html">中文</a>
+      </div>
+      <a class="btn-primary" href="../index.html?section=contact">Subscribe</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <p class="eyebrow">AI Resource Library</p>
+      <h1>Build with AI, spend less.</h1>
+      <p class="lead">A shelf of resources I point builders to: live tools that compare model capability, API prices and inference providers, so you can pick the cheapest route that still does the job. Prices in this space change weekly, which is exactly why live tools beat static price lists.</p>
+      <p class="updated">Curated by Koki · Last updated October 2026 · New resources added as I find them</p>
+
+      <section>
+        <div class="section-head">
+          <h2>Compare models &amp; prices</h2>
+          <p>Start here when choosing a model or an API provider. Each tool covers a different angle: capability, live price, or provider spread.</p>
+        </div>
+        <div class="grid">
+          <a class="card" href="https://artificialanalysis.ai/" target="_blank" rel="noopener">
+            <span class="tag">Benchmarks</span>
+            <h3>Artificial Analysis</h3>
+            <p>Independent benchmarks for the major models: intelligence, cost per real task, output speed and latency, tracked continuously. The fastest way to see which model is actually worth its price.</p>
+            <span class="meta"><span class="domain">artificialanalysis.ai</span><span class="go">Visit ↗</span></span>
+          </a>
+          <a class="card" href="https://artificialanalysis.ai/leaderboards/providers" target="_blank" rel="noopener">
+            <span class="tag">Provider comparison</span>
+            <h3>Artificial Analysis · Providers</h3>
+            <p>The same model, served by different providers, compared on price, speed and latency. The same weights can cost several times more depending on where you call them.</p>
+            <span class="meta"><span class="domain">artificialanalysis.ai</span><span class="go">Visit ↗</span></span>
+          </a>
+          <a class="card" href="https://openrouter.ai/models" target="_blank" rel="noopener">
+            <span class="tag">Live prices</span>
+            <h3>OpenRouter · Models</h3>
+            <p>Live API prices, context windows and free variants for hundreds of models, all reachable through one API key. Check the price of a model here before you commit to it anywhere else.</p>
+            <span class="meta"><span class="domain">openrouter.ai</span><span class="go">Visit ↗</span></span>
+          </a>
+          <a class="card" href="https://infrabase.ai/compare/inference-apis" target="_blank" rel="noopener">
+            <span class="tag">Provider directory</span>
+            <h3>Infrabase · Inference APIs Compared</h3>
+            <p>149 inference providers side by side: per-token prices, free tiers and deployment options. Built for finding the same model on a cheaper endpoint, or a free tier to prototype on.</p>
+            <span class="meta"><span class="domain">infrabase.ai</span><span class="go">Visit ↗</span></span>
+          </a>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <h2>Deep dives</h2>
+          <p>Maps and research threads I maintain on specific questions.</p>
+        </div>
+        <div class="grid">
+          <a class="card" href="personal-agent-guide/">
+            <span class="tag">The guide</span>
+            <h3>Personal Agent Guide</h3>
+            <p>The full comparison and starter guide from my videos: chat vs work agents vs personal agents, my S-to-D ranking after a month of daily use, and five steps to get your own AI secretary for free.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="personal-agent-uses/">
+            <span class="tag">Use cases</span>
+            <h3>7 Personal Agent Uses</h3>
+            <p>Real things people already hand to their personal agents: house hunting on autopilot, chasing an airline refund, scrubbing personal data from people-search sites. The companion page to my video, each use with its source.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="risk-map/">
+            <span class="tag">Risk map</span>
+            <h3>AI Infra Financing Risk Map</h3>
+            <p>Who borrows, who guarantees, and who is on the hook when GPU collateral expires before the loan does. The financing risk behind the AI data center boom, mapped.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="first-time-sf/">
+            <span class="tag">City guide</span>
+            <h3>First Time in Silicon Valley &amp; SF</h3>
+            <p>Landing here for the first time: SFO, BART, Caltrain and Clipper, a first US phone number, Wise, hacker houses, and the event and community links that get used in the first two weeks.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="hacker-houses/">
+            <span class="tag">City guide</span>
+            <h3>SF Hacker Houses</h3>
+            <p>Where San Francisco's founders and engineers actually live: application-only hacker houses, bookable founder hotels, and invite-only mansions. Twelve houses, each checked against its official site.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="career-switch/">
+            <span class="tag">Career guide</span>
+            <h3>Switching into AI</h3>
+            <p>Break into AI without paying tuition: paid residencies and fellowships that hire career switchers, founder programs that back people first, and the free courses actually worth your time. Check the terms before you pay for any program.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="muse-7-cases/">
+            <span class="tag">Personal agent</span>
+            <h3>How I Use Muse: 7 Practical Examples</h3>
+            <p>Job applications, a free event ticket, shopping, a volunteer day, renters insurance, calendar management and a website that updates itself: seven real cases of a personal AI assistant.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="growth-playbook/">
+            <span class="tag">Growth playbook</span>
+            <h3>Growth in the AI Era</h3>
+            <p>Grow without marketing middlemen: the tools, playbooks and launch channels behind my AI-era growth video.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="community-growth/">
+            <span class="tag">Community playbook</span>
+            <h3>Community First, Product Second</h3>
+            <p>Build identity and belonging before you promote: CMX guides and data, plus the event tools where communities meet.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="women-in-tech/">
+            <span class="tag">Community list</span>
+            <h3>Women in Tech: Role Models &amp; Communities</h3>
+            <p>The women founders and communities I follow: Women in AI, All Raise, Tech Ladies, AnitaB.org and more.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="lawyer-to-builder/">
+            <span class="tag">Career switch</span>
+            <h3>From Law to AI Builder</h3>
+            <p>The programs and communities behind switching out of law: paid residencies, open research communities and free courses.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="ai-networking/">
+            <span class="tag">Networking playbook</span>
+            <h3>Let AI Grow Your Network</h3>
+            <p>Agents do the research and follow-up. These platforms supply the matches, rooms and recurring events.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="silicon-valley-checklist/">
+            <span class="tag">Money checklist</span>
+            <h3>Silicon Valley Survival Checklist</h3>
+            <p>Salary, rent and the mortgage math, with free calculators and official guides. Run the numbers before the offer decides for you.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="ai-opportunity-workflow/">
+            <span class="tag">Workflow</span>
+            <h3>Find Fellowships with AI</h3>
+            <p>From search to interview: the official program pages and job boards worth scanning every week.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="ai-policy/">
+            <span class="tag">Policy sources</span>
+            <h3>AI Becomes SI: Primary Sources</h3>
+            <p>The executive order, fact sheet and transcript behind the AI-to-SI rename, plus the Stanford AI Index and OECD trackers.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="ai-supply-chain/">
+            <span class="tag">Industry map</span>
+            <h3>Beyond the GPU: Agent-Era Supply Chain</h3>
+            <p>CPU, memory, networking and serving frameworks: the layers under the GPU that agents actually run on. Industry information only.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="personal-branding/">
+            <span class="tag">Branding playbook</span>
+            <h3>Personal Branding for Builders</h3>
+            <p>Start before it feels comfortable: the book, training and platforms behind building in public as a career switcher.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="robotaxi-checklist/">
+            <span class="tag">Checklist</span>
+            <h3>Robotaxi Reality Check</h3>
+            <p>Cost, safety data, permits and access, checked like a rider: Waymo, the California DMV, NHTSA, Tesla and Zoox.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+          <a class="card" href="deepseek-open/">
+            <span class="tag">Open models</span>
+            <h3>DeepSeek, Open: Use It Free</h3>
+            <p>Free chat, a cheap API, downloadable weights and local inference: every official DeepSeek link in one place.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+        </div>
+      </section>
+
+      <footer>
+        <span>© Koki · kokiai.net</span>
+        <span>All resources above are third-party tools; listings describe what each tool does, in my own words.</span>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>

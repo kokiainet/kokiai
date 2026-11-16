@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>湾区片场 · 手机版</title>
+<style>
+  *{box-sizing:border-box} body{margin:0;min-height:100dvh;display:grid;place-items:center;background:#e9ede2;color:#19332c;font-family:system-ui,sans-serif} .shell{width:min(100%,424px);padding:12px 16px 18px} header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px} h1{font-size:15px;margin:0} a{color:#245448;font-size:12px;text-underline-offset:3px} iframe{border:1px solid #bacbbd;border-radius:25px;box-shadow:0 16px 46px #15392e2e;display:block;width:100%;height:min(846px,calc(100dvh - 66px));background:#c7d5c8} @media(max-width:735px){.shell{width:100%;padding:0}header{display:none}iframe{height:100dvh;border:0;border-radius:0;box-shadow:none}}
+</style>
+<style id="locale-style">
+.locale-menu{position:relative;display:inline-block;flex:none;text-align:left}
+.locale-menu[open]{z-index:6}
+.locale-menu summary{display:flex;align-items:center;justify-content:center;gap:4px;list-style:none;cursor:pointer;color:inherit;font:700 12px/1.2 system-ui,sans-serif;border:1px solid currentColor;padding:6px 8px;border-radius:7px;white-space:nowrap}
+.locale-menu summary::-webkit-details-marker{display:none}
+.locale-menu summary::after{content:'';width:5px;height:5px;border-right:1px solid;border-bottom:1px solid;transform:translateY(-1px) rotate(45deg)}
+.locale-menu summary:hover,.locale-menu summary:focus-visible{background:#e5ede1;color:#19312f}
+.locale-options{position:absolute;top:calc(100% + 5px);right:0;min-width:123px;display:grid;gap:2px;padding:4px;background:#faf9f0;color:#19312f;border:1px solid #d1ded1;border-radius:10px;box-shadow:0 4px 16px #162a2833}
+.locale-options .locale-link{display:flex;align-items:center;gap:8px;justify-content:space-between;padding:8px 9px;min-height:36px;color:#19312f;font:650 12px/1.2 system-ui,sans-serif;border-radius:6px;text-decoration:none;white-space:nowrap}
+.locale-options .locale-link:hover,.locale-options .locale-link:focus-visible,.locale-options .locale-link[aria-current=page]{background:#e5ede1}
+.locale-link[aria-current=page]::after{content:'✓'}
+.map-top .brand{position:relative;padding-right:56px}
+.map-top .brand .locale-menu{position:absolute;right:8px;top:9px;color:#27574e}
+.map-top .brand .locale-menu summary{padding-inline:5px;border-color:#abc0b2}
+.map-top:has(.locale-menu[open]){z-index:5}
+.map-top .library-controls .mobile-preview-link{display:inline-flex;align-items:center;gap:6px;min-height:32px;margin-left:3px;padding:5px 9px;border-radius:7px;background:#e5ede1;color:#27574e;font-size:12px;font-weight:730;text-decoration:none;white-space:nowrap}
+.map-top .library-controls .mobile-preview-link::before{content:'';width:7px;height:11px;border:1.5px solid currentColor;border-radius:2px}
+.map-top .library-controls .mobile-preview-link:hover{background:#d6e5d7}
+.atlas-short{display:none}
+.reference-locale{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.reference-locale .locale-options{left:0;right:auto}
+@media(max-width:735px),(max-height:500px) and (pointer:coarse){
+  .map-top .library-controls .mobile-preview-link{display:none}
+  .map-top .brand{padding-right:39px}
+  .map-top .brand .locale-menu{right:2px;top:2px;bottom:2px;width:36px}
+  .map-top .brand .locale-menu summary{height:100%;padding:0;border-color:transparent;font-size:10px}
+  .locale-options .locale-link{min-height:44px}
+  html[lang=en] .map-top .brand h1{font-size:15px}
+  html[lang=ja] .map-top .brand h1{font-size:14px}
+  html[lang=en] .map-top .library-controls button{padding-inline:7px;font-size:11px}
+  html[lang=en] .map-top .library-controls .search-icon{display:none}
+  html[lang=en] .panel-tabs button,html[lang=en] .panel-tabs .panel-doc{padding-inline:6px}
+}
+@media(max-width:560px){
+  .atlas-long{display:none}
+  .atlas-short{display:inline}
+  html[lang=en] .top-inner{gap:8px}
+  html[lang=en] .top-name{white-space:normal;line-height:1.15;max-width:110px}
+  html[lang=en] .top-nav a{line-height:1.2}
+  html[lang=en] .masthead{min-height:0;display:grid;grid-template-columns:1fr auto;gap:7px;padding-block:9px}
+  html[lang=en] .masthead nav{grid-row:2;grid-column:1 / -1}
+  html[lang=en] .masthead .map-setup{grid-row:1;grid-column:2}
+  html[lang=en] .masthead nav .locale-menu{margin-left:auto}
+  html[lang=en] main .hero{flex-wrap:wrap}
+}
+@media(max-width:350px){
+  html[lang=en] .map-top .brand h1{font-size:13px}
+  html[lang=en] .map-top .library-controls button{padding-inline:5px}
+}
+</style>
+</head>
+<body>
+<main class="shell">
+  <header><h1>湾区片场 · 手机视图</h1><a href="bay-area-map.html" id="desktop" data-view="bay-area-map.html">电脑版 ↗</a><details class="locale-menu"><summary aria-label="切换语言">中</summary><div class="locale-options"><a class="locale-link" data-locale="bay-area-map-mobile.html" href="bay-area-map-mobile.html" hreflang="zh-CN" lang="zh-CN" aria-current="page">简体中文</a><a class="locale-link" data-locale="en/bay-area-map-mobile.html" href="en/bay-area-map-mobile.html" hreflang="en" lang="en">English</a><a class="locale-link" data-locale="ja/bay-area-map-mobile.html" href="ja/bay-area-map-mobile.html" hreflang="ja" lang="ja">日本語</a></div></details></header>
+  <iframe id="map-preview" title="手机视图 · 可交互的湾区片场地图"></iframe>
+  <noscript><a href="bay-area-map.html">打开响应式湾区地图</a></noscript>
+</main>
+<script>
+  const mapUrl = 'bay-area-map.html' + location.hash;
+  if (matchMedia('(max-width: 735px), (max-height: 500px) and (pointer: coarse)').matches) {
+    location.replace(mapUrl);
+  } else {
+    document.getElementById('map-preview').src = mapUrl;
+    document.getElementById('desktop').href = mapUrl;
+    addEventListener('hashchange', () => {
+      document.getElementById('map-preview').src = 'bay-area-map.html' + location.hash;
+    });
+  }
+</script>
+<script id="locale-script">
+(() => {
+  function currentHash() {
+    const frame = document.getElementById('map-preview');
+    try {
+      if (frame?.contentWindow.location.pathname.endsWith('/bay-area-map.html')) {
+        return frame.contentWindow.location.hash;
+      }
+    } catch {}
+    return location.hash;
+  }
+  function sync() {
+    const hash = currentHash();
+    document.querySelectorAll('a[data-locale], a[data-view]').forEach(a => {
+      a.href = (a.dataset.locale || a.dataset.view) + hash;
+    });
+  }
+  sync();
+  addEventListener('hashchange', sync);
+  addEventListener('atlas:statechange', sync);
+  document.querySelectorAll('.locale-menu').forEach(menu => {
+    menu.addEventListener('toggle', sync);
+    menu.addEventListener('keydown', event => {
+      if (event.key !== 'Escape' || !menu.open) return;
+      menu.open = false;
+      menu.querySelector('summary').focus();
+    });
+  });
+  addEventListener('click', event => {
+    document.querySelectorAll('.locale-menu[open]').forEach(menu => {
+      if (!menu.contains(event.target)) menu.open = false;
+    });
+    const a = event.target.closest?.('a[data-locale], a[data-view]');
+    if (!a) return;
+    sync();
+    if (!a.dataset.locale) return;
+    if (window.parent === window || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      const outer = new URL(window.parent.location.href);
+      if (!outer.pathname.endsWith('/bay-area-map-mobile.html')) return;
+      const target = new URL(a.href);
+      target.pathname = target.pathname.replace(/bay-area-map\.html$/, 'bay-area-map-mobile.html');
+      event.preventDefault();
+      window.parent.location.href = target.href;
+    } catch {}
+  });
+})();
+</script>
+</body>
+</html>

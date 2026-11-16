@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>你的 AI 秘书：完整对比与入门指南｜Koki</title>
+  <meta name="description" content="Koki 的 personal agent 完整对比与入门指南：聊天框、Work Agent 与 Personal Agent 的区别，用了一个月之后的 S 到 D 排名（Muse、Grok Bot、Instinct、dots、Claude Duet），以及免费拥有自己 AI 秘书的五步。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: oklch(96.5% 0.013 86.8);
+      --surface: oklch(98.5% 0.007 88.6);
+      --fg: oklch(23.3% 0.018 148.4);
+      --muted: oklch(43.4% 0.018 151.4);
+      --border: oklch(88.0% 0.021 88.7);
+      --accent: oklch(33.2% 0.029 146.8);
+      --sage: oklch(67.1% 0.033 140.7);
+      --warm: #fcfaf5;
+      --font-display: "Playfair Display", "Iowan Old Style", Georgia, serif;
+      --font-body: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 15% 8%, rgba(139, 155, 136, .28), transparent 27rem),
+        radial-gradient(circle at 92% 12%, rgba(123, 130, 102, .16), transparent 24rem),
+        var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(100% - clamp(32px, 6vw, 96px), 1280px); margin: 0 auto; }
+
+    .nav {
+      position: fixed; z-index: 30; top: 18px; left: 50%; transform: translateX(-50%);
+      width: min(calc(100% - 32px), 1420px);
+      display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 22px;
+      padding: 12px 14px 12px 18px;
+      border: 1px solid color-mix(in oklch, var(--border), transparent 10%);
+      border-radius: 999px; background: rgba(252, 250, 245, .9);
+      backdrop-filter: blur(18px); box-shadow: 0 12px 34px rgba(24, 32, 25, .08);
+    }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; white-space: nowrap; }
+    .brand-mark { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; color: var(--warm); background: var(--accent); }
+    .nav-links { display: flex; justify-content: center; gap: clamp(10px, 2vw, 28px); color: var(--muted); font-size: clamp(17px, 1.15vw, 20px); font-weight: 500; }
+    .nav-links a { transition: color .25s ease; }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-links a[aria-current="page"] { color: var(--fg); }
+    .nav-actions { display: inline-flex; align-items: center; justify-content: flex-end; gap: 10px; }
+    .language-toggle { display: inline-grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 2px; padding: 4px; border: 1px solid color-mix(in oklch, var(--border), transparent 8%); border-radius: 999px; background: color-mix(in oklch, var(--surface), transparent 12%); }
+    .language-toggle a { min-width: 38px; min-height: 36px; padding: 0 10px; border-radius: 999px; color: var(--muted); font-size: 13px; font-weight: 700; letter-spacing: .06em; display: inline-flex; align-items: center; justify-content: center; }
+    .language-toggle a[aria-current="page"] { background: var(--accent); color: var(--warm); }
+    .btn-primary { background: var(--accent); color: var(--warm); border-radius: 999px; padding: 10px 18px; font-weight: 600; font-size: 15px; }
+    @media (max-width: 860px) { .nav-links { display: none; } .btn-primary { display: none; } }
+
+    main { padding: 150px 0 90px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: 12px; font-weight: 600; color: var(--accent); margin: 0 0 14px; }
+    h1 { font-family: var(--font-display); font-size: clamp(40px, 5vw, 64px); line-height: 1.1; margin: 0 0 18px; font-weight: 700; }
+    .lead { font-size: clamp(17px, 1.4vw, 20px); color: var(--muted); max-width: 46em; margin: 0; }
+    .lead a { text-decoration: underline; text-underline-offset: 3px; }
+    .updated { margin-top: 14px; font-size: 14px; color: var(--muted); }
+
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 38px; }
+    .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 18px 20px; }
+    .stat strong { display: block; font-family: var(--font-display); font-size: 30px; line-height: 1.1; margin-bottom: 4px; }
+    .stat span { color: var(--muted); font-size: 14px; }
+
+    section { margin-top: 64px; }
+    .section-head h2 { font-family: var(--font-display); font-size: clamp(28px, 3vw, 38px); margin: 0 0 8px; }
+    .section-head p { color: var(--muted); margin: 0 0 26px; max-width: 44em; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+    .card {
+      display: flex; flex-direction: column; gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px; padding: 24px;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    a.card:hover { transform: translateY(-3px); box-shadow: 0 18px 44px rgba(24, 32, 25, .10); border-color: var(--sage); }
+    .card .tag { align-self: flex-start; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); background: color-mix(in oklch, var(--sage), transparent 72%); padding: 4px 10px; border-radius: 999px; }
+    .card h3 { font-size: 20px; margin: 2px 0 0; line-height: 1.3; }
+    .card p { color: var(--muted); font-size: 15px; margin: 0; flex: 1; }
+    .card .meta { display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+    .card .domain { color: var(--muted); }
+    .card .go { color: var(--accent); font-weight: 600; }
+
+    footer { margin-top: 84px; padding-top: 28px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="brand" href="../../zh.html" aria-label="Back to home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 19c8-1 13-6 14-14-8 1-13 6-14 14Zm0 0c3-1 6-3 9-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span>Koki</span>
+    </a>
+    <div class="nav-links">
+      <a href="../../zh.html?section=anti">Anti-Distill Skill</a>
+      <a href="../../sf-2026/">SF 2026</a>
+      <a href="../zh.html">AI资料库</a>
+      <a href="../../zh.html?section=impact">媒体报道</a>
+      <a href="../../zh.html?section=insights">观点</a>
+    </div>
+    <div class="nav-actions">
+      <div class="language-toggle" role="group" aria-label="Language">
+        <a href="index.html">EN</a>
+        <a href="zh.html" aria-current="page">中文</a>
+      </div>
+      <a class="btn-primary" href="../../zh.html?section=contact">订阅</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <p class="eyebrow">Personal Agent · 指南</p>
+      <h1>你的 AI 秘书：完整对比与入门指南</h1>
+      <p class="lead">这就是视频结尾说的那份 guide：personal agent 到底是什么、五款产品我每天用了一个月之后的完整对比、以及怎么免费拥有你自己的 AI 秘书。</p>
+      <p class="updated">By Koki · November 2026</p>
+
+      <div class="stats">
+        <div class="stat"><strong>3</strong><span>类 AI，放在一起对比</span></div>
+        <div class="stat"><strong>5</strong><span>款产品排名，S 到 D</span></div>
+        <div class="stat"><strong>5</strong><span>步拥有自己的 AI 秘书</span></div>
+        <div class="stat"><strong>$0</strong><span>S 档产品的价格</span></div>
+      </div>
+
+      <section id="watch">
+        <div class="section-head">
+          <h2>接着看</h2>
+          <p>先看用法，再回到这份指南照着装。</p>
+        </div>
+        <div style="position:relative;padding-top:56.25%;border-radius:18px;overflow:hidden;border:1px solid var(--line, #e5e7eb);margin:0 0 18px;">
+          <iframe src="https://www.youtube.com/embed/EgL830SMaiE" title="How To Use Muse: 7 Practical Examples For Work &amp; Life" style="position:absolute;inset:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="grid">
+          <a class="card" href="https://youtube.com/shorts/mWurt4Y3TjE" target="_blank" rel="noopener">
+            <span class="tag">视频</span>
+            <h3>7 个让我惊到的 Personal Agent 用法</h3>
+            <p>看看大家已经在让 personal agent 做什么了。</p>
+            <span class="meta"><span class="domain">youtube.com</span><span class="go">观看 ↗</span></span>
+          </a>
+          <a class="card" href="../personal-agent-uses/zh.html">
+            <span class="tag">配套页</span>
+            <h3>7 个 Personal Agent 真实用法</h3>
+            <p>配套资料页：七个真实用法，个个附出处。</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">打开 ↗</span></span>
+          </a>
+        </div>
+      </section>
+
+      <section id="kinds">
+        <div class="section-head">
+          <h2>三种 AI，干三种活</h2>
+          <p>「agent」一个词，盖住了三种完全不同的产品。按活选，别按名字选。</p>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <span class="tag">第 1 类</span>
+            <h3>聊天框（ChatGPT、Claude、Gemini）</h3>
+            <p>你问，它用文字回答。适合咨询、润色措辞、帮你做比较。但文字还是你自己复制进文件、网站自己打开、消息自己发、后续自己跟进。AI 始终是个外部顾问。</p>
+          </div>
+          <div class="card">
+            <span class="tag">第 2 类</span>
+            <h3>Work Agent（Claude Code、Codex）</h3>
+            <p>助手进到你的工作环境里，直接改真实文件：项目里的代码、本地文件夹里的文档、幻灯片、数据分析，甚至一个网站。你审的是成品，不用再一段段粘贴。多数跑在你自己的电脑上，所以电脑得开着。</p>
+          </div>
+          <div class="card">
+            <span class="tag">第 3 类</span>
+            <h3>Personal Agent（Muse、Grok Bot、Instinct）</h3>
+            <p>手机上就能找到的秘书。它有自己的云电脑（有些也能连你的电脑）。你把邮箱和日历连上、告诉它盯什么，它会在你开口之前把事情送到你面前：明天的研讨会，附确认函、地点和要准备的东西。值机、会议笔记、收据、账单、保险、按岗位定制的求职申请，都能交给它。卡在登录或验证时，你接管它的电脑、把那一步做完、再交还给它。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="ranking">
+        <div class="section-head">
+          <h2>用了一个月之后的排名</h2>
+          <p>五款产品，从夯到拉。都是我自己每天用的体验，没人付钱买名次。</p>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <span class="tag">S</span>
+            <h3>Muse</h3>
+            <p>全场最夯。完全免费，每天用了一个月，没有额度上限、没有中断。求职、活动票、购物、保险、日历和这个网站都是它在管。成功邀请一位朋友，双方各得 10 亿免费 token。卡在验证时，你接管它的电脑把那一步做完。进阶技巧：在它的电脑上装 Codex CLI，难的代码活交给 OpenAI 的高级模型。</p>
+          </div>
+          <div class="card">
+            <span class="tag">A</span>
+            <h3>Grok Bot</h3>
+            <p>顶级。财务、健康、工作各有专属 bot，话题不串。包含在 X 的套餐里，复杂任务还能路由到更强的模型。缺点是用量有上限，用完得等重置。</p>
+          </div>
+          <div class="card">
+            <span class="tag">B</span>
+            <h3>Instinct</h3>
+            <p>人上人。免费，而且用 iMessage 或 WhatsApp 发消息就能使唤它，不用学新界面。缺点是所有事都堆在一个长对话里，想找旧内容很烦。</p>
+          </div>
+          <div class="card">
+            <span class="tag">C</span>
+            <h3>dots</h3>
+            <p>NPC。ChatGPT 家的 agent，知道你的历史、能接 Codex。但个人套餐 100 美元一个月起，对普通人太贵了，而且所有事都挤在一个主对话里，分话题、找旧资料都费劲。</p>
+          </div>
+          <div class="card">
+            <span class="tag">D</span>
+            <h3>Claude Duet</h3>
+            <p>最拉。还在候补名单上，没测成。用户还在门口等着，你赢不了 personal AI 这场比赛。Koki 现在有邀请可以分享，见下方。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="invites">
+        <div class="section-head">
+          <h2>用 Koki 的邀请直接进</h2>
+          <p>能跳过排队的就跳过。下面都是 Koki 本人的邀请链接。</p>
+        </div>
+        <div class="grid">
+          <a class="card" href="https://app.instinct.com/invite?t=yvhztceikaeysvszolpkuyl4uy&amp;preview=whatsapp" target="_blank" rel="noopener">
+            <span class="tag">邀请 · B 档</span>
+            <h3>Instinct</h3>
+            <p>用 Koki 的邀请链接加入 Instinct。免费，在 iMessage 或 WhatsApp 里直接发消息就能用。</p>
+            <span class="meta"><span class="domain">app.instinct.com</span><span class="go">加入 ↗</span></span>
+          </a>
+          <a class="card" href="https://claude.ai/duet-invite/UYx4U2RuqQ?e=ios_chat" target="_blank" rel="noopener">
+            <span class="tag">邀请 · 研究预览</span>
+            <h3>Claude Duet</h3>
+            <p>想要 Claude Duet 的邀请吗？它是一个新的主动型 agent，还在研究预览阶段，像你的私人幕僚长，帮你把日常事务都盯住。</p>
+            <span class="meta"><span class="domain">claude.ai</span><span class="go">接受邀请 ↗</span></span>
+          </a>
+          <a class="card" href="https://muse.ai/join" target="_blank" rel="noopener">
+            <span class="tag">邀请 · S 档</span>
+            <h3>Muse</h3>
+            <p>加入 Muse 后，48 小时内在「设置」里兑现 Koki 的邀请码 <strong>DTTSDD</strong>，双方各得 10 亿 Muse 词元。</p>
+            <span class="meta"><span class="domain">muse.ai/join</span><span class="go">加入 ↗</span></span>
+          </a>
+        </div>
+      </section>
+
+      <section id="start">
+        <div class="section-head">
+          <h2>拥有你自己的 AI 秘书</h2>
+          <p>五步，按顺序来。整个过程免费。</p>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <span class="tag">第 1 步</span>
+            <h3>注册 Muse</h3>
+            <p>免费，就是上面排名的 S 档。</p>
+          </div>
+          <div class="card">
+            <span class="tag">第 2 步</span>
+            <h3>兑现邀请码 DTTSDD</h3>
+            <p>加入后 48 小时内，在「设置」里兑现邀请码 <strong>DTTSDD</strong>。双方各得 10 亿 Muse 词元。</p>
+          </div>
+          <div class="card">
+            <span class="tag">第 3 步</span>
+            <h3>连上邮箱和日历</h3>
+            <p>把邮箱和日历连上，再告诉它要帮你盯什么。</p>
+          </div>
+          <div class="card">
+            <span class="tag">第 4 步</span>
+            <h3>先派真实的活</h3>
+            <p>先派真实的活：一趟航班的值机、一场只需要你旁听的会议的笔记、一个价格盯防、你的账单和收据。</p>
+          </div>
+          <div class="card">
+            <span class="tag">第 5 步</span>
+            <h3>卡住时你来接管</h3>
+            <p>它卡在登录或验证时，你接管它的电脑、把那一步做完、再交还给它。它更像一个有电脑的同事，不是一个等你输入的框。</p>
+          </div>
+        </div>
+      </section>
+
+
+      <footer>
+        <span>© Koki · kokiai.net</span>
+        <span>这是我每天用了一个月之后的个人对比；产品细节与价格为 2026 年 11 月的情况，之后可能变化。</span>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How I Use Muse: 7 Practical Examples for Work &amp; Life｜Koki</title>
+  <meta name="description" content="Koki, a lawyer turned AI builder, shares 7 real ways Muse works as a personal AI assistant: job applications, a free event ticket, shopping, a volunteer day, renters insurance, calendar management and a self-updating personal website.">
+  <link rel="canonical" href="https://kokiai.net/resources/muse-7-cases/">
+  <link rel="alternate" hreflang="en" href="https://kokiai.net/resources/muse-7-cases/">
+  <link rel="alternate" hreflang="zh" href="https://kokiai.net/resources/muse-7-cases/zh.html">
+  <meta property="og:title" content="How I Use Muse: 7 Practical Examples for Work &amp; Life｜Koki">
+  <meta property="og:image" content="https://kokiai.net/resources/muse-7-cases/images/01-intro.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: oklch(96.5% 0.013 86.8);
+      --surface: oklch(98.5% 0.007 88.6);
+      --fg: oklch(23.3% 0.018 148.4);
+      --muted: oklch(43.4% 0.018 151.4);
+      --border: oklch(88.0% 0.021 88.7);
+      --accent: oklch(33.2% 0.029 146.8);
+      --sage: oklch(67.1% 0.033 140.7);
+      --warm: #fcfaf5;
+      --font-display: "Playfair Display", "Iowan Old Style", Georgia, serif;
+      --font-body: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 15% 8%, rgba(139, 155, 136, .28), transparent 27rem),
+        radial-gradient(circle at 92% 12%, rgba(123, 130, 102, .16), transparent 24rem),
+        var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(100% - clamp(32px, 6vw, 96px), 1280px); margin: 0 auto; }
+
+    .nav {
+      position: fixed; z-index: 30; top: 18px; left: 50%; transform: translateX(-50%);
+      width: min(calc(100% - 32px), 1420px);
+      display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 22px;
+      padding: 12px 14px 12px 18px;
+      border: 1px solid color-mix(in oklch, var(--border), transparent 10%);
+      border-radius: 999px; background: rgba(252, 250, 245, .9);
+      backdrop-filter: blur(18px); box-shadow: 0 12px 34px rgba(24, 32, 25, .08);
+    }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; white-space: nowrap; }
+    .brand-mark { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; color: var(--warm); background: var(--accent); }
+    .nav-links { display: flex; justify-content: center; gap: clamp(10px, 2vw, 28px); color: var(--muted); font-size: clamp(17px, 1.15vw, 20px); font-weight: 500; }
+    .nav-links a { transition: color .25s ease; }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-links a[aria-current="page"] { color: var(--fg); }
+    .nav-actions { display: inline-flex; align-items: center; justify-content: flex-end; gap: 10px; }
+    .language-toggle { display: inline-grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 2px; padding: 4px; border: 1px solid color-mix(in oklch, var(--border), transparent 8%); border-radius: 999px; background: color-mix(in oklch, var(--surface), transparent 12%); }
+    .language-toggle a { min-width: 38px; min-height: 36px; padding: 0 10px; border-radius: 999px; color: var(--muted); font-size: 13px; font-weight: 700; letter-spacing: .06em; display: inline-flex; align-items: center; justify-content: center; }
+    .language-toggle a[aria-current="page"] { background: var(--accent); color: var(--warm); }
+    .btn-primary { background: var(--accent); color: var(--warm); border-radius: 999px; padding: 10px 18px; font-weight: 600; font-size: 15px; }
+    @media (max-width: 860px) { .nav-links { display: none; } .btn-primary { display: none; } }
+
+    footer { margin-top: 84px; padding-top: 28px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    a.inl, .post p a, footer a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+    main { padding: 140px 0 90px; }
+    .post { width: min(100% - 40px, 760px); margin: 0 auto; line-height: 1.8; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: 12px; font-weight: 600; color: var(--muted); }
+    .post h1 { font-family: var(--font-display); font-size: clamp(34px, 5vw, 54px); line-height: 1.15; margin: 10px 0 18px; }
+    .post h2 { font-family: var(--font-display); font-size: clamp(24px, 3vw, 30px); margin: 56px 0 10px; line-height: 1.3; }
+    .post h2 .n { color: var(--sage); margin-right: 10px; }
+    .lead { font-size: 19px; color: var(--muted); }
+    .meta { font-size: 14px; color: var(--muted); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 10px 0; margin: 26px 0; }
+    figure { margin: 26px 0; }
+    figure img { width: 100%; height: auto; display: block; border-radius: 18px; border: 1px solid var(--border); box-shadow: 0 14px 40px rgba(24,32,25,.10); }
+    figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; text-align: center; }
+    .box { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 18px 22px; margin: 24px 0; }
+    .box ol { margin: 6px 0; padding-left: 22px; }
+    blockquote { margin: 24px 0; padding: 6px 20px; border-left: 3px solid var(--sage); font-family: var(--font-display); font-style: italic; font-size: 20px; }
+    .video { position: relative; aspect-ratio: 16/9; border-radius: 18px; overflow: hidden; border: 1px solid var(--border); margin: 28px 0 10px; background: #111; }
+    .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .watch { display: flex; gap: 14px; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 10px; margin-bottom: 24px; }
+    .watch img { width: 160px; border-radius: 10px; display: block; }
+    .watch span { font-weight: 600; }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="brand" href="../../index.html" aria-label="Home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 19c8-1 13-6 14-14-8 1-13 6-14 14Zm0 0c3-1 6-3 9-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span>Koki</span>
+    </a>
+    <div class="nav-links">
+      <a href="../../index.html?section=anti">Anti-Distill Skill</a>
+      <a href="../../sf-2026/">SF 2026</a>
+      <a href="../">AI Library</a>
+      <a href="../../index.html?section=impact">Media</a>
+      <a href="../../index.html?section=insights">Insights</a>
+    </div>
+    <div class="nav-actions">
+      <div class="language-toggle" role="group" aria-label="Language">
+        <a aria-current="page" href="index.html">EN</a>
+        <a href="zh.html">中文</a>
+      </div>
+      <a class="btn-primary" href="../../index.html?section=contact">Subscribe</a>
+    </div>
+  </nav>
+  <main>
+    <article class="post">
+    <p class="eyebrow">Personal Agent · Tutorial</p>
+    <h1>How I Use Muse:<br>7 Practical Examples for Work &amp; Life</h1>
+    <p class="lead">I'm Koki, a lawyer turned AI builder. I've used Muse for almost a month and it has fully become my main personal AI assistant. Here are the seven real cases from my video, from mass job applications to a website that updates itself.</p>
+    <div class="meta">Koki · October 2026 · 6 min read · Video: <a href="https://www.youtube.com/watch?v=EgL830SMaiE">How To Use Muse: 7 Practical Examples For Work &amp; Life</a></div>
+    <figure><img src="images/01-intro.jpg" alt="The seven examples listed in the video intro" loading="lazy"><figcaption>The seven cases: jobs, free tickets, a pan, a volunteer day, insurance, my calendar and my website</figcaption></figure>
+    <div class="box"><strong>The seven cases</strong><ol><li>Job applications: resume, shortlist, forms, follow-ups</li><li>A free ticket to a San Francisco event</li><li>Replacing a frying pan</li><li>A fully planned volunteer day</li><li>Renters insurance: compare, buy, cancel</li><li>Calendar management</li><li>My personal website's coffee-chat calendar</li></ol></div>
+
+    <h2><span class="n">01</span>Job applications, end to end</h2>
+    <p>I sent Muse my LinkedIn, my apps and my personal website and asked it to find me a job. My career keeps changing, from law to AI governance, to building, to community and developer relations, so I know how painful mass applying can be.</p>
+    <p>It researched my public profiles and wrote a resume that was clean, well formatted and usable right away. If you feel lost about direction, ask it which jobs fit you: AI companies hire for roles like developer relations, community and go-to-market that already exist in other industries.</p>
+    <p>Then it searched job boards, shortlisted roles and opened each company's <strong>official application page</strong> to fill in the forms. <strong>Before every submit button it stopped and showed me the complete application.</strong> I reviewed them all, said "send all", and it submitted.</p>
+    <figure><img src="images/02-job-apply.jpg" alt="Muse filling in an official application form" loading="lazy"><figcaption>Filling in the official form, ready for my review before submit</figcaption></figure>
+    <p>It also set up the follow-up: it tracks replies and scans for new matching roles every day. Mass applying used to leave my fingers stiff from writing emails; now hundreds of applications a day is possible.</p>
+    <figure><img src="images/03-job-replies.jpg" alt="Application replies in the inbox" loading="lazy"><figcaption>Application confirmations and replies arriving in my inbox</figcaption></figure>
+
+    <h2><span class="n">02</span>A free ticket to a San Francisco event</h2>
+    <p>I asked Muse to find interesting events. It found one I "could not miss", but it was paid, so it went and <strong>found a promo code for a free ticket</strong>, handled registration and got me to the venue. That saved me hundreds of dollars.</p>
+    <p>The venue was the Palace of Fine Arts, one of San Francisco's most beautiful classical landmarks near the Golden Gate Bridge.</p>
+    <figure><img src="images/04-palace.jpg" alt="Palace of Fine Arts, San Francisco" loading="lazy"><figcaption>The Palace of Fine Arts. Ticket handled by Muse</figcaption></figure>
+
+    <h2><span class="n">03</span>Replacing a frying pan</h2>
+    <p>Slightly embarrassing: I burned a friend's frying pan, and I know nothing about pans. I gave Muse the original pan's details and asked for a delivery-only replacement. It came back with a shortlist showing <strong>which option matched, what each cost and how fast it could arrive</strong>, exactly the three things I needed to decide, and it surfaced discount codes too.</p>
+    <figure><img src="images/05-frying-pan.jpg" alt="Muse comparing replacement pans" loading="lazy"><figcaption>Options, prices and delivery in one comparison</figcaption></figure>
+    <p>I picked the one it recommended, paid, and the pan went straight to my friend's home.</p>
+
+    <h2><span class="n">04</span>Letting AI plan an entire day</h2>
+    <p>A small experiment: I asked Muse to find me a way to blend into the Bay Area AI ecosystem. It signed me up as a volunteer for an AWS community event, handled the emails with the organizers, linked everything to my calendar and sorted out the details.</p>
+    <figure><img src="images/06-volunteer-email.jpg" alt="Email to the organizers drafted by Muse" loading="lazy"><figcaption>Emails with the organizers, drafted and handled by Muse</figcaption></figure>
+    <p>It researched the speakers and other volunteers, briefed me on their backgrounds and suggested people worth talking to one-on-one. It even got me into the speakers-and-volunteers dinner the night before (free, and delicious). On the day I just followed its plan, ran my sessions and made a lot of new friends.</p>
+
+    <h2><span class="n">05</span>Renters insurance: compare, buy, cancel</h2>
+    <p>I didn't want to work through long forms and compare every plan myself. Muse laid the plans out side by side; I picked the cheapest, $5 a month.</p>
+    <figure><img src="images/07-insurance.jpg" alt="Renters insurance plans compared" loading="lazy"><figcaption>Coverage, liability and monthly price, side by side</figcaption></figure>
+    <p>Later I no longer needed it, told Muse to cancel, and it did that just as easily. It can also help with visa applications, lease forms, bank issues and reimbursement claims.</p>
+
+    <h2><span class="n">06</span>Calendar management, every day</h2>
+    <p>Muse first got to know my profile, my work and the kinds of events that fit me. Then it started proactively searching Luma, Meetup, Eventbrite and similar platforms, and signing me up for the ones that fit.</p>
+    <figure><img src="images/08-calendar-discover.jpg" alt="Discovering Bay Area events" loading="lazy"><figcaption>Discovering Bay Area events that fit me</figcaption></figure>
+    <p>I gave it a standing task: <strong>every morning, scan my inbox for invitations and confirmations and put them on my calendar</strong>. It checks for conflicts and groups nearby events so my day makes sense geographically. When hosts reply or plans change it follows up, and if I don't want to go, it writes the email or cancels the sign-up.</p>
+    <blockquote>I used to plan my days across five different apps. Now I wake up and the day is planned.</blockquote>
+
+    <h2><span class="n">07</span>A website calendar that updates itself</h2>
+    <p>Many people ask me how to switch careers into AI, so I get invited to a lot of coffee chats. My real calendar has private things in it, so my public events live on my website's <a href="../../sf-2026/">Bay Area schedule</a>.</p>
+    <figure><img src="images/09-website-calendar.jpg" alt="The public calendar on kokiai.net/sf-2026" loading="lazy"><figcaption>The public schedule at kokiai.net/sf-2026: events and coffee chats</figcaption></figure>
+    <p>Every update used to mean editing code by hand. So I asked Muse to <strong>connect to my code repo and my calendar</strong> and keep the page in sync with my public events once a day.</p>
+    <figure><img src="images/10-website-sync.jpg" alt="Daily website sync notification" loading="lazy"><figcaption>Daily sync: when the calendar changes, the page follows</figcaption></figure>
+    <p>Now I just send people the link. They can see which events I'm attending, where to find me in person and when I'm free for a coffee chat.</p>
+
+    <h2>What's next</h2>
+    <p>These seven cases are the tip of the iceberg: I can hand basically all my daily stuff to Muse, and I do. I'll keep posting tutorials about living and working with a personal agent.</p>
+    <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/EgL830SMaiE" title="How To Use Muse: 7 Practical Examples For Work &amp; Life" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+    <a class="watch" href="https://www.youtube.com/watch?v=EgL830SMaiE" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/EgL830SMaiE/hqdefault.jpg" alt="Video thumbnail"><span>Watch on YouTube ↗</span></a>
+    <footer><span>© Koki · kokiai.net</span><span>Screenshots from my video <a href="https://www.youtube.com/watch?v=EgL830SMaiE">How To Use Muse</a>.</span></footer>
+    </article>
+  </main>
+</body>
+</html>

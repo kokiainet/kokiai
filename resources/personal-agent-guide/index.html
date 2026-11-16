@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your AI Secretary: The Full Comparison and Starter Guide｜Koki</title>
+  <meta name="description" content="Koki's full personal agent comparison and starter guide: chat vs work agents vs personal agents, the S-to-D ranking after a month of daily use (Muse, Grok Bot, Instinct, dots, Claude Duet), and five steps to get your own AI secretary for free.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: oklch(96.5% 0.013 86.8);
+      --surface: oklch(98.5% 0.007 88.6);
+      --fg: oklch(23.3% 0.018 148.4);
+      --muted: oklch(43.4% 0.018 151.4);
+      --border: oklch(88.0% 0.021 88.7);
+      --accent: oklch(33.2% 0.029 146.8);
+      --sage: oklch(67.1% 0.033 140.7);
+      --warm: #fcfaf5;
+      --font-display: "Playfair Display", "Iowan Old Style", Georgia, serif;
+      --font-body: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 15% 8%, rgba(139, 155, 136, .28), transparent 27rem),
+        radial-gradient(circle at 92% 12%, rgba(123, 130, 102, .16), transparent 24rem),
+        var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(100% - clamp(32px, 6vw, 96px), 1280px); margin: 0 auto; }
+
+    .nav {
+      position: fixed; z-index: 30; top: 18px; left: 50%; transform: translateX(-50%);
+      width: min(calc(100% - 32px), 1420px);
+      display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 22px;
+      padding: 12px 14px 12px 18px;
+      border: 1px solid color-mix(in oklch, var(--border), transparent 10%);
+      border-radius: 999px; background: rgba(252, 250, 245, .9);
+      backdrop-filter: blur(18px); box-shadow: 0 12px 34px rgba(24, 32, 25, .08);
+    }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; white-space: nowrap; }
+    .brand-mark { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; color: var(--warm); background: var(--accent); }
+    .nav-links { display: flex; justify-content: center; gap: clamp(10px, 2vw, 28px); color: var(--muted); font-size: clamp(17px, 1.15vw, 20px); font-weight: 500; }
+    .nav-links a { transition: color .25s ease; }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-links a[aria-current="page"] { color: var(--fg); }
+    .nav-actions { display: inline-flex; align-items: center; justify-content: flex-end; gap: 10px; }
+    .language-toggle { display: inline-grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 2px; padding: 4px; border: 1px solid color-mix(in oklch, var(--border), transparent 8%); border-radius: 999px; background: color-mix(in oklch, var(--surface), transparent 12%); }
+    .language-toggle a { min-width: 38px; min-height: 36px; padding: 0 10px; border-radius: 999px; color: var(--muted); font-size: 13px; font-weight: 700; letter-spacing: .06em; display: inline-flex; align-items: center; justify-content: center; }
+    .language-toggle a[aria-current="page"] { background: var(--accent); color: var(--warm); }
+    .btn-primary { background: var(--accent); color: var(--warm); border-radius: 999px; padding: 10px 18px; font-weight: 600; font-size: 15px; }
+    @media (max-width: 860px) { .nav-links { display: none; } .btn-primary { display: none; } }
+
+    main { padding: 150px 0 90px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: 12px; font-weight: 600; color: var(--accent); margin: 0 0 14px; }
+    h1 { font-family: var(--font-display); font-size: clamp(40px, 5vw, 64px); line-height: 1.1; margin: 0 0 18px; font-weight: 700; }
+    .lead { font-size: clamp(17px, 1.4vw, 20px); color: var(--muted); max-width: 46em; margin: 0; }
+    .lead a { text-decoration: underline; text-underline-offset: 3px; }
+    .updated { margin-top: 14px; font-size: 14px; color: var(--muted); }
+
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 38px; }
+    .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 18px 20px; }
+    .stat strong { display: block; font-family: var(--font-display); font-size: 30px; line-height: 1.1; margin-bottom: 4px; }
+    .stat span { color: var(--muted); font-size: 14px; }
+
+    section { margin-top: 64px; }
+    .section-head h2 { font-family: var(--font-display); font-size: clamp(28px, 3vw, 38px); margin: 0 0 8px; }
+    .section-head p { color: var(--muted); margin: 0 0 26px; max-width: 44em; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+    .card {
+      display: flex; flex-direction: column; gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px; padding: 24px;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    a.card:hover { transform: translateY(-3px); box-shadow: 0 18px 44px rgba(24, 32, 25, .10); border-color: var(--sage); }
+    .card .tag { align-self: flex-start; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); background: color-mix(in oklch, var(--sage), transparent 72%); padding: 4px 10px; border-radius: 999px; }
+    .card h3 { font-size: 20px; margin: 2px 0 0; line-height: 1.3; }
+    .card p { color: var(--muted); font-size: 15px; margin: 0; flex: 1; }
+    .card .meta { display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+    .card .domain { color: var(--muted); }
+    .card .go { color: var(--accent); font-weight: 600; }
+
+    footer { margin-top: 84px; padding-top: 28px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="brand" href="../../index.html" aria-label="Back to home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 19c8-1 13-6 14-14-8 1-13 6-14 14Zm0 0c3-1 6-3 9-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span>Koki</span>
+    </a>
+    <div class="nav-links">
+      <a href="../../index.html?section=anti">Anti-Distill Skill</a>
+      <a href="../../sf-2026/">SF 2026</a>
+      <a href="../">AI Library</a>
+      <a href="../../index.html?section=impact">Media</a>
+      <a href="../../index.html?section=insights">Insights</a>
+    </div>
+    <div class="nav-actions">
+      <div class="language-toggle" role="group" aria-label="Language">
+        <a href="index.html" aria-current="page">EN</a>
+        <a href="zh.html">中文</a>
+      </div>
+      <a class="btn-primary" href="../../index.html?section=contact">Subscribe</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <p class="eyebrow">Personal Agent · The Guide</p>
+      <h1>Your AI Secretary: The Full Comparison and Starter Guide</h1>
+      <p class="lead">This is the guide from the videos: what a personal agent actually is, how the five products compare after a month of daily use, and how to get your own AI secretary for free.</p>
+      <p class="updated">By Koki · November 2026</p>
+
+      <div class="stats">
+        <div class="stat"><strong>3</strong><span>Kinds of AI, compared</span></div>
+        <div class="stat"><strong>5</strong><span>Products ranked, S to D</span></div>
+        <div class="stat"><strong>5</strong><span>Steps to your own AI secretary</span></div>
+        <div class="stat"><strong>$0</strong><span>Cost of the S-tier pick</span></div>
+      </div>
+
+      <section id="watch">
+        <div class="section-head">
+          <h2>Watch</h2>
+          <p>See the uses first, then come back to this guide for the setup.</p>
+        </div>
+        <div style="position:relative;padding-top:56.25%;border-radius:18px;overflow:hidden;border:1px solid var(--line, #e5e7eb);margin:0 0 18px;">
+          <iframe src="https://www.youtube.com/embed/EgL830SMaiE" title="How To Use Muse: 7 Practical Examples For Work &amp; Life" style="position:absolute;inset:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="grid">
+          <a class="card" href="https://youtube.com/shorts/mWurt4Y3TjE" target="_blank" rel="noopener">
+            <span class="tag">Video</span>
+            <h3>7 Personal Agent Uses That Blew My Mind</h3>
+            <p>See what people are already doing with personal agents.</p>
+            <span class="meta"><span class="domain">youtube.com</span><span class="go">Watch ↗</span></span>
+          </a>
+          <a class="card" href="../personal-agent-uses/">
+            <span class="tag">Companion page</span>
+            <h3>7 Personal Agent Uses</h3>
+            <p>The companion page: seven real use cases with sources.</p>
+            <span class="meta"><span class="domain">kokiai.net</span><span class="go">Open ↗</span></span>
+          </a>
+        </div>
+      </section>
+
+      <section id="kinds">
+        <div class="section-head">
+          <h2>Three kinds of AI, three different jobs</h2>
+          <p>The word agent covers three very different products. Pick by the job, not the label.</p>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <span class="tag">Type 1</span>
+            <h3>Chat (ChatGPT, Claude, Gemini)</h3>
+            <p>You ask, it answers with text. Good for advice, wording and comparisons. But you still copy the text into files, open the websites, send the messages and follow up yourself. The AI stays an outside adviser.</p>
+          </div>
+          <div class="card">
+            <span class="tag">Type 2</span>
+            <h3>Work Agents (Claude Code, Codex)</h3>
+            <p>The assistant moves into your working environment and edits real files: code in a project, a document in a local folder, slides, data analysis, even a website. You review finished work instead of pasting paragraphs. Most run on your own computer, so the computer has to be on.</p>
+          </div>
+          <div class="card">
+            <span class="tag">Type 3</span>
+            <h3>Personal Agents (Muse, Grok Bot, Instinct)</h3>
+            <p>A secretary you reach from your phone. It has its own cloud computer (some also connect to yours), watches your email and calendar once you connect them, and brings things to you before you ask: tomorrow's seminar with the confirmation, location and what to prepare. Check-ins, meeting notes, receipts, bills, insurance, tailored job applications. When it gets stuck on a login or verification, you take over its computer, finish that step, and hand it back.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="ranking">
+        <div class="section-head">
+          <h2>The ranking, after a month of daily use</h2>
+          <p>Five products, ranked S to D. My own daily use, nobody paid for a placement.</p>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <span class="tag">S</span>
+            <h3>Muse</h3>
+            <p>Totally free. Over a month of daily use with no capacity limit and no interruption. It has handled jobs, event tickets, shopping, insurance, the calendar and this website. A successful friend referral earns a billion bonus tokens. When it hits a verification, you take over its computer and finish the step. Power tip: install Codex CLI on its computer so harder coding goes to OpenAI's advanced models.</p>
+          </div>
+          <div class="card">
+            <span class="tag">A</span>
+            <h3>Grok Bot</h3>
+            <p>Separate bots for money, health and work, so topics stay organized. Included in the X plan, and complex tasks can route to stronger models. Shortcoming: a usage cap, when it runs out you wait for the reset.</p>
+          </div>
+          <div class="card">
+            <span class="tag">B</span>
+            <h3>Instinct</h3>
+            <p>Free, and you text it through iMessage or WhatsApp, no new interface to learn. Shortcoming: everything piles into one long conversation, annoying when you need to find something later.</p>
+          </div>
+          <div class="card">
+            <span class="tag">C</span>
+            <h3>dots</h3>
+            <p>ChatGPT's agent: it knows your history and connects to Codex. But personal plans start at $100 a month, a lot for a normal person, and everything sits in one main conversation, so separating topics and finding old material is a pain.</p>
+          </div>
+          <div class="card">
+            <span class="tag">D</span>
+            <h3>Claude Duet</h3>
+            <p>Still on the waitlist, so untested. You cannot win the personal AI race if your users are still waiting at the door. Koki now has invites to share, see below.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="invites">
+        <div class="section-head">
+          <h2>Get in with Koki's invites</h2>
+          <p>Skip the line where you can. These are Koki's own invite links.</p>
+        </div>
+        <div class="grid">
+          <a class="card" href="https://app.instinct.com/invite?t=yvhztceikaeysvszolpkuyl4uy&amp;preview=whatsapp" target="_blank" rel="noopener">
+            <span class="tag">Invite · B-tier</span>
+            <h3>Instinct</h3>
+            <p>Join Instinct with Koki's invite link. Free, and you text it through iMessage or WhatsApp.</p>
+            <span class="meta"><span class="domain">app.instinct.com</span><span class="go">Join ↗</span></span>
+          </a>
+          <a class="card" href="https://claude.ai/duet-invite/UYx4U2RuqQ?e=ios_chat" target="_blank" rel="noopener">
+            <span class="tag">Invite · Research preview</span>
+            <h3>Claude Duet</h3>
+            <p>Want an invite to Claude Duet? It&rsquo;s a new proactive agent, in research preview, that acts as your personal chief of staff to help you stay on top of daily tasks.</p>
+            <span class="meta"><span class="domain">claude.ai</span><span class="go">Accept invite ↗</span></span>
+          </a>
+          <a class="card" href="https://muse.ai/join" target="_blank" rel="noopener">
+            <span class="tag">Invite · S-tier</span>
+            <h3>Muse</h3>
+            <p>Join Muse, then redeem Koki's invite code <strong>DTTSDD</strong> in Settings within 48 hours of joining. You both get 1 billion Muse tokens.</p>
+            <span class="meta"><span class="domain">muse.ai/join</span><span class="go">Join ↗</span></span>
+          </a>
+        </div>
+      </section>
+
+      <section id="start">
+        <div class="section-head">
+          <h2>Get your own AI secretary</h2>
+          <p>Five steps, in order. The whole setup is free.</p>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <span class="tag">Step 1</span>
+            <h3>Sign up for Muse</h3>
+            <p>It is free, and it is the S-tier pick above.</p>
+          </div>
+          <div class="card">
+            <span class="tag">Step 2</span>
+            <h3>Use the invite code from Koki's DM</h3>
+            <p>After joining, redeem the invite code <strong>DTTSDD</strong> in Settings within 48 hours. You both get 1 billion Muse tokens.</p>
+          </div>
+          <div class="card">
+            <span class="tag">Step 3</span>
+            <h3>Connect your email and calendar</h3>
+            <p>Connect your email and calendar, and tell it what to watch for.</p>
+          </div>
+          <div class="card">
+            <span class="tag">Step 4</span>
+            <h3>Give it real jobs first</h3>
+            <p>Give it real jobs first: a flight check-in, notes for a meeting you only need to sit in on, a price watch, your bills and receipts.</p>
+          </div>
+          <div class="card">
+            <span class="tag">Step 5</span>
+            <h3>Take over when it gets stuck</h3>
+            <p>When it gets stuck on a login or a verification, take over its computer, finish that step, and hand it back. It feels like a coworker with a computer, not a box waiting for another prompt.</p>
+          </div>
+        </div>
+      </section>
+
+
+      <footer>
+        <span>© Koki · kokiai.net</span>
+        <span>Koki's own comparison after a month of daily use; product details and prices as of November 2026 and can change.</span>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>
